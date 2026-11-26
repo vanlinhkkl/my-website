@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sổ Tay Phát Âm & Giao Tiếp Tiếng Anh Môn Toán THCS (Lớp 6 - 9)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    .ipa-font { font-family: 'JetBrains Mono', monospace; }
+    .card-hover { transition: all 0.2s ease; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      70% { transform: scale(1.25); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
+    }
+    .recording-pulse::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 9999px;
+      background-color: #ef4444; animation: pulse-ring 1.4s infinite; z-index: -1;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white shadow-lg sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-xl">📐</div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">Sổ Tay Phát Âm & Giao Tiếp Tiếng Anh Môn Toán THCS</h1>
+          <p class="text-xs text-blue-200">Lớp 6 – 9 • Chuẩn CLIL (Kế hoạch 444/KH-SGDĐT) • Nghe mẫu & Chấm điểm luyện nói</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <div class="flex items-center bg-slate-800/90 rounded-lg p-1 border border-slate-700">
+          <span class="px-2 text-slate-400 hidden sm:inline">Giọng:</span>
+          <button onclick="setAccent('en-US')" id="btn-us" class="px-2.5 py-1 rounded-md font-semibold bg-blue-600 text-white transition">🇺🇸 US</button>
+          <button onclick="setAccent('en-GB')" id="btn-gb" class="px-2.5 py-1 rounded-md font-semibold text-slate-300 hover:text-white transition">🇬🇧 UK</button>
+        </div>
+
+        <div class="flex items-center bg-slate-800/90 rounded-lg p-1 border border-slate-700">
+          <span class="px-2 text-slate-400 hidden sm:inline">Tốc độ:</span>
+          <button onclick="setRate(1.0)" id="rate-1" class="px-2 py-1 rounded-md font-semibold bg-emerald-600 text-white transition">1.0x</button>
+          <button onclick="setRate(0.65)" id="rate-065" class="px-2 py-1 rounded-md font-semibold text-slate-300 hover:text-white transition">0.65x</button>
+          <button onclick="setRate(0.5)" id="rate-05" class="px-2 py-1 rounded-md font-semibold text-slate-300 hover:text-white transition">0.5x</button>
+        </div>
+
+        <button onclick="toggleMicModal(true)" id="btn-mic-settings" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-400/40 font-semibold transition">
+          <span>🎙️ Cài đặt Micro</span>
+          <span id="mic-status-dot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full space-y-6">
+
+    <!-- Smart Custom Translator & Pronunciation Analyzer -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <h2 class="text-sm sm:text-base font-bold text-slate-800 flex items-center gap-2">
+          <span class="text-blue-600">✨</span> Luyện đọc & Phân tích câu bất kỳ trong giáo án
+        </h2>
+        <span class="text-xs text-slate-500">Gõ hoặc dán từ/câu tiếng Anh bất kỳ để dịch nghĩa, xem mẹo đọc tiếng Việt & chấm điểm nói</span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2.5">
+        <input id="custom-input" type="text" placeholder="Ví dụ: Hello, hoặc In a right-angled triangle, the square of the hypotenuse equals..."
+          class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          onkeydown="if(event.key==='Enter') analyzeCustomText()" />
+        <div class="flex flex-wrap gap-2">
+          <button onclick="analyzeCustomText()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+            🔍 Dịch & Mẹo đọc
+          </button>
+          <button onclick="speakCustomText()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+            🔊 Nghe mẫu
+          </button>
+          <button onclick="practiceCustomText()" id="btn-custom-speak" class="relative px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+            🎙️ Luyện nói
+          </button>
+        </div>
+      </div>
+
+      <!-- Analysis Result Box -->
+      <div id="custom-result-box" class="hidden mt-4 pt-4 border-t border-slate-100 space-y-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="bg-blue-50/70 border border-blue-100 rounded-xl p-3">
+            <div class="text-xs font-semibold text-blue-700 uppercase mb-1">🇻🇳 Dịch nghĩa tiếng Việt</div>
+            <div id="custom-vi-meaning" class="text-sm text-slate-800 font-medium">Đang dịch...</div>
+          </div>
+          <div class="bg-amber-50/80 border border-amber-200 rounded-xl p-3">
+            <div class="text-xs font-semibold text-amber-800 uppercase mb-1">🗣️ Mẹo đọc bồi tiếng Việt (Cho người mới bắt đầu)</div>
+            <div id="custom-phonetic-guide" class="text-sm text-amber-950 font-medium leading-relaxed"></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-semibold text-slate-500 uppercase mb-2">Phân tách từng từ (Bấm vào từng từ để nghe riêng):</div>
+          <div id="custom-word-breakdown" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div id="custom-speech-score" class="hidden"></div>
+      </div>
+    </section>
+
+    <!-- Stats & Filter Bar -->
+    <section class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <span class="font-bold text-slate-700 mr-1">Tiến độ luyện nói:</span>
+        <button onclick="setScoreFilter('all')" id="filter-all" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-white font-semibold">Tất cả (<span id="count-all">0</span>)</button>
+        <button onclick="setScoreFilter('excellent')" id="filter-excellent" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">🌟 Tuyệt vời (<span id="count-excellent">0</span>)</button>
+        <button onclick="setScoreFilter('pass')" id="filter-pass" class="px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 font-semibold">✅ Đạt (<span id="count-pass">0</span>)</button>
+        <button onclick="setScoreFilter('fail')" id="filter-fail" class="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 font-semibold">🔄 Chưa đạt (<span id="count-fail">0</span>)</button>
+        <button onclick="setScoreFilter('starred')" id="filter-starred" class="px-2.5 py-1.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 font-semibold">⭐ Đã lưu (<span id="count-starred">0</span>)</button>
+      </div>
+
+      <div class="relative min-w-[260px]">
+        <input id="search-input" oninput="renderCards()" type="text" placeholder="Tìm thuật ngữ, mẹo đọc, nghĩa Việt..."
+          class="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="absolute left-3 top-2.5 text-slate-400 text-sm">🔎</span>
+      </div>
+    </section>
+
+    <!-- Category Tabs -->
+    <nav class="flex gap-2 overflow-x-auto pb-1 no-scrollbar" id="category-tabs"></nav>
+
+    <!-- Cards Grid -->
+    <section id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></section>
+
+  </main>
+
+  <!-- Microphone Settings Modal -->
+  <div id="mic-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">🎙️ Cài đặt & Kiểm tra Micro Luyện Nói</h3>
+        <button onclick="toggleMicModal(false)" class="text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+      </div>
+
+      <div id="mic-diagnostic-box" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
+        <div class="font-bold text-slate-800">Trạng thái hiện tại: <span id="mic-perm-text" class="text-amber-600">Chưa kiểm tra</span></div>
+        <p class="text-slate-600">Trình duyệt cần quyền truy cập Micro để nghe giọng đọc của bạn và chấm điểm tự động.</p>
+      </div>
+
+      <button onclick="requestMicPermission()" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition">
+        🔓 Cấp quyền & Kiểm tra Micro ngay
+      </button>
+
+      <div class="text-xs text-slate-600 space-y-2 bg-amber-50/70 p-3.5 rounded-xl border border-amber-100">
+        <div class="font-bold text-amber-900">💡 Hướng dẫn nếu bấm nút nói chưa phản hồi:</div>
+        <ul class="list-disc pl-4 space-y-1">
+          <li><strong>Trên Chrome / Edge (Máy tính):</strong> Nhấn vào biểu tượng <strong>ổ khóa 🔒</strong> (hoặc biểu tượng cài đặt bên trái thanh địa chỉ web) &rarr; Bật công tắc <strong>Micro (Microphone)</strong> sang <em>Cho phép (Allow)</em> &rarr; Tải lại trang.</li>
+          <li><strong>Trên Điện thoại:</strong> Mở trang web bằng trình duyệt <strong>Chrome</strong> (Android) hoặc <strong>Safari</strong> (iPhone), tránh mở qua trình duyệt thu nhỏ bên trong Zalo/Facebook.</li>
+          <li><strong>Nói rõ ràng:</strong> Sau khi bấm nút <em>Luyện nói</em>, đợi 0.5 giây rồi đọc to, rõ ràng cụm từ tiếng Anh.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="hidden fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl text-xs sm:text-sm z-50 max-w-sm"></div>
+
+  <script>
+    const CATEGORIES = [
+      { id: 'all', name: '📚 Tất cả' },
+      { id: 'symbols', name: '➕ Phép tính & Ký hiệu' },
+      { id: 'algebra', name: '🔢 Số học & Đại số (6-9)' },
+      { id: 'geometry', name: '📐 Hình học & Đo lường' },
+      { id: 'trig_stat', name: '📊 Lượng giác & Thống kê' },
+      { id: 'questions', name: '❓ Câu hỏi tương tác lớp' },
+      { id: 'commands', name: '🗣️ Điều hành & Khen ngợi' },
+      { id: 'paragraphs', name: '📖 Đoạn văn giảng bài mẫu' }
+    ];
+
+    const DATA = [
+      // 1. Symbols & Operations
+      { id: 1, cat: 'symbols', en: 'Plus', ipa: '/plʌs/', tip: 'Đọc là: "plớt" (môi mím bật âm "p", kết thúc xì nhẹ âm "s").', vi: 'Cộng (+)', ex: 'Two plus three equals five (2 + 3 = 5).' },
+      { id: 2, cat: 'symbols', en: 'Minus', ipa: '/ˈmaɪ.nəs/', tip: 'Nhấn âm 1: "MAI-nợt-s" (chữ "MAI" đọc cao giọng, cuối xì nhẹ âm "s").', vi: 'Trừ (-)', ex: 'Ten minus four equals six (10 - 4 = 6).' },
+      { id: 3, cat: 'symbols', en: 'Multiplied by / Times', ipa: '/ˈmʌl.tɪ.plaɪd baɪ/', tip: 'Đọc là: "MÂN-ti-plai bai" hoặc đọc ngắn gọn là "tham-z" (luyến âm "z").', vi: 'Nhân với (×)', ex: 'Three times four equals twelve (3 × 4 = 12).' },
+      { id: 4, cat: 'symbols', en: 'Divided by', ipa: '/dɪˈvaɪ.dɪd baɪ/', tip: 'Nhấn âm 2: "đi-VAI-địt bai" (nhấn mạnh vào chữ "VAI").', vi: 'Chia cho (÷)', ex: 'Twenty divided by five equals four.' },
+      { id: 5, cat: 'symbols', en: 'Equals / Is equal to', ipa: '/ˈiː.kwəlz/', tip: 'Nhấn âm 1: "I-quồl-z" (kéo dài âm "I", cuối rung nhẹ âm "z").', vi: 'Bằng (=)', ex: 'x plus two equals seven.' },
+      { id: 6, cat: 'symbols', en: 'Is not equal to', ipa: '/ɪz nɒt ˈiː.kwəl tuː/', tip: 'Đọc liền mạch: "iz nót I-quồl tu" (nhấn vào chữ "nót" và "I").', vi: 'Khác (≠)', ex: 'a is not equal to zero (a ≠ 0).' },
+      { id: 7, cat: 'symbols', en: 'Greater than', ipa: '/ˈɡreɪ.tər ðæn/', tip: 'Nhấn âm 1: "GRÂY-tờ đen" (chữ "GRÂY" đọc rõ, chữ "đen" đặt đầu lưỡi chạm nhẹ răng cửa).', vi: 'Lớn hơn (>)', ex: 'Five is greater than three (5 > 3).' },
+      { id: 8, cat: 'symbols', en: 'Less than', ipa: '/les ðæn/', tip: 'Đọc là: "lét-s đen" (xì nhẹ âm "s" ở cuối chữ "lét").', vi: 'Nhỏ hơn (<)', ex: 'x is less than ten (x < 10).' },
+      { id: 9, cat: 'symbols', en: 'Greater than or equal to', ipa: '/ˈɡreɪ.tər ðæn ɔːr ˈiː.kwəl tuː/', tip: 'Đọc chia 2 cụm: "GRÂY-tờ đen" + "o I-quồl tu".', vi: 'Lớn hơn hoặc bằng (≥)', ex: 'x is greater than or equal to zero.' },
+      { id: 10, cat: 'symbols', en: 'Less than or equal to', ipa: '/les ðæn ɔːr ˈiː.kwəl tuː/', tip: 'Đọc chia 2 cụm: "lét-s đen" + "o I-quồl tu".', vi: 'Nhỏ hơn hoặc bằng (≤)', ex: 'y is less than or equal to five.' },
+      { id: 11, cat: 'symbols', en: 'Squared', ipa: '/skweəd/', tip: 'Đọc là: "s-QUE-đ" (xì nhẹ "s" đầu từ, đọc "que", bật nhẹ âm "đ" cuối).', vi: 'Bình phương (x²)', ex: 'a squared plus b squared equals c squared.' },
+      { id: 12, cat: 'symbols', en: 'Cubed', ipa: '/kjuːbd/', tip: 'Đọc là: "KIU-b-đ" (đọc như chữ "kiu", khép môi âm "b" rồi bật nhẹ "đ").', vi: 'Lập phương (x³)', ex: 'Two cubed equals eight (2³ = 8).' },
+      { id: 13, cat: 'symbols', en: 'Square root of', ipa: '/skweər ruːt əv/', tip: 'Đọc nối âm: "s-que rút-tợv" (nối chữ "t" của rút sang chữ "ợv").', vi: 'Căn bậc hai của (√)', ex: 'The square root of twenty-five is five.' },
+      { id: 14, cat: 'symbols', en: 'Fraction', ipa: '/ˈfræk.ʃən/', tip: 'Nhấn âm 1: "PHRẮC-shần" (âm "sh" cong môi nhẹ như chữ "s" nặng tiếng Việt).', vi: 'Phân số (a/b)', ex: 'One over two is a fraction.' },
+      { id: 15, cat: 'symbols', en: 'Numerator and Denominator', ipa: '/ˈnjuː.mə.reɪ.tər/ - /dɪˈnɒm.ɪ.neɪ.tər/', tip: 'Tử số: "NIU-mơ-rây-tờ" (nhấn âm 1) • Mẫu số: "đi-NOM-i-nây-tờ" (nhấn âm 2).', vi: 'Tử số và Mẫu số', ex: 'The denominator must be non-zero.' },
+      { id: 16, cat: 'symbols', en: 'Percentage', ipa: '/pəˈsen.tɪdʒ/', tip: 'Nhấn âm 2: "pờ-SEN-tịt-j" (nhấn mạnh vào "SEN").', vi: 'Tỉ số phần trăm (%)', ex: 'Fifty percent equals one half.' },
+
+      // 2. Numbers & Algebra
+      { id: 17, cat: 'algebra', en: 'Natural number', ipa: '/ˈnætʃ.ər.əl ˈnʌm.bər/', tip: 'Nhấn âm 1 mỗi từ: "NÁT-chơ-rồl NĂM-bờ".', vi: 'Số tự nhiên (N)', ex: 'Zero is a natural number.' },
+      { id: 18, cat: 'algebra', en: 'Integer', ipa: '/ˈɪn.tɪ.dʒər/', tip: 'Nhấn âm 1: "IN-ti-jờ" (lưu ý không đọc là "in-tơ-gơ").', vi: 'Số nguyên (Z)', ex: 'Negative three is an integer.' },
+      { id: 19, cat: 'algebra', en: 'Rational number', ipa: '/ˈræʃ.ən.əl ˈnʌm.bər/', tip: 'Nhấn âm 1: "RÁ-shần-nồl NĂM-bờ".', vi: 'Số hữu tỉ (Q)', ex: 'Every integer is a rational number.' },
+      { id: 20, cat: 'algebra', en: 'Prime number', ipa: '/praɪm ˈnʌm.bər/', tip: 'Đọc là: "p-RAIM NĂM-bờ" (bật nhẹ âm "p" rồi nối vào "raim").', vi: 'Số nguyên tố', ex: 'Two is the only even prime number.' },
+      { id: 21, cat: 'algebra', en: 'Composite number', ipa: '/ˈkɒm.pə.zɪt ˈnʌm.bər/', tip: 'Nhấn âm 1: "KOM-pơ-zịt NĂM-bờ".', vi: 'Hợp số', ex: 'Six is a composite number.' },
+      { id: 22, cat: 'algebra', en: 'Factor / Divisor', ipa: '/ˈfæk.tər/ - /dɪˈvaɪ.zər/', tip: 'Factor: "PHẮC-tờ" (nhấn âm 1) • Divisor: "đi-VAI-zờ" (nhấn âm 2).', vi: 'Ước số / Thừa số', ex: 'Three is a factor of twelve.' },
+      { id: 23, cat: 'algebra', en: 'Multiple', ipa: '/ˈmʌl.tɪ.pəl/', tip: 'Nhấn âm 1: "MÂN-ti-pồl" (uốn nhẹ đầu lưỡi lên vòm miệng ở cuối).', vi: 'Bội số', ex: 'Fifteen is a multiple of five.' },
+      { id: 24, cat: 'algebra', en: 'Greatest common divisor', ipa: '/ˈɡreɪ.tɪst ˈkɒm.ən dɪˈvaɪ.zər/', tip: 'Đọc từng cụm: "GRÂY-tịt-s KOM-mần đi-VAI-zờ".', vi: 'Ước chung lớn nhất (ƯCLN)', ex: 'Find the greatest common divisor of 12 and 18.' },
+      { id: 25, cat: 'algebra', en: 'Least common multiple', ipa: '/liːst ˈkɒm.ən ˈmʌl.tɪ.pəl/', tip: 'Đọc là: "lít-s KOM-mần MÂN-ti-pồl" (kéo dài chữ "lít").', vi: 'Bội chung nhỏ nhất (BCNN)', ex: 'The least common multiple of 4 and 6 is 12.' },
+      { id: 26, cat: 'algebra', en: 'Direct proportion', ipa: '/daɪˈrekt prəˈpɔː.ʃən/', tip: 'Nhấn âm 2 cả hai từ: "đai-RÉCT prờ-PO-shần".', vi: 'Đại lượng tỉ lệ thuận', ex: 'y is in direct proportion to x (y = kx).' },
+      { id: 27, cat: 'algebra', en: 'Inverse proportion', ipa: '/ˌɪn.vɜːs prəˈpɔː.ʃən/', tip: 'Đọc là: "in-VỚT-s prờ-PO-shần" (chữ "VỚT" kéo dài, xì nhẹ "s").', vi: 'Đại lượng tỉ lệ nghịch', ex: 'Speed and time are in inverse proportion.' },
+      { id: 28, cat: 'algebra', en: 'Algebraic expression', ipa: '/ˌæl.dʒəˈbreɪ.ɪk ɪkˈspreʃ.ən/', tip: 'Đọc là: "eo-jơ-BRÂY-ik ik-S-PRE-shần" (nhấn vào "BRÂY" và "PRE").', vi: 'Biểu thức đại số', ex: 'Simplify the algebraic expression.' },
+      { id: 29, cat: 'algebra', en: 'Polynomial', ipa: '/ˌpɒl.iˈnəʊ.mi.əl/', tip: 'Nhấn âm 3: "po-li-NÂU-mi-ồl" (nhấn mạnh vào chữ "NÂU").', vi: 'Đa thức', ex: 'Add and subtract two polynomials.' },
+      { id: 30, cat: 'algebra', en: 'Algebraic identity', ipa: '/ˌæl.dʒəˈbreɪ.ɪk aɪˈden.tə.ti/', tip: 'Đọc là: "eo-jơ-BRÂY-ik ai-ĐEN-tơ-ti" (nhấn vào "BRÂY" và "ĐEN").', vi: 'Hằng đẳng thức đáng nhớ', ex: 'Apply the square of a sum identity.' },
+      { id: 31, cat: 'algebra', en: 'Factorize / Factor', ipa: '/ˈfæk.tər.aɪz/', tip: 'Nhấn âm 1: "PHẮC-tơ-rai-z" (cuối rung nhẹ âm "z").', vi: 'Phân tích thành nhân tử', ex: 'Factorize x squared minus four.' },
+      { id: 32, cat: 'algebra', en: 'Linear equation', ipa: '/ˈlɪn.i.ər ɪˈkweɪ.ʒən/', tip: 'Đọc là: "LI-ni-ờ i-QUÂY-zhần" (nhấn vào "LI" và "QUÂY").', vi: 'Phương trình bậc nhất', ex: 'Solve the linear equation 2x + 4 = 0.' },
+      { id: 33, cat: 'algebra', en: 'Quadratic equation', ipa: '/kwɒdˈræt.ɪk ɪˈkweɪ.ʒən/', tip: 'Đọc là: "quót-RÁ-tịk i-QUÂY-zhần" (nhấn vào "RÁ" và "QUÂY").', vi: 'Phương trình bậc hai', ex: 'Identify the coefficients a, b, and c.' },
+      { id: 34, cat: 'algebra', en: 'Coefficient', ipa: '/ˌkəʊ.ɪˈfɪʃ.ənt/', tip: 'Nhấn âm 3: "câu-i-PHI-shầnt" (nhấn mạnh vào chữ "PHI").', vi: 'Hệ số', ex: 'The leading coefficient is non-zero.' },
+      { id: 35, cat: 'algebra', en: 'Unknown / Variable', ipa: '/ʌnˈnəʊn/ - /ˈveə.ri.ə.bəl/', tip: 'Unknown: "ân-NÂUN" (chữ "k" câm) • Variable: "VE-ri-ơ-bồl" (nhấn âm 1).', vi: 'Ẩn số / Biến số', ex: 'Let x be the unknown number.' },
+      { id: 36, cat: 'algebra', en: 'Solution / Root', ipa: '/səˈluː.ʃən/ - /ruːt/', tip: 'Solution: "sơ-LU-shần" (nhấn âm 2) • Root: "rút" (kéo dài âm u).', vi: 'Nghiệm của phương trình', ex: 'The equation has two distinct roots.' },
+      { id: 37, cat: 'algebra', en: 'Linear function', ipa: '/ˈlɪn.i.ər ˈfʌŋk.ʃən/', tip: 'Nhấn âm 1 mỗi từ: "LI-ni-ờ PHĂNG-shần".', vi: 'Hàm số bậc nhất (y = ax + b)', ex: 'Draw the graph of the linear function.' },
+      { id: 38, cat: 'algebra', en: 'Coordinate plane', ipa: '/kəʊˈɔː.dɪ.nət pleɪn/', tip: 'Đọc là: "câu-O-đi-nợt p-lên" (nhấn mạnh vào chữ "O").', vi: 'Mặt phẳng tọa độ (Oxy)', ex: 'Plot the point A(2, 3) on the coordinate plane.' },
+
+      // 3. Geometry & Measurement
+      { id: 39, cat: 'geometry', en: 'Point, Line, Ray, Segment', ipa: '/pɔɪnt/, /laɪn/, /reɪ/, /ˈseɡ.mənt/', tip: 'Point: "poi-t" • Line: "lai-n" • Ray: "rây" • Segment: "SÉG-mầnt".', vi: 'Điểm, Đường thẳng, Tia, Đoạn thẳng', ex: 'Line segment AB has a length of 5 cm.' },
+      { id: 40, cat: 'geometry', en: 'Parallel lines', ipa: '/ˈpær.ə.lel laɪnz/', tip: 'Nhấn âm 1: "PA-rơ-leo lai-n-z" (cuối chữ lines rung nhẹ "z").', vi: 'Hai đường thẳng song song', ex: 'Line a is parallel to line b.' },
+      { id: 41, cat: 'geometry', en: 'Perpendicular lines', ipa: '/ˌpɜː.pənˈdɪk.jə.lər laɪnz/', tip: 'Nhấn âm 3: "pơ-pần-ĐÍK-kiu-lờ lai-n-z" (nhấn mạnh vào "ĐÍK").', vi: 'Hai đường thẳng vuông góc', ex: 'AB is perpendicular to CD at point H.' },
+      { id: 42, cat: 'geometry', en: 'Acute angle', ipa: '/əˈkjuːt ˈæŋ.ɡəl/', tip: 'Đọc là: "ơ-KIUT ĂNG-gồl" (nhấn mạnh vào "KIUT" và "ĂNG").', vi: 'Góc nhọn (< 90°)', ex: 'An acute angle is less than 90 degrees.' },
+      { id: 43, cat: 'geometry', en: 'Right angle', ipa: '/raɪt ˈæŋ.ɡəl/', tip: 'Đọc là: "rai-t ĂNG-gồl" (âm "gh" trong right là âm câm, không đọc).', vi: 'Góc vuông (= 90°)', ex: 'A right angle measures exactly 90 degrees.' },
+      { id: 44, cat: 'geometry', en: 'Obtuse angle', ipa: '/əbˈtjuːs ˈæŋ.ɡəl/', tip: 'Đọc là: "ợp-TIUT-s ĂNG-gồl" (nhấn mạnh vào "TIUT").', vi: 'Góc tù (> 90°)', ex: 'An obtuse angle is greater than 90 degrees.' },
+      { id: 45, cat: 'geometry', en: 'Straight angle', ipa: '/streɪt ˈæŋ.ɡəl/', tip: 'Đọc là: "s-TRÂY-t ĂNG-gồl" (âm "gh" câm, đọc như chữ "s-trây-t").', vi: 'Góc bẹt (= 180°)', ex: 'A straight angle equals 180 degrees.' },
+      { id: 46, cat: 'geometry', en: 'Angle bisector', ipa: '/ˈæŋ.ɡəl baɪˈsek.tər/', tip: 'Đọc là: "ĂNG-gồl bai-SÉC-tờ" (nhấn vào "ĂNG" và "SÉC").', vi: 'Tia phân giác của góc', ex: 'Ray Oz is the bisector of angle xOy.' },
+      { id: 47, cat: 'geometry', en: 'Right-angled triangle', ipa: '/raɪt ˈæŋ.ɡəld ˈtraɪ.æŋ.ɡəl/', tip: 'Đọc chia 2 nhịp: "rai-t ĂNG-gồl-đ" + "TRAI-ăng-gồl".', vi: 'Tam giác vuông', ex: 'Triangle ABC is right-angled at A.' },
+      { id: 48, cat: 'geometry', en: 'Hypotenuse', ipa: '/haɪˈpɒt.ən.juːz/', tip: 'Nhấn âm 2: "hai-PO-tơ-niu-z" (nhấn mạnh chữ "PO", cuối rung nhẹ "z").', vi: 'Cạnh huyền (trong tam giác vuông)', ex: 'The hypotenuse is the longest side.' },
+      { id: 49, cat: 'geometry', en: 'Legs (of a right triangle)', ipa: '/leɡz/', tip: 'Đọc là: "lég-z" (đọc rõ chữ "lég" rồi rung nhẹ âm "z" ở cuối).', vi: 'Hai cạnh góc vuông', ex: 'The two legs are 3 cm and 4 cm.' },
+      { id: 50, cat: 'geometry', en: 'Isosceles triangle', ipa: '/aɪˈsɒs.əl.iːz ˈtraɪ.æŋ.ɡəl/', tip: 'Nhấn âm 2: "ai-SO-sơ-li-z TRAI-ăng-gồl" (chữ "c" sau "s" là âm câm).', vi: 'Tam giác cân', ex: 'An isosceles triangle has two equal sides.' },
+      { id: 51, cat: 'geometry', en: 'Equilateral triangle', ipa: '/ˌiː.kwɪˈlæt.ər.əl ˈtraɪ.æŋ.ɡəl/', tip: 'Nhấn âm 3: "i-qui-LÁ-tơ-rồl TRAI-ăng-gồl".', vi: 'Tam giác đều', ex: 'Each angle in an equilateral triangle is 60°.' },
+      { id: 52, cat: 'geometry', en: 'Congruent triangles', ipa: '/ˈkɒŋ.ɡru.ənt ˈtraɪ.æŋ.ɡəlz/', tip: 'Nhấn âm 1: "KONG-gru-ầnt TRAI-ăng-gồl-z".', vi: 'Hai tam giác bằng nhau', ex: 'Prove that triangle ABC is congruent to triangle DEF.' },
+      { id: 53, cat: 'geometry', en: 'Similar triangles', ipa: '/ˈsɪm.ɪ.lər ˈtraɪ.æŋ.ɡəlz/', tip: 'Nhấn âm 1: "SI-mi-lờ TRAI-ăng-gồl-z".', vi: 'Hai tam giác đồng dạng', ex: 'Corresponding angles of similar triangles are equal.' },
+      { id: 54, cat: 'geometry', en: 'Quadrilateral', ipa: '/ˌkwɒd.rɪˈlæt.ər.əl/', tip: 'Nhấn âm 3: "quót-ri-LÁ-tơ-rồl" (nhấn mạnh vào chữ "LÁ").', vi: 'Tứ giác', ex: 'The sum of angles in a quadrilateral is 360°.' },
+      { id: 55, cat: 'geometry', en: 'Trapezoid / Trapezium', ipa: '/ˈtræp.ɪ.zɔɪd/', tip: 'Nhấn âm 1: "TRÁ-pi-zoi-đ" (nhấn mạnh vào chữ "TRÁ").', vi: 'Hình thang', ex: 'An isosceles trapezoid has equal diagonals.' },
+      { id: 56, cat: 'geometry', en: 'Parallelogram', ipa: '/ˌpær.əˈlel.ə.ɡræm/', tip: 'Nhấn âm 3: "pa-rơ-LE-lơ-gram" (nhấn mạnh vào chữ "LE").', vi: 'Hình bình hành', ex: 'Opposite sides of a parallelogram are parallel.' },
+      { id: 57, cat: 'geometry', en: 'Rectangle and Square', ipa: '/ˈrek.tæŋ.ɡəl/ - /skweər/', tip: 'Rectangle: "RÉC-tăng-gồl" (nhấn âm 1) • Square: "s-QUE".', vi: 'Hình chữ nhật và Hình vuông', ex: 'Every square is a rectangle.' },
+      { id: 58, cat: 'geometry', en: 'Rhombus', ipa: '/ˈrɒm.bəs/', tip: 'Nhấn âm 1: "ROM-bợt-s" (chữ "h" là âm câm, đọc như chữ "rom").', vi: 'Hình thoi', ex: 'The diagonals of a rhombus are perpendicular.' },
+      { id: 59, cat: 'geometry', en: 'Perimeter and Area', ipa: '/pəˈrɪm.ɪ.tər/ - /ˈeə.ri.ə/', tip: 'Perimeter: "pờ-RI-mi-tờ" (nhấn âm 2) • Area: "E-ri-ơ" (nhấn âm 1).', vi: 'Chu vi và Diện tích', ex: 'Calculate the perimeter and area of the rectangle.' },
+      { id: 60, cat: 'geometry', en: 'Circle, Radius, Diameter', ipa: '/ˈsɜː.kəl/, /ˈreɪ.di.əs/, /daɪˈæm.ɪ.tər/', tip: 'Circle: "SƠ-cồl" • Radius: "RÂY-đi-ợt-s" • Diameter: "đai-A-mi-tờ".', vi: 'Đường tròn, Bán kính, Đường kính', ex: 'The diameter is twice the radius (d = 2R).' },
+      { id: 61, cat: 'geometry', en: 'Tangent to a circle', ipa: '/ˈtæn.dʒənt tuː ə ˈsɜː.kəl/', tip: 'Đọc là: "TAN-jầnt tu ơ SƠ-cồl" (nhấn vào "TAN" và "SƠ").', vi: 'Tiếp tuyến của đường tròn', ex: 'The tangent is perpendicular to the radius at the point of contact.' },
+      { id: 62, cat: 'geometry', en: 'Volume and Surface area', ipa: '/ˈvɒl.juːm/ - /ˈsɜː.fɪs ˈeə.ri.ə/', tip: 'Volume: "VO-lium" (nhấn âm 1) • Surface area: "SƠ-phịt-s E-ri-ơ".', vi: 'Thể tích và Diện tích xung quanh/bề mặt', ex: 'Find the volume of the cylinder.' },
+
+      // 4. Trigonometry & Statistics
+      { id: 63, cat: 'trig_stat', en: 'Opposite side', ipa: '/ˈɒp.ə.zɪt saɪd/', tip: 'Nhấn âm 1: "O-pơ-zịt sai-đ" (nhấn mạnh vào chữ "O").', vi: 'Cạnh đối (của góc nhọn)', ex: 'Identify the side opposite to angle B.' },
+      { id: 64, cat: 'trig_stat', en: 'Adjacent side', ipa: '/əˈdʒeɪ.sənt saɪd/', tip: 'Nhấn âm 2: "ơ-JÂY-sầnt sai-đ" (chữ "d" trước "j" câm, đọc là "JÂY").', vi: 'Cạnh kề (của góc nhọn)', ex: 'AB is the adjacent side to angle B.' },
+      { id: 65, cat: 'trig_stat', en: 'Sine, Cosine, Tangent, Cotangent', ipa: '/saɪn/, /ˈkəʊ.saɪn/, /ˈtæn.dʒənt/', tip: 'Sine: "sai-n" • Cosine: "CÂU-sai-n" • Tangent: "TAN-jầnt" • Cotangent: "câu-TAN-jầnt".', vi: 'Sin, Cos, Tan, Cot', ex: 'Sine equals opposite over hypotenuse.' },
+      { id: 66, cat: 'trig_stat', en: 'Trigonometric ratios', ipa: '/ˌtrɪɡ.ə.nəˈmet.rɪk ˈreɪ.ʃi.əʊz/', tip: 'Đọc chia 2 từ: "tri-gơ-nơ-MÉ-trịk" + "RÂY-shi-âu-z".', vi: 'Tỉ số lượng giác', ex: 'Calculate the trigonometric ratios of angle C.' },
+      { id: 67, cat: 'trig_stat', en: 'Data and Frequency', ipa: '/ˈdeɪ.tə/ - /ˈfriː.kwən.si/', tip: 'Data: "ĐÂY-tơ" (nhấn âm 1) • Frequency: "PHRI-quần-si" (nhấn âm 1).', vi: 'Dữ liệu và Tần số', ex: 'Collect data and make a frequency table.' },
+      { id: 68, cat: 'trig_stat', en: 'Bar chart and Pie chart', ipa: '/bɑː tʃɑːt/ - /paɪ tʃɑːt/', tip: 'Bar chart: "ba chát" • Pie chart: "pai chát".', vi: 'Biểu đồ cột và Biểu đồ hình quạt tròn', ex: 'Read information from the bar chart.' },
+      { id: 69, cat: 'trig_stat', en: 'Mean / Average', ipa: '/miːn/ - /ˈæv.ər.ɪdʒ/', tip: 'Mean: "min" (kéo dài âm i) • Average: "A-vơ-rịt-j" (nhấn âm 1).', vi: 'Số trung bình cộng', ex: 'Calculate the mean score of the class.' },
+      { id: 70, cat: 'trig_stat', en: 'Probability', ipa: '/ˌprɒb.əˈbɪl.ə.ti/', tip: 'Nhấn âm 3: "pro-bơ-BI-lơ-ti" (nhấn mạnh vào chữ "BI").', vi: 'Xác suất', ex: 'Find the probability of getting an even number.' },
+
+      // 5. Classroom Questions
+      { id: 71, cat: 'questions', en: 'What is given in the problem?', ipa: '/wɒt ɪz ˈɡɪv.ən ɪn ðə ˈprɒb.ləm/', tip: 'Đọc nối âm: "Quót-tiz GI-vần in đờ PROB-lầm?" (lên giọng nhẹ cuối câu).', vi: 'Đề bài đã cho biết những gì?', ex: 'Dùng khi hướng dẫn học sinh tóm tắt giả thiết.' },
+      { id: 72, cat: 'questions', en: 'What do we need to find or prove?', ipa: '/wɒt duː wiː niːd tuː faɪnd ɔː pruːv/', tip: 'Đọc là: "Quót đu wi nít tu phai-đ o pru-v?" (nhấn vào "nít", "phai-đ", "pru-v").', vi: 'Chúng ta cần tìm hoặc chứng minh điều gì?', ex: 'Dùng để xác định kết luận / yêu cầu bài toán.' },
+      { id: 73, cat: 'questions', en: 'Which formula should we apply here?', ipa: '/wɪtʃ ˈfɔː.mjə.lə ʃʊd wiː əˈplaɪ hɪər/', tip: 'Đọc là: "Quít-ch PHO-miơ-lơ shút wi ơ-PLAI hia?"', vi: 'Chúng ta nên áp dụng công thức nào ở đây?', ex: 'Gợi ý học sinh chọn định lí / công thức phù hợp.' },
+      { id: 74, cat: 'questions', en: 'Which side is the hypotenuse?', ipa: '/wɪtʃ saɪd ɪz ðə haɪˈpɒt.ən.juːz/', tip: 'Đọc nối âm: "Quít-ch sai-điz đờ hai-PO-tơ-niu-z?"', vi: 'Cạnh nào là cạnh huyền?', ex: 'Câu hỏi kiểm tra nhanh khi dạy định lí Pythagore.' },
+      { id: 75, cat: 'questions', en: 'How do you read this expression in English?', ipa: '/haʊ duː juː riːd ðɪs ɪkˈspreʃ.ən/', tip: 'Đọc là: "Hao đu iu rít đít-s ik-S-PRE-shần in IN-g-lịt-sh?"', vi: 'Em đọc biểu thức này bằng tiếng Anh như thế nào?', ex: 'Khuyến khích học sinh luyện nói thuật ngữ Toán.' },
+      { id: 76, cat: 'questions', en: 'Can anyone solve this problem on the board?', ipa: '/kæn ˈen.i.wʌn sɒlv ðɪs ˈprɒb.ləm/', tip: 'Đọc là: "Ken E-ni-quăn sô-v đít-s PROB-lầm on đờ bo-đ?"', vi: 'Có em nào lên bảng giải bài toán này được không?', ex: 'Mời học sinh xung phong lên bảng.' },
+      { id: 77, cat: 'questions', en: 'Do you agree with your friend’s answer?', ipa: '/duː juː əˈɡriː wɪð jɔː frendz ˈɑːn.sər/', tip: 'Đọc là: "Đu iu ơ-GRI quít-th io phren-z AN-sờ?"', vi: 'Các em có đồng ý với đáp án của bạn không?', ex: 'Dùng trong bước nhận xét, đánh giá chéo.' },
+      { id: 78, cat: 'questions', en: 'Why is this triangle right-angled?', ipa: '/waɪ ɪz ðɪs ˈtraɪ.æŋ.ɡəl raɪt ˈæŋ.ɡəld/', tip: 'Đọc là: "Quai iz đít-s TRAI-ăng-gồl rai-t ĂNG-gồl-đ?"', vi: 'Tại sao tam giác này lại là tam giác vuông?', ex: 'Hỏi giải thích lập luận hình học.' },
+      { id: 79, cat: 'questions', en: 'What is the next step?', ipa: '/wɒt ɪz ðə nekst step/', tip: 'Đọc nối âm: "Quót-tiz đờ néc-s-t s-tép?"', vi: 'Bước tiếp theo là gì?', ex: 'Dẫn dắt học sinh giải từng bước phương trình.' },
+      { id: 80, cat: 'questions', en: 'Do you have any questions about this lesson?', ipa: '/duː juː hæv ˈen.i ˈkwes.tʃənz/', tip: 'Đọc là: "Đu iu háp E-ni QUÉT-chần-z ơ-BAO đít-s LÉ-sần?"', vi: 'Các em có thắc mắc gì về bài học hôm nay không?', ex: 'Hỏi cuối tiết học để giải đáp.' },
+
+      // 6. Classroom Commands & Praise
+      { id: 81, cat: 'commands', en: 'Good morning, class! How are you today?', ipa: '/ɡʊd ˈmɔː.nɪŋ klɑːs/', tip: 'Đọc vui tươi: "Gút MO-ning c-lát-s! Hao a iu tơ-ĐÂY?"', vi: 'Chào buổi sáng cả lớp! Hôm nay các em khỏe không?', ex: 'Chào hỏi đầu giờ học.' },
+      { id: 82, cat: 'commands', en: 'Open your textbook to page twenty-five.', ipa: '/ˈəʊ.pən jɔː ˈtekst.bʊk tuː peɪdʒ/', tip: 'Đọc là: "ÂU-pần io TÉC-s-búc tu pây-j TUEN-ti phai-v."', vi: 'Các em mở sách giáo khoa trang 25.', ex: 'Hướng dẫn mở sách.' },
+      { id: 83, cat: 'commands', en: 'Look at the board and listen carefully.', ipa: '/lʊk æt ðə bɔːd ænd ˈlɪs.ən ˈkeə.fəl.i/', tip: 'Đọc nối âm: "Lúc-kát đờ bo-đ en LI-sần KE-phơ-li."', vi: 'Hãy nhìn lên bảng và lắng nghe cẩn thận.', ex: 'Thu hút sự chú ý khi giảng kiến thức mới.' },
+      { id: 84, cat: 'commands', en: 'Work in pairs for three minutes.', ipa: '/wɜːk ɪn peəz fɔː θriː ˈmɪn.ɪts/', tip: 'Đọc nối âm: "Quớk-kin pe-z pho th-ri MI-nịt-s."', vi: 'Các em hãy làm việc theo cặp trong 3 phút.', ex: 'Giao nhiệm vụ thảo luận cặp đôi.' },
+      { id: 85, cat: 'commands', en: 'Discuss in groups of four and write on your mini-board.', ipa: '/dɪˈskʌs ɪn ɡruːps əv fɔː/', tip: 'Đọc là: "Địt-S-CẮT-s in grup-s ợv pho en rai-t on io MI-ni bo-đ."', vi: 'Thảo luận theo nhóm 4 người và viết lên bảng phụ.', ex: 'Tổ chức hoạt động nhóm.' },
+      { id: 86, cat: 'commands', en: 'Raise your hand if you know the answer.', ipa: '/reɪz jɔː hænd/', tip: 'Đọc là: "Rây-z io hen-đ íp iu nâu đi AN-sờ."', vi: 'Hãy giơ tay nếu em biết câu trả lời.', ex: 'Điều hành phát biểu.' },
+      { id: 87, cat: 'commands', en: 'Time is up! Please put your pens down.', ipa: '/taɪm ɪz ʌp/', tip: 'Đọc nối âm: "Tham-miz ắp! P-li-z pút io pen-z đao."', vi: 'Hết giờ rồi! Mời các em đặt bút xuống.', ex: 'Kết thúc thời gian làm bài.' },
+      { id: 88, cat: 'commands', en: 'Let’s check the answers together.', ipa: '/lets tʃek ði ˈɑːn.səz təˈɡeð.ər/', tip: 'Đọc là: "Lét-s chék đi AN-sờ-z tơ-GHE-đờ."', vi: 'Chúng ta hãy cùng nhau kiểm tra đáp án nhé.', ex: 'Chuyển sang phần chữa bài.' },
+      { id: 89, cat: 'commands', en: 'Well done! That is completely correct.', ipa: '/wel dʌn/', tip: 'Đọc hào hứng: "Queo đăn! Đát-tiz cồm-P-LÍT-li cơ-RÉCT."', vi: 'Làm tốt lắm! Hoàn toàn chính xác.', ex: 'Khen ngợi học sinh trả lời đúng.' },
+      { id: 90, cat: 'commands', en: 'Good try! Let’s check the calculation again.', ipa: '/ɡʊd traɪ/', tip: 'Đọc khích lệ: "Gút trai! Lét-s chék đờ keo-kiu-LÂY-shần ơ-GHEN."', vi: 'Cố gắng tốt lắm! Hãy kiểm tra lại phép tính một chút nhé.', ex: 'Động viên khi học sinh tính nhầm nhẹ.' },
+
+      // 7. Full Teaching Paragraphs
+      {
+        id: 91, cat: 'paragraphs',
+        en: 'Good morning everyone. Today, we are going to learn a very famous theorem in geometry: The Pythagorean Theorem. Before we start, please look at the picture on the screen. What shape do the wall, the ground, and the ladder form?',
+        ipa: 'Đoạn văn 1: Mở đầu tiết học (Warm-up – Toán 8)',
+        tip: 'Ngắt nghỉ tại dấu phẩy và dấu chấm. Nhấn mạnh từ khóa: famous theorem (PHÂY-mợt-s THIƠ-rầm), geometry (ji-O-mơ-tri), Pythagorean Theorem (pai-tha-gơ-RI-ần THIƠ-rầm).',
+        vi: 'Chào buổi sáng cả lớp. Hôm nay, chúng ta sẽ học một định lí rất nổi tiếng trong hình học: Định lí Pythagore. Trước khi bắt đầu, mời các em nhìn vào bức tranh trên màn hình. Bức tường, mặt đất và chiếc thang tạo thành hình gì?'
+      },
+      {
+        id: 92, cat: 'paragraphs',
+        en: 'In any right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the two legs. Remember that the hypotenuse is always the longest side, and it is opposite to the right angle.',
+        ipa: 'Đoạn văn 2: Phát biểu Định lí Pythagore (Knowledge Formation)',
+        tip: 'Đọc chậm rãi ở cụm "square of the hypotenuse" (s-que ợv đờ hai-PO-tơ-niu-z) và "sum of the squares" (săm ợv đờ s-que-z).',
+        vi: 'Trong bất kỳ tam giác vuông nào, bình phương của cạnh huyền bằng tổng các bình phương của hai cạnh góc vuông. Hãy nhớ rằng cạnh huyền luôn là cạnh dài nhất và nằm đối diện với góc vuông.'
+      },
+      {
+        id: 93, cat: 'paragraphs',
+        en: 'Let’s look at Example 1. Triangle ABC is right-angled at A, with AB equals 6 centimeters and AC equals 8 centimeters. Applying the Pythagorean theorem, we have BC squared equals AB squared plus AC squared. Therefore, BC equals 10 centimeters.',
+        ipa: 'Đoạn văn 3: Hướng dẫn giải bài tập mẫu (Guided Practice)',
+        tip: 'Phát âm rõ các chữ cái tên đỉnh A (ây) - B (bi) - C (xi) và đơn vị centimeters (xen-ti-MI-tờ-z).',
+        vi: 'Chúng ta hãy xem Ví dụ 1. Tam giác ABC vuông tại A, với AB bằng 6 cm và AC bằng 8 cm. Áp dụng định lí Pythagore, ta có BC bình phương bằng AB bình phương cộng AC bình phương. Do đó, BC bằng 10 cm.'
+      },
+      {
+        id: 94, cat: 'paragraphs',
+        en: 'Now, work in pairs to complete Worksheet 2 in five minutes. You can use the mini-dictionary box at the top of the page if you need help with new words. After five minutes, I will invite two pairs to present their solutions on the board.',
+        ipa: 'Đoạn văn 4: Giao nhiệm vụ phiếu học tập song ngữ (Pair Work)',
+        tip: 'Nhấn mạnh thời gian "five minutes" (phai-v MI-nịt-s) và công cụ hỗ trợ "mini-dictionary box" (MI-ni ĐÍC-shần-nơ-ri bóc-s).',
+        vi: 'Bây giờ, các em hãy làm việc theo cặp để hoàn thành Phiếu học tập số 2 trong 5 phút. Các em có thể dùng hộp từ điển nhỏ ở đầu trang nếu cần hỗ trợ từ mới. Sau 5 phút, thầy/cô sẽ mời hai cặp lên bảng trình bày lời giải.'
+      },
+      {
+        id: 95, cat: 'paragraphs',
+        en: 'Thank you for your active participation today. Let’s review our key vocabulary one more time: right-angled triangle, hypotenuse, and legs. For homework, please finish exercises 1 and 2 in your textbook. Goodbye and see you next class!',
+        ipa: 'Đoạn văn 5: Tổng kết & Dặn dò cuối tiết (Wrap-up)',
+        tip: 'Giọng thân thiện, hào hứng. Đọc tách bạch 3 từ khóa ôn tập ở giữa đoạn.',
+        vi: 'Cảm ơn sự tham gia tích cực của các em hôm nay. Chúng ta hãy ôn lại các từ vựng chính một lần nữa: tam giác vuông, cạnh huyền và hai cạnh góc vuông. Về nhà, các em hãy hoàn thành bài tập 1 và 2 trong sách giáo khoa. Tạm biệt và hẹn gặp lại vào tiết học sau!'
+      }
+    ];
+
+    // Comprehensive Dictionary for Custom Text Phonetic Tips & Vietnamese Meaning
+    const MINI_DICT = {
+      // Common greetings & classroom words
+      'hello': { ipa: '/həˈləʊ/', tip: 'hơ-LÂU', note: 'nhấn âm 2: "LÂU"', vi: 'xin chào' },
+      'hi': { ipa: '/haɪ/', tip: 'hai', note: 'đọc gọn: "hai"', vi: 'chào' },
+      'good': { ipa: '/ɡʊd/', tip: 'gút', note: 'âm u ngắn: "gút"', vi: 'tốt / ngon' },
+      'morning': { ipa: '/ˈmɔː.nɪŋ/', tip: 'MO-ning', note: 'nhấn âm 1: "MO"', vi: 'buổi sáng' },
+      'afternoon': { ipa: '/ˌɑːf.təˈnuːn/', tip: 'áp-tơ-NUN', note: 'nhấn âm 3: "NUN"', vi: 'buổi chiều' },
+      'class': { ipa: '/klɑːs/', tip: 'c-lát-s', note: 'xì nhẹ "s" cuối', vi: 'lớp học' },
+      'everyone': { ipa: '/ˈev.ri.wʌn/', tip: 'ÉV-ri-quăn', note: 'nhấn âm 1: "ÉV"', vi: 'mọi người / cả lớp' },
+      'teacher': { ipa: '/ˈtiː.tʃər/', tip: 'TI-chờ', note: 'nhấn âm 1: "TI"', vi: 'giáo viên' },
+      'student': { ipa: '/ˈstjuː.dənt/', tip: 's-TIU-đầnt', note: 'nhấn âm 1: "TIU"', vi: 'học sinh' },
+      'students': { ipa: '/ˈstjuː.dənts/', tip: 's-TIU-đầnt-s', note: 'xì nhẹ "s" cuối', vi: 'các học sinh' },
+      'today': { ipa: '/təˈdeɪ/', tip: 'tơ-ĐÂY', note: 'nhấn âm 2: "ĐÂY"', vi: 'hôm nay' },
+      'please': { ipa: '/pliːz/', tip: 'p-li-z', note: 'kéo dài âm i, rung nhẹ "z"', vi: 'làm ơn / mời' },
+      'thank': { ipa: '/θæŋk/', tip: 'thăng-k', note: 'đặt lưỡi giữa hai răng', vi: 'cảm ơn' },
+      'thanks': { ipa: '/θæŋks/', tip: 'thăng-k-s', note: 'xì nhẹ "s" cuối', vi: 'cảm ơn' },
+      'you': { ipa: '/juː/', tip: 'iu', note: 'đọc là "iu"', vi: 'bạn / các em' },
+      'we': { ipa: '/wiː/', tip: 'wi', note: 'đọc là "wi"', vi: 'chúng ta' },
+      'are': { ipa: '/ɑːr/', tip: 'a', note: 'uốn nhẹ lưỡi cuối', vi: 'là / thì' },
+      'is': { ipa: '/ɪz/', tip: 'iz', note: 'rung nhẹ âm "z"', vi: 'là / thì' },
+      'the': { ipa: '/ðə/', tip: 'đờ', note: 'đọc nhẹ: "đờ" (trước nguyên âm đọc "đi")', vi: '' },
+      'a': { ipa: '/ə/', tip: 'ơ', note: 'đọc lướt nhẹ: "ơ"', vi: 'một' },
+      'an': { ipa: '/æn/', tip: 'ần', note: 'đọc lướt nhẹ: "ần"', vi: 'một' },
+      'in': { ipa: '/ɪn/', tip: 'in', note: 'đọc là "in"', vi: 'trong' },
+      'on': { ipa: '/ɒn/', tip: 'on', note: 'đọc là "on"', vi: 'trên' },
+      'at': { ipa: '/æt/', tip: 'át', note: 'đọc là "át"', vi: 'tại' },
+      'to': { ipa: '/tuː/', tip: 'tu', note: 'đọc là "tu"', vi: 'tới / để' },
+      'of': { ipa: '/əv/', tip: 'ợv', note: 'đọc nhẹ: "ợv"', vi: 'của' },
+      'and': { ipa: '/ænd/', tip: 'en', note: 'đọc lướt: "en"', vi: 'và' },
+      'or': { ipa: '/ɔːr/', tip: 'o', note: 'đọc là "o"', vi: 'hoặc' },
+      'with': { ipa: '/wɪð/', tip: 'quít-th', note: 'đọc là "quít-th"', vi: 'với' },
+      'for': { ipa: '/fɔːr/', tip: 'pho', note: 'đọc là "pho"', vi: 'cho / trong' },
+      'from': { ipa: '/frɒm/', tip: 'ph-rom', note: 'đọc là "ph-rom"', vi: 'từ' },
+      'this': { ipa: '/ðɪs/', tip: 'đít-s', note: 'xì nhẹ "s" cuối', vi: 'này' },
+      'that': { ipa: '/ðæt/', tip: 'đát', note: 'đọc là "đát"', vi: 'đó / rằng' },
+      'what': { ipa: '/wɒt/', tip: 'quót', note: 'âm h câm, đọc "quót"', vi: 'cái gì' },
+      'which': { ipa: '/wɪtʃ/', tip: 'quít-ch', note: 'âm h câm, đọc "quít-ch"', vi: 'nào' },
+      'how': { ipa: '/haʊ/', tip: 'hao', note: 'đọc là "hao"', vi: 'như thế nào' },
+      'why': { ipa: '/waɪ/', tip: 'quai', note: 'âm h câm, đọc "quai"', vi: 'tại sao' },
+      'can': { ipa: '/kæn/', tip: 'ken', note: 'đọc là "ken"', vi: 'có thể' },
+      'let': { ipa: '/let/', tip: 'lét', note: 'đọc là "lét"', vi: 'hãy để' },
+      'lets': { ipa: '/lets/', tip: 'lét-s', note: 'xì nhẹ "s" cuối', vi: 'chúng ta hãy' },
+      "let's": { ipa: '/lets/', tip: 'lét-s', note: 'xì nhẹ "s" cuối', vi: 'chúng ta hãy' },
+      'look': { ipa: '/lʊk/', tip: 'lúc', note: 'đọc là "lúc"', vi: 'nhìn' },
+      'listen': { ipa: '/ˈlɪs.ən/', tip: 'LI-sần', note: 'âm "t" câm, nhấn âm 1', vi: 'lắng nghe' },
+      'read': { ipa: '/riːd/', tip: 'rít', note: 'kéo dài âm i: "rít"', vi: 'đọc' },
+      'write': { ipa: '/raɪt/', tip: 'rai-t', note: 'âm "w" câm, đọc "rai-t"', vi: 'viết' },
+      'open': { ipa: '/ˈəʊ.pən/', tip: 'ÂU-pần', note: 'nhấn âm 1: "ÂU"', vi: 'mở' },
+      'work': { ipa: '/wɜːk/', tip: 'quớk', note: 'uốn nhẹ lưỡi: "quớk"', vi: 'làm việc' },
+      'pairs': { ipa: '/peəz/', tip: 'pe-z', note: 'rung nhẹ "z" cuối', vi: 'cặp đôi' },
+      'groups': { ipa: '/ɡruːps/', tip: 'grup-s', note: 'xì nhẹ "s" cuối', vi: 'nhóm' },
+      'board': { ipa: '/bɔːd/', tip: 'bo-đ', note: 'bật nhẹ "đ" cuối', vi: 'bảng' },
+      'textbook': { ipa: '/ˈtekst.bʊk/', tip: 'TÉC-s-búc', note: 'nhấn âm 1: "TÉC"', vi: 'sách giáo khoa' },
+      'page': { ipa: '/peɪdʒ/', tip: 'pây-j', note: 'đọc là "pây-j"', vi: 'trang' },
+      'homework': { ipa: '/ˈhəʊm.wɜːk/', tip: 'HÂUM-quớk', note: 'nhấn âm 1: "HÂUM"', vi: 'bài tập về nhà' },
+      'question': { ipa: '/ˈkwes.tʃən/', tip: 'QUÉT-chần', note: 'nhấn âm 1: "QUÉT"', vi: 'câu hỏi' },
+      'questions': { ipa: '/ˈkwes.tʃənz/', tip: 'QUÉT-chần-z', note: 'rung nhẹ "z" cuối', vi: 'các câu hỏi' },
+      'answer': { ipa: '/ˈɑːn.sər/', tip: 'AN-sờ', note: 'âm "w" câm, nhấn âm 1', vi: 'câu trả lời / đáp án' },
+      'correct': { ipa: '/kəˈrekt/', tip: 'cơ-RÉCT', note: 'nhấn âm 2: "RÉCT"', vi: 'chính xác' },
+
+      // Math terms
+      'mathematics': { ipa: '/ˌmæθ.əˈmæt.ɪks/', tip: 'ma-thơ-MÁ-tịk-s', note: 'nhấn âm 3: "MÁ"', vi: 'môn Toán' },
+      'math': { ipa: '/mæθ/', tip: 'mát-th', note: 'đặt lưỡi giữa hai răng cuối từ', vi: 'Toán' },
+      'geometry': { ipa: '/dʒiˈɒm.ə.tri/', tip: 'ji-O-mơ-tri', note: 'nhấn âm 2: "O"', vi: 'hình học' },
+      'algebra': { ipa: '/ˈæl.dʒə.brə/', tip: 'EO-jơ-brơ', note: 'nhấn âm 1: "EO"', vi: 'đại số' },
+      'triangle': { ipa: '/ˈtraɪ.æŋ.ɡəl/', tip: 'TRAI-ăng-gồl', note: 'nhấn âm 1: "TRAI"', vi: 'tam giác' },
+      'triangles': { ipa: '/ˈtraɪ.æŋ.ɡəlz/', tip: 'TRAI-ăng-gồl-z', note: 'rung nhẹ "z" cuối', vi: 'các tam giác' },
+      'right-angled': { ipa: '/raɪt ˈæŋ.ɡəld/', tip: 'rai-t ĂNG-gồl-đ', note: 'âm "gh" câm', vi: 'vuông (góc)' },
+      'right': { ipa: '/raɪt/', tip: 'rai-t', note: 'âm "gh" câm', vi: 'vuông / đúng' },
+      'hypotenuse': { ipa: '/haɪˈpɒt.ən.juːz/', tip: 'hai-PO-tơ-niu-z', note: 'nhấn âm 2: "PO"', vi: 'cạnh huyền' },
+      'legs': { ipa: '/leɡz/', tip: 'lég-z', note: 'rung nhẹ "z" cuối', vi: 'hai cạnh góc vuông' },
+      'leg': { ipa: '/leɡ/', tip: 'lég', note: 'đọc là "lég"', vi: 'cạnh góc vuông' },
+      'side': { ipa: '/saɪd/', tip: 'sai-đ', note: 'bật nhẹ "đ" cuối', vi: 'cạnh' },
+      'sides': { ipa: '/saɪdz/', tip: 'sai-đ-z', note: 'đọc là "sai-đ-z"', vi: 'các cạnh' },
+      'square': { ipa: '/skweər/', tip: 's-QUE', note: 'xì nhẹ "s" đầu từ', vi: 'bình phương / hình vuông' },
+      'squares': { ipa: '/skweəz/', tip: 's-QUE-z', note: 'rung nhẹ "z" cuối', vi: 'các bình phương' },
+      'squared': { ipa: '/skweəd/', tip: 's-QUE-đ', note: 'bật nhẹ "đ" cuối', vi: 'bình phương' },
+      'sum': { ipa: '/sʌm/', tip: 'săm', note: 'đọc gọn: "săm"', vi: 'tổng' },
+      'equal': { ipa: '/ˈiː.kwəl/', tip: 'I-quồl', note: 'nhấn âm 1: "I"', vi: 'bằng' },
+      'equals': { ipa: '/ˈiː.kwəlz/', tip: 'I-quồl-z', note: 'nhấn âm 1: "I"', vi: 'bằng' },
+      'theorem': { ipa: '/ˈθɪə.rəm/', tip: 'THIƠ-rầm', note: 'nhấn âm 1: "THIƠ"', vi: 'định lí' },
+      'pythagorean': { ipa: '/paɪˌθæɡ.əˈriː.ən/', tip: 'pai-tha-gơ-RI-ần', note: 'nhấn âm 4: "RI"', vi: 'Pythagore' },
+      'equation': { ipa: '/ɪˈkweɪ.ʒən/', tip: 'i-QUÂY-zhần', note: 'nhấn âm 2: "QUÂY"', vi: 'phương trình' },
+      'linear': { ipa: '/ˈlɪn.i.ər/', tip: 'LI-ni-ờ', note: 'nhấn âm 1: "LI"', vi: 'bậc nhất' },
+      'quadratic': { ipa: '/kwɒdˈræt.ɪk/', tip: 'quót-RÁ-tịk', note: 'nhấn âm 2: "RÁ"', vi: 'bậc hai' },
+      'solve': { ipa: '/sɒlv/', tip: 'sô-v', note: 'đọc là "sô-v"', vi: 'giải' },
+      'calculate': { ipa: '/ˈkæl.kjə.leɪt/', tip: 'KEO-kiu-lây-t', note: 'nhấn âm 1: "KEO"', vi: 'tính toán' },
+      'find': { ipa: '/faɪnd/', tip: 'phai-đ', note: 'bật nhẹ "đ" cuối', vi: 'tìm' },
+      'prove': { ipa: '/pruːv/', tip: 'pru-v', note: 'đọc là "pru-v"', vi: 'chứng minh' },
+      'angle': { ipa: '/ˈæŋ.ɡəl/', tip: 'ĂNG-gồl', note: 'nhấn âm 1: "ĂNG"', vi: 'góc' },
+      'angles': { ipa: '/ˈæŋ.ɡəlz/', tip: 'ĂNG-gồl-z', note: 'nhấn âm 1: "ĂNG"', vi: 'các góc' },
+      'parallel': { ipa: '/ˈpær.ə.lel/', tip: 'PA-rơ-leo', note: 'nhấn âm 1: "PA"', vi: 'song song' },
+      'perpendicular': { ipa: '/ˌpɜː.pənˈdɪk.jə.lər/', tip: 'pơ-pần-ĐÍK-kiu-lờ', note: 'nhấn âm 3: "ĐÍK"', vi: 'vuông góc' },
+      'area': { ipa: '/ˈeə.ri.ə/', tip: 'E-ri-ơ', note: 'nhấn âm 1: "E"', vi: 'diện tích' },
+      'perimeter': { ipa: '/pəˈrɪm.ɪ.tər/', tip: 'pờ-RI-mi-tờ', note: 'nhấn âm 2: "RI"', vi: 'chu vi' },
+      'volume': { ipa: '/ˈvɒl.juːm/', tip: 'VO-lium', note: 'nhấn âm 1: "VO"', vi: 'thể tích' },
+      'circle': { ipa: '/ˈsɜː.kəl/', tip: 'SƠ-cồl', note: 'nhấn âm 1: "SƠ"', vi: 'đường tròn' },
+      'radius': { ipa: '/ˈreɪ.di.əs/', tip: 'RÂY-đi-ợt-s', note: 'nhấn âm 1: "RÂY"', vi: 'bán kính' },
+      'diameter': { ipa: '/daɪˈæm.ɪ.tər/', tip: 'đai-A-mi-tờ', note: 'nhấn âm 2: "A"', vi: 'đường kính' },
+      'fraction': { ipa: '/ˈfræk.ʃən/', tip: 'PHRẮC-shần', note: 'nhấn âm 1: "PHRẮC"', vi: 'phân số' },
+      'number': { ipa: '/ˈnʌm.bər/', tip: 'NĂM-bờ', note: 'nhấn âm 1: "NĂM"', vi: 'số' },
+      'prime': { ipa: '/praɪm/', tip: 'p-RAIM', note: 'bật nhẹ "p" đầu từ', vi: 'nguyên tố' },
+      'integer': { ipa: '/ˈɪn.tɪ.dʒər/', tip: 'IN-ti-jờ', note: 'nhấn âm 1: "IN"', vi: 'số nguyên' },
+      'coefficient': { ipa: '/ˌkəʊ.ɪˈfɪʃ.ənt/', tip: 'câu-i-PHI-shầnt', note: 'nhấn âm 3: "PHI"', vi: 'hệ số' },
+      'variable': { ipa: '/ˈveə.ri.ə.bəl/', tip: 'VE-ri-ơ-bồl', note: 'nhấn âm 1: "VE"', vi: 'biến số' },
+      'solution': { ipa: '/səˈluː.ʃən/', tip: 'sơ-LU-shần', note: 'nhấn âm 2: "LU"', vi: 'nghiệm / lời giải' },
+      'worksheet': { ipa: '/ˈwɜːk.ʃiːt/', tip: 'QUỚC-shít', note: 'nhấn âm 1: "QUỚC"', vi: 'phiếu học tập' },
+      'example': { ipa: '/ɪɡˈzɑːm.pəl/', tip: 'ig-ZAM-pồl', note: 'nhấn âm 2: "ZAM"', vi: 'ví dụ' },
+      'problem': { ipa: '/ˈprɒb.ləm/', tip: 'PROB-lầm', note: 'nhấn âm 1: "PROB"', vi: 'bài toán / vấn đề' },
+      'formula': { ipa: '/ˈfɔː.mjə.lə/', tip: 'PHO-miơ-lơ', note: 'nhấn âm 1: "PHO"', vi: 'công thức' },
+      'plus': { ipa: '/plʌs/', tip: 'plớt', note: 'xì nhẹ "s" cuối', vi: 'cộng' },
+      'minus': { ipa: '/ˈmaɪ.nəs/', tip: 'MAI-nợt-s', note: 'nhấn âm 1: "MAI"', vi: 'trừ' },
+      'times': { ipa: '/taɪmz/', tip: 'tham-z', note: 'rung nhẹ "z" cuối', vi: 'nhân' },
+      'zero': { ipa: '/ˈzɪə.rəʊ/', tip: 'ZIƠ-râu', note: 'nhấn âm 1: "ZIƠ"', vi: 'số không' },
+      'one': { ipa: '/wʌn/', tip: 'quăn', note: 'đọc là "quăn"', vi: 'một' },
+      'two': { ipa: '/tuː/', tip: 'tu', note: 'âm "w" câm, đọc "tu"', vi: 'hai' },
+      'three': { ipa: '/θriː/', tip: 'th-ri', note: 'đặt lưỡi giữa răng âm "th"', vi: 'ba' },
+      'four': { ipa: '/fɔːr/', tip: 'pho', note: 'đọc là "pho"', vi: 'bốn' },
+      'five': { ipa: '/faɪv/', tip: 'phai-v', note: 'răng trên chạm môi dưới âm "v"', vi: 'năm' },
+      'six': { ipa: '/sɪks/', tip: 'síc-s', note: 'bật âm "k" rồi xì "s"', vi: 'sáu' },
+      'seven': { ipa: '/ˈsev.ən/', tip: 'SÉ-vần', note: 'nhấn âm 1: "SÉ"', vi: 'bảy' },
+      'eight': { ipa: '/eɪt/', tip: 'ây-t', note: 'âm "gh" câm, đọc "ây-t"', vi: 'tám' },
+      'nine': { ipa: '/naɪn/', tip: 'nai-n', note: 'đọc là "nai-n"', vi: 'chín' },
+      'ten': { ipa: '/ten/', tip: 'ten', note: 'đọc là "ten"', vi: 'mười' }
+    };
+
+    let currentCat = 'all';
+    let currentFilter = 'all';
+    let currentAccent = 'en-US';
+    let currentRate = 1.0;
+    let starredIds = JSON.parse(localStorage.getItem('math_eng_starred') || '[]');
+    let scores = JSON.parse(localStorage.getItem('math_eng_scores') || '{}');
+    let activeRecognition = null;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerHTML = msg;
+      t.classList.remove('hidden');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.add('hidden'), 4000);
+    }
+
+    function setAccent(acc) {
+      currentAccent = acc;
+      document.getElementById('btn-us').className = acc === 'en-US'
+        ? 'px-2.5 py-1 rounded-md font-semibold bg-blue-600 text-white transition'
+        : 'px-2.5 py-1 rounded-md font-semibold text-slate-300 hover:text-white transition';
+      document.getElementById('btn-gb').className = acc === 'en-GB'
+        ? 'px-2.5 py-1 rounded-md font-semibold bg-blue-600 text-white transition'
+        : 'px-2.5 py-1 rounded-md font-semibold text-slate-300 hover:text-white transition';
+      showToast(`Đã chuyển giọng đọc sang <strong>${acc === 'en-US' ? 'Anh - Mỹ (US)' : 'Anh - Anh (UK)'}</strong>`);
+    }
+
+    function setRate(r) {
+      currentRate = r;
+      [1, 0.65, 0.5].forEach(val => {
+        const id = 'rate-' + String(val).replace('.', '');
+        const el = document.getElementById(id);
+        if (el) {
+          el.className = val === r
+            ? 'px-2 py-1 rounded-md font-semibold bg-emerald-600 text-white transition'
+            : 'px-2 py-1 rounded-md font-semibold text-slate-300 hover:text-white transition';
+        }
+      });
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Trình duyệt của bạn chưa hỗ trợ đọc giọng nói.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/\//g, ' or ');
+      const utter = new SpeechSynthesisUtterance(cleanText);
+      utter.lang = currentAccent;
+      utter.rate = currentRate;
+      const voices = window.speechSynthesis.getVoices();
+      const matched = voices.find(v => v.lang.includes(currentAccent));
+      if (matched) utter.voice = matched;
+      window.speechSynthesis.speak(utter);
+    }
+
+    // Smart Vietnamese Phonetic Transliterator (for ANY English word, never echoes raw English!)
+    function transliterateToVietnamese(word) {
+      const clean = word.toLowerCase().replace(/[^a-z']/g, '');
+      if (!clean) return word;
+      if (MINI_DICT[clean]) return MINI_DICT[clean].tip;
+
+      // Also check DATA items for single words
+      const foundData = DATA.find(d => d.en.toLowerCase() === clean);
+      if (foundData) {
+        const m = foundData.tip.match(/"([^"]+)"/);
+        if (m) return m[1];
+      }
+
+      // Rule-based phonetic conversion to Vietnamese syllables so beginners can read ANY word
+      let w = clean;
+      // Silent letters & common endings
+      w = w.replace(/^kn/, 'n')
+           .replace(/^wr/, 'r')
+           .replace(/^wh/, 'qu')
+           .replace(/ght$/, 't')
+           .replace(/tion$/, 'shần')
+           .replace(/sion$/, 'zhần')
+           .replace(/ture$/, 'chờ')
+           .replace(/ous$/, 'ợt-s')
+           .replace(/able$/, 'ơ-bồl')
+           .replace(/ible$/, 'ơ-bồl')
+           .replace(/ment$/, 'mầnt')
+           .replace(/ness$/, 'nịt-s')
+           .replace(/less$/, 'lịt-s')
+           .replace(/ful$/, 'phồl')
+           .replace(/ing$/, 'ing')
+           .replace(/ed$/, 'đ')
+           .replace(/ly$/, 'li')
+           .replace(/er$/, 'ờ')
+           .replace(/or$/, 'ờ');
+
+      // Consonant clusters & digraphs
+      w = w.replace(/ph/g, 'ph')
+           .replace(/sh/g, 'sh')
+           .replace(/ch/g, 'ch')
+           .replace(/th/g, 'th')
+           .replace(/qu/g, 'qu')
+           .replace(/ck/g, 'k')
+           .replace(/ce/g, 'xe')
+           .replace(/ci/g, 'xi')
+           .replace(/cy/g, 'xi')
+           .replace(/ge/g, 'je')
+           .replace(/gi/g, 'ji');
+
+      // Vowel combinations
+      w = w.replace(/oo/g, 'u')
+           .replace(/ee/g, 'i')
+           .replace(/ea/g, 'i')
+           .replace(/ai/g, 'ây')
+           .replace(/ay/g, 'ây')
+           .replace(/oa/g, 'âu')
+           .replace(/ow/g, 'ao')
+           .replace(/ou/g, 'ao')
+           .replace(/au/g, 'o')
+           .replace(/aw/g, 'o')
+           .replace(/oi/g, 'oi')
+           .replace(/oy/g, 'oi');
+
+      // Single vowels & silent trailing 'e'
+      if (w.length > 3 && w.endsWith('e') && !w.endsWith('le')) {
+        w = w.slice(0, -1);
+      }
+      w = w.replace(/w/g, 'qu')
+           .replace(/y$/g, 'i')
+           .replace(/j/g, 'j')
+           .replace(/z/g, 'z');
+
+      return w;
+    }
+
+    function getWordAnalysis(tok) {
+      const clean = tok.toLowerCase().replace(/[^a-z0-9'-]/g, '');
+      if (!clean) return { tok, tip: '', note: '', ipa: '', vi: '' };
+
+      if (MINI_DICT[clean]) {
+        return {
+          tok,
+          tip: MINI_DICT[clean].tip,
+          note: MINI_DICT[clean].note,
+          ipa: MINI_DICT[clean].ipa,
+          vi: MINI_DICT[clean].vi
+        };
+      }
+
+      const phonetic = transliterateToVietnamese(clean);
+      let note = '';
+      if (clean.endsWith('s') && clean.length > 2) note = 'xì nhẹ âm "s" cuối';
+      else if (clean.endsWith('ed')) note = 'bật nhẹ âm "đ" cuối';
+      else if (clean.includes('th')) note = 'đặt lưỡi giữa răng âm "th"';
+      else if (clean.includes('sh')) note = 'cong môi âm "sh"';
+
+      return {
+        tok,
+        tip: phonetic,
+        note,
+        ipa: '',
+        vi: ''
+      };
+    }
+
+    async function analyzeCustomText() {
+      const raw = document.getElementById('custom-input').value.trim();
+      if (!raw) {
+        showToast('Vui lòng nhập hoặc dán từ/câu tiếng Anh vào ô trước.');
+        return;
+      }
+      const box = document.getElementById('custom-result-box');
+      box.classList.remove('hidden');
+
+      const viEl = document.getElementById('custom-vi-meaning');
+      const tipEl = document.getElementById('custom-phonetic-guide');
+      const wordsEl = document.getElementById('custom-word-breakdown');
+
+      viEl.textContent = 'Đang dịch nghĩa...';
+
+      // Word breakdown & clear beginner-friendly Vietnamese phonetic guide
+      const tokens = raw.split(/\s+/);
+      const analyzed = tokens.map(tok => getWordAnalysis(tok));
+
+      if (analyzed.length === 1 && analyzed[0].tip) {
+        const item = analyzed[0];
+        tipEl.innerHTML = `Đọc là: <strong class="text-base text-amber-900">"${item.tip}"</strong>${item.note ? ` <span class="text-xs text-amber-700">(${item.note})</span>` : ''}`;
+      } else {
+        const joinedPhonetic = analyzed.map(a => a.tip || a.tok).join('  ');
+        const notes = analyzed.filter(a => a.note).slice(0, 3).map(a => `<strong>${a.tok}</strong>: ${a.note}`);
+        tipEl.innerHTML = `
+          <div>Đọc liền câu: <strong class="text-amber-950">"${joinedPhonetic}"</strong></div>
+          ${notes.length ? `<div class="text-xs text-amber-800 mt-1">💡 Lưu ý: ${notes.join(' • ')}</div>` : ''}
+        `;
+      }
+
+      wordsEl.innerHTML = analyzed.map(a => {
+        return `
+          <button onclick="speakText('${a.tok.replace(/'/g, "\'")}')" class="text-left px-3 py-2 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 transition">
+            <div class="font-bold text-xs text-slate-900">${a.tok} 🔊</div>
+            ${a.ipa ? `<div class="text-[11px] ipa-font text-blue-600">${a.ipa}</div>` : ''}
+            ${a.tip ? `<div class="text-xs text-amber-800 font-semibold mt-0.5">Đọc: "${a.tip}"</div>` : ''}
+            ${a.note ? `<div class="text-[10px] text-slate-500">(${a.note})</div>` : ''}
+            ${a.vi ? `<div class="text-[11px] text-emerald-700 font-medium mt-0.5">${a.vi}</div>` : ''}
+          </button>
+        `;
+      }).join('');
+
+      // Translate via Google public endpoint with graceful fallback
+      try {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(raw)}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const translated = data[0].map(item => item[0]).join('');
+        viEl.textContent = translated;
+      } catch (e) {
+        const fallbackWords = tokens.map(t => {
+          const c = t.toLowerCase().replace(/[^a-z-]/g, '');
+          return MINI_DICT[c] && MINI_DICT[c].vi ? MINI_DICT[c].vi : t;
+        });
+        viEl.textContent = fallbackWords.join(' ');
+      }
+    }
+
+    function speakCustomText() {
+      const raw = document.getElementById('custom-input').value.trim();
+      if (!raw) {
+        showToast('Vui lòng nhập từ hoặc câu để nghe mẫu.');
+        return;
+      }
+      speakText(raw);
+    }
+
+    // Speech Recognition & Scoring
+    function computeSimilarity(target, spoken) {
+      const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().split(/\s+/).filter(Boolean);
+      const tWords = norm(target);
+      const sWords = norm(spoken);
+      if (!tWords.length || !sWords.length) return 0;
+
+      let matches = 0;
+      const sCopy = [...sWords];
+      tWords.forEach(w => {
+        const idx = sCopy.indexOf(w);
+        if (idx !== -1) {
+          matches++;
+          sCopy.splice(idx, 1);
+        } else {
+          const closeIdx = sCopy.findIndex(sw => levenshtein(w, sw) <= Math.max(1, Math.floor(w.length * 0.3)));
+          if (closeIdx !== -1) {
+            matches += 0.7;
+            sCopy.splice(closeIdx, 1);
+          }
+        }
+      });
+      return Math.min(100, Math.round((matches / tWords.length) * 100));
+    }
+
+    function levenshtein(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          dp[i][j] = a[i - 1] === b[j - 1]
+            ? dp[i - 1][j - 1]
+            : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+        }
+      }
+      return dp[m][n];
+    }
+
+    function startSpeechPractice(targetText, onResultCallback, btnEl) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        showToast('⚠️ Trình duyệt này chưa hỗ trợ nhận diện giọng nói. Vui lòng dùng Google Chrome hoặc Microsoft Edge.');
+        toggleMicModal(true);
+        return;
+      }
+
+      if (activeRecognition) {
+        try { activeRecognition.stop(); } catch (e) {}
+      }
+
+      const recognition = new SpeechRecognition();
+      activeRecognition = recognition;
+      recognition.lang = currentAccent;
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      if (btnEl) btnEl.classList.add('recording-pulse');
+      showToast('🎙️ Đang nghe... Hãy đọc to cụm từ tiếng Anh!');
+
+      recognition.onresult = (event) => {
+        if (btnEl) btnEl.classList.remove('recording-pulse');
+        const spoken = event.results[0][0].transcript;
+        const pct = computeSimilarity(targetText, spoken);
+        let level = 'fail';
+        if (pct >= 85) level = 'excellent';
+        else if (pct >= 55) level = 'pass';
+        onResultCallback({ pct, level, spoken });
+      };
+
+      recognition.onerror = (event) => {
+        if (btnEl) btnEl.classList.remove('recording-pulse');
+        if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+          showToast('❌ Micro đang bị chặn quyền. Đang mở hướng dẫn bật Micro...');
+          toggleMicModal(true);
+        } else if (event.error === 'no-speech') {
+          showToast('🔇 Không nghe thấy giọng nói. Bạn hãy bấm lại và nói gần Micro hơn.');
+        } else {
+          showToast('⚠️ Lỗi Micro (' + event.error + '). Kiểm tra lại cài đặt Micro.');
+        }
+      };
+
+      recognition.onend = () => {
+        if (btnEl) btnEl.classList.remove('recording-pulse');
+      };
+
+      try {
+        recognition.start();
+      } catch (err) {
+        if (btnEl) btnEl.classList.remove('recording-pulse');
+        toggleMicModal(true);
+      }
+    }
+
+    function practiceCustomText() {
+      const raw = document.getElementById('custom-input').value.trim();
+      if (!raw) {
+        showToast('Vui lòng nhập từ hoặc câu trước khi luyện nói.');
+        return;
+      }
+      const btn = document.getElementById('btn-custom-speak');
+      const scoreBox = document.getElementById('custom-speech-score');
+      startSpeechPractice(raw, (res) => {
+        scoreBox.classList.remove('hidden');
+        const badge = res.level === 'excellent'
+          ? '<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">🌟 Tuyệt vời (' + res.pct + '%)</span>'
+          : res.level === 'pass'
+          ? '<span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 font-bold">✅ Đạt (' + res.pct + '%)</span>'
+          : '<span class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 font-bold">🔄 Chưa đạt (' + res.pct + '%)</span>';
+        scoreBox.innerHTML = `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div>Bạn vừa đọc: <strong class="text-slate-900">"${res.spoken}"</strong></div>
+            <div>${badge}</div>
+          </div>
+        `;
+      }, btn);
+    }
+
+    function practiceCard(id) {
+      const item = DATA.find(d => d.id === id);
+      if (!item) return;
+      const btn = document.getElementById('speak-btn-' + id);
+      const target = item.en.split('/')[0].trim();
+      startSpeechPractice(target, (res) => {
+        scores[id] = res;
+        localStorage.setItem('math_eng_scores', JSON.stringify(scores));
+        updateStats();
+        renderCards();
+      }, btn);
+    }
+
+    function toggleStar(id) {
+      if (starredIds.includes(id)) {
+        starredIds = starredIds.filter(x => x !== id);
+      } else {
+        starredIds.push(id);
+      }
+      localStorage.setItem('math_eng_starred', JSON.stringify(starredIds));
+      updateStats();
+      renderCards();
+    }
+
+    function toggleMicModal(show) {
+      const m = document.getElementById('mic-modal');
+      if (show) m.classList.remove('hidden');
+      else m.classList.add('hidden');
+    }
+
+    async function requestMicPermission() {
+      const statusText = document.getElementById('mic-perm-text');
+      const dot = document.getElementById('mic-status-dot');
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach(t => t.stop());
+        statusText.textContent = 'Đã cấp quyền Micro thành công! Bạn có thể bấm Luyện nói.';
+        statusText.className = 'text-emerald-600 font-bold';
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+        showToast('✅ Đã mở khóa Micro thành công!');
+        setTimeout(() => toggleMicModal(false), 1200);
+      } catch (err) {
+        statusText.textContent = 'Bị trình duyệt từ chối (' + err.name + '). Vui lòng làm theo hướng dẫn bên dưới.';
+        statusText.className = 'text-rose-600 font-bold';
+        dot.className = 'w-2 h-2 rounded-full bg-rose-500';
+      }
+    }
+
+    function setCategory(catId) {
+      currentCat = catId;
+      renderTabs();
+      renderCards();
+    }
+
+    function setScoreFilter(f) {
+      currentFilter = f;
+      ['all', 'excellent', 'pass', 'fail', 'starred'].forEach(key => {
+        const el = document.getElementById('filter-' + key);
+        if (el) {
+          el.classList.toggle('ring-2', key === f);
+          el.classList.toggle('ring-offset-1', key === f);
+          el.classList.toggle('ring-blue-500', key === f);
+        }
+      });
+      renderCards();
+    }
+
+    function updateStats() {
+      document.getElementById('count-all').textContent = DATA.length;
+      let exc = 0, pass = 0, fail = 0;
+      Object.values(scores).forEach(s => {
+        if (s.level === 'excellent') exc++;
+        else if (s.level === 'pass') pass++;
+        else fail++;
+      });
+      document.getElementById('count-excellent').textContent = exc;
+      document.getElementById('count-pass').textContent = pass;
+      document.getElementById('count-fail').textContent = fail;
+      document.getElementById('count-starred').textContent = starredIds.length;
+    }
+
+    function renderTabs() {
+      const nav = document.getElementById('category-tabs');
+      nav.innerHTML = CATEGORIES.map(c => {
+        const active = c.id === currentCat;
+        return `
+          <button onclick="setCategory('${c.id}')" class="whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition ${
+            active
+              ? 'bg-blue-600 text-white shadow-sm'
+              : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+          }">${c.name}</button>
+        `;
+      }).join('');
+    }
+
+    function renderCards() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const container = document.getElementById('cards-container');
+
+      const filtered = DATA.filter(item => {
+        if (currentCat !== 'all' && item.cat !== currentCat) return false;
+        if (currentFilter === 'starred' && !starredIds.includes(item.id)) return false;
+        if (['excellent', 'pass', 'fail'].includes(currentFilter)) {
+          const sc = scores[item.id];
+          if (!sc || sc.level !== currentFilter) return false;
+        }
+        if (q) {
+          const hay = `${item.en} ${item.ipa} ${item.tip} ${item.vi} ${item.ex}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (!filtered.length) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">
+            Không tìm thấy mục nào phù hợp với bộ lọc hiện tại.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        const isStar = starredIds.includes(item.id);
+        const sc = scores[item.id];
+        const isParagraph = item.cat === 'paragraphs';
+
+        let scoreHtml = '';
+        if (sc) {
+          if (sc.level === 'excellent') {
+            scoreHtml = `<div class="mt-2 px-2.5 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center justify-between"><span>🌟 <strong>Tuyệt vời (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
+          } else if (sc.level === 'pass') {
+            scoreHtml = `<div class="mt-2 px-2.5 py-1.5 rounded-lg bg-blue-50 border border-blue-200 text-xs text-blue-800 flex items-center justify-between"><span>✅ <strong>Đạt (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
+          } else {
+            scoreHtml = `<div class="mt-2 px-2.5 py-1.5 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center justify-between"><span>🔄 <strong>Chưa đạt (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
+          }
+        }
+
+        // Split sentences for paragraph practice
+        let sentenceBtns = '';
+        if (isParagraph) {
+          const sentences = item.en.match(/[^.!?]+[.!?]+/g) || [item.en];
+          sentenceBtns = `
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex flex-wrap gap-1.5">
+              <span class="text-[11px] text-slate-400 self-center mr-1">Nghe từng câu:</span>
+              ${sentences.map((s, idx) => `
+                <button onclick="speakText('${s.trim().replace(/'/g, "\'")}')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 text-[11px] font-medium transition">
+                  Câu ${idx + 1} 🔊
+                </button>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        return `
+          <article class="bg-white rounded-2xl border border-slate-200 p-4 flex flex-col justify-between card-hover ${isParagraph ? 'md:col-span-2 lg:col-span-3' : ''}">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="${isParagraph ? 'text-sm sm:text-base leading-relaxed' : 'text-base'} font-bold text-slate-900">
+                  ${item.en}
+                </h3>
+                <button onclick="toggleStar(${item.id})" title="Lưu từ khó" class="text-lg leading-none ${isStar ? 'text-amber-400' : 'text-slate-300 hover:text-amber-400'}">
+                  ${isStar ? '★' : '☆'}
+                </button>
+              </div>
+
+              <div class="mt-1.5">
+                <span class="ipa-font text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">${item.ipa}</span>
+              </div>
+
+              <div class="mt-2 text-xs text-amber-900 bg-amber-50/90 border border-amber-200/80 px-2.5 py-2 rounded-xl leading-relaxed">
+                <strong>🗣️ Mẹo đọc:</strong> ${item.tip}
+              </div>
+
+              <div class="mt-2.5 text-sm font-semibold text-emerald-700">
+                🇻🇳 ${item.vi}
+              </div>
+
+              <div class="mt-1 text-xs text-slate-500 italic">
+                💡 VD: ${item.ex}
+              </div>
+              ${sentenceBtns}
+            </div>
+
+            <div class="mt-3.5 pt-3 border-t border-slate-100">
+              <div class="flex items-center gap-2">
+                <button onclick="speakText('${item.en.replace(/'/g, "\'")}')" class="flex-1 py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                  🔊 Nghe mẫu
+                </button>
+                <button id="speak-btn-${item.id}" onclick="practiceCard(${item.id})" class="relative flex-1 py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-800 hover:text-rose-700 border border-slate-200 hover:border-rose-200 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                  🎙️ Luyện nói
+                </button>
+              </div>
+              ${scoreHtml}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Initialize
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+    updateStats();
+    renderTabs();
+    renderCards();
+  </script>
+</body>
+</html>
