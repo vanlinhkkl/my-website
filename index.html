@@ -24,6 +24,19 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
+  <!-- Zalo In-App Browser Banner (Auto-shown when opened inside Zalo/Facebook) -->
+  <div id="inapp-banner" class="hidden bg-amber-500 text-slate-950 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-base">⚠️</span>
+        <span>Bạn đang mở link trong <strong>Zalo</strong>: Đã bật chế độ <strong>Nghe phát âm dự phòng</strong>. Để dùng được cả <strong>Micro Luyện Nói</strong>, hãy bấm dấu <strong>⋮</strong> (hoặc <strong>⋯</strong>) ở góc trên phải &rarr; chọn <strong>Mở bằng trình duyệt (Chrome / Safari)</strong>.</span>
+      </div>
+      <button onclick="openExternalBrowser()" class="px-3 py-1 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition shrink-0">
+        Hướng dẫn mở Chrome/Safari
+      </button>
+    </div>
+  </div>
+
   <!-- Header -->
   <header class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white shadow-lg sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-3">
@@ -31,7 +44,7 @@
         <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-xl">📐</div>
         <div>
           <h1 class="text-base sm:text-lg font-bold tracking-tight">Sổ Tay Phát Âm & Giao Tiếp Tiếng Anh Môn Toán THCS</h1>
-          <p class="text-xs text-blue-200">Lớp 6 – 9 • Chuẩn CLIL (Kế hoạch 444/KH-SGDĐT) • Nghe mẫu & Chấm điểm luyện nói</p>
+          <p class="text-xs text-blue-200">Lớp 6 – 9 • Chuẩn CLIL (Kế hoạch 444/KH-SGDĐT) • Hỗ trợ cả Zalo, Chrome & Safari</p>
         </div>
       </div>
 
@@ -132,17 +145,17 @@
 
   </main>
 
-  <!-- Microphone Settings Modal -->
+  <!-- Microphone & Browser Compatibility Modal -->
   <div id="mic-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">🎙️ Cài đặt & Kiểm tra Micro Luyện Nói</h3>
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">🎙️ Cài đặt Âm thanh & Micro Luyện Nói</h3>
         <button onclick="toggleMicModal(false)" class="text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
       </div>
 
       <div id="mic-diagnostic-box" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
-        <div class="font-bold text-slate-800">Trạng thái hiện tại: <span id="mic-perm-text" class="text-amber-600">Chưa kiểm tra</span></div>
-        <p class="text-slate-600">Trình duyệt cần quyền truy cập Micro để nghe giọng đọc của bạn và chấm điểm tự động.</p>
+        <div class="font-bold text-slate-800">Trạng thái trình duyệt: <span id="mic-perm-text" class="text-amber-600">Chưa kiểm tra</span></div>
+        <p class="text-slate-600">Phần <strong>Nghe mẫu</strong> đã hỗ trợ chạy trực tiếp trên cả Zalo. Riêng phần <strong>Micro Luyện Nói</strong> yêu cầu mở bằng Chrome hoặc Safari.</p>
       </div>
 
       <button onclick="requestMicPermission()" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition">
@@ -150,15 +163,18 @@
       </button>
 
       <div class="text-xs text-slate-600 space-y-2 bg-amber-50/70 p-3.5 rounded-xl border border-amber-100">
-        <div class="font-bold text-amber-900">💡 Hướng dẫn nếu bấm nút nói chưa phản hồi:</div>
-        <ul class="list-disc pl-4 space-y-1">
-          <li><strong>Trên Chrome / Edge (Máy tính):</strong> Nhấn vào biểu tượng <strong>ổ khóa 🔒</strong> (hoặc biểu tượng cài đặt bên trái thanh địa chỉ web) &rarr; Bật công tắc <strong>Micro (Microphone)</strong> sang <em>Cho phép (Allow)</em> &rarr; Tải lại trang.</li>
-          <li><strong>Trên Điện thoại:</strong> Mở trang web bằng trình duyệt <strong>Chrome</strong> (Android) hoặc <strong>Safari</strong> (iPhone), tránh mở qua trình duyệt thu nhỏ bên trong Zalo/Facebook.</li>
-          <li><strong>Nói rõ ràng:</strong> Sau khi bấm nút <em>Luyện nói</em>, đợi 0.5 giây rồi đọc to, rõ ràng cụm từ tiếng Anh.</li>
+        <div class="font-bold text-amber-900">💡 Hướng dẫn mở ra trình duyệt chuẩn (nếu đang mở trong Zalo):</div>
+        <ul class="list-disc pl-4 space-y-1.5">
+          <li><strong>Bước 1 (Trên Zalo điện thoại):</strong> Nhìn lên góc trên cùng bên phải màn hình Zalo, bấm vào biểu tượng <strong>ba chấm (⋮ hoặc ⋯)</strong>.</li>
+          <li><strong>Bước 2:</strong> Chọn dòng <strong>"Mở bằng trình duyệt"</strong> (hoặc <em>Mở bằng Chrome / Mở bằng Safari</em>).</li>
+          <li><strong>Trên Chrome / Edge (Máy tính):</strong> Nhấn vào biểu tượng <strong>ổ khóa 🔒</strong> bên trái thanh địa chỉ &rarr; Bật công tắc <strong>Micro (Microphone)</strong> sang <em>Cho phép (Allow)</em>.</li>
         </ul>
       </div>
     </div>
   </div>
+
+  <!-- Hidden fallback HTML5 Audio player for Zalo / WebView -->
+  <audio id="fallback-audio" preload="none"></audio>
 
   <!-- Toast Notification -->
   <div id="toast" class="hidden fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl text-xs sm:text-sm z-50 max-w-sm"></div>
@@ -316,9 +332,7 @@
       }
     ];
 
-    // Comprehensive Dictionary for Custom Text Phonetic Tips & Vietnamese Meaning
     const MINI_DICT = {
-      // Common greetings & classroom words
       'hello': { ipa: '/həˈləʊ/', tip: 'hơ-LÂU', note: 'nhấn âm 2: "LÂU"', vi: 'xin chào' },
       'hi': { ipa: '/haɪ/', tip: 'hai', note: 'đọc gọn: "hai"', vi: 'chào' },
       'good': { ipa: '/ɡʊd/', tip: 'gút', note: 'âm u ngắn: "gút"', vi: 'tốt / ngon' },
@@ -337,7 +351,7 @@
       'we': { ipa: '/wiː/', tip: 'wi', note: 'đọc là "wi"', vi: 'chúng ta' },
       'are': { ipa: '/ɑːr/', tip: 'a', note: 'uốn nhẹ lưỡi cuối', vi: 'là / thì' },
       'is': { ipa: '/ɪz/', tip: 'iz', note: 'rung nhẹ âm "z"', vi: 'là / thì' },
-      'the': { ipa: '/ðə/', tip: 'đờ', note: 'đọc nhẹ: "đờ" (trước nguyên âm đọc "đi")', vi: '' },
+      'the': { ipa: '/ðə/', tip: 'đờ', note: 'đọc nhẹ: "đờ"', vi: '' },
       'a': { ipa: '/ə/', tip: 'ơ', note: 'đọc lướt nhẹ: "ơ"', vi: 'một' },
       'an': { ipa: '/æn/', tip: 'ần', note: 'đọc lướt nhẹ: "ần"', vi: 'một' },
       'in': { ipa: '/ɪn/', tip: 'in', note: 'đọc là "in"', vi: 'trong' },
@@ -376,8 +390,6 @@
       'questions': { ipa: '/ˈkwes.tʃənz/', tip: 'QUÉT-chần-z', note: 'rung nhẹ "z" cuối', vi: 'các câu hỏi' },
       'answer': { ipa: '/ˈɑːn.sər/', tip: 'AN-sờ', note: 'âm "w" câm, nhấn âm 1', vi: 'câu trả lời / đáp án' },
       'correct': { ipa: '/kəˈrekt/', tip: 'cơ-RÉCT', note: 'nhấn âm 2: "RÉCT"', vi: 'chính xác' },
-
-      // Math terms
       'mathematics': { ipa: '/ˌmæθ.əˈmæt.ɪks/', tip: 'ma-thơ-MÁ-tịk-s', note: 'nhấn âm 3: "MÁ"', vi: 'môn Toán' },
       'math': { ipa: '/mæθ/', tip: 'mát-th', note: 'đặt lưỡi giữa hai răng cuối từ', vi: 'Toán' },
       'geometry': { ipa: '/dʒiˈɒm.ə.tri/', tip: 'ji-O-mơ-tri', note: 'nhấn âm 2: "O"', vi: 'hình học' },
@@ -451,12 +463,24 @@
     let scores = JSON.parse(localStorage.getItem('math_eng_scores') || '{}');
     let activeRecognition = null;
 
+    // Detect Zalo / Facebook / Messenger In-App WebView
+    const ua = navigator.userAgent || '';
+    const isInAppBrowser = /Zalo|FBAN|FBAV|Messenger|Instagram|Line/i.test(ua);
+
+    if (isInAppBrowser) {
+      document.getElementById('inapp-banner').classList.remove('hidden');
+    }
+
+    function openExternalBrowser() {
+      toggleMicModal(true);
+    }
+
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.innerHTML = msg;
       t.classList.remove('hidden');
       clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => t.classList.add('hidden'), 4000);
+      window._toastTimer = setTimeout(() => t.classList.add('hidden'), 4200);
     }
 
     function setAccent(acc) {
@@ -483,38 +507,96 @@
       });
     }
 
-    function speakText(text) {
-      if (!('speechSynthesis' in window)) {
-        showToast('Trình duyệt của bạn chưa hỗ trợ đọc giọng nói.');
-        return;
+    // Play online MP3 TTS fallback (works inside Zalo WebView where speechSynthesis is disabled/broken)
+    function playFallbackAudio(cleanText) {
+      const audio = document.getElementById('fallback-audio');
+      audio.pause();
+      const tl = currentAccent === 'en-GB' ? 'en-GB' : 'en-US';
+      // Split into chunks <= 180 chars if paragraph is long
+      const chunks = cleanText.match(/.{1,180}(\s|$)/g) || [cleanText];
+      let idx = 0;
+
+      function playNextChunk() {
+        if (idx >= chunks.length) return;
+        const part = chunks[idx].trim();
+        idx++;
+        if (!part) { playNextChunk(); return; }
+        const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${tl}&q=${encodeURIComponent(part)}`;
+        audio.src = ttsUrl;
+        audio.playbackRate = currentRate;
+        audio.onended = playNextChunk;
+        audio.onerror = () => {
+          showToast('⚠️ Không thể tải âm thanh. Vui lòng kiểm tra kết nối mạng hoặc mở bằng trình duyệt Chrome/Safari.');
+        };
+        audio.play().catch(() => {
+          showToast('🔊 Vui lòng chạm lại vào nút <strong>Nghe mẫu</strong> để phát âm thanh.');
+        });
       }
-      window.speechSynthesis.cancel();
-      const cleanText = text.replace(/\//g, ' or ');
-      const utter = new SpeechSynthesisUtterance(cleanText);
-      utter.lang = currentAccent;
-      utter.rate = currentRate;
-      const voices = window.speechSynthesis.getVoices();
-      const matched = voices.find(v => v.lang.includes(currentAccent));
-      if (matched) utter.voice = matched;
-      window.speechSynthesis.speak(utter);
+
+      playNextChunk();
     }
 
-    // Smart Vietnamese Phonetic Transliterator (for ANY English word, never echoes raw English!)
+    // Universal Speak Function: Native SpeechSynthesis + Automatic Fallback for Zalo/WebView
+    function speakText(text) {
+      const cleanText = text.replace(/\//g, ' or ').trim();
+      if (!cleanText) return;
+
+      // Stop any running audio
+      const audio = document.getElementById('fallback-audio');
+      if (audio) audio.pause();
+
+      const hasNativeTTS = ('speechSynthesis' in window) && typeof SpeechSynthesisUtterance !== 'undefined';
+
+      // Inside Zalo/In-App browsers, speechSynthesis often exists as a stub that never fires 'onstart'
+      if (hasNativeTTS && !isInAppBrowser) {
+        try {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(cleanText);
+          utter.lang = currentAccent;
+          utter.rate = currentRate;
+          const voices = window.speechSynthesis.getVoices();
+          const matched = voices.find(v => v.lang && v.lang.includes(currentAccent));
+          if (matched) utter.voice = matched;
+
+          let started = false;
+          utter.onstart = () => { started = true; };
+          utter.onerror = () => {
+            if (!started) playFallbackAudio(cleanText);
+          };
+
+          window.speechSynthesis.speak(utter);
+
+          // Watchdog: if native TTS hangs after 650ms, seamlessly switch to MP3 fallback
+          setTimeout(() => {
+            if (!started && !window.speechSynthesis.speaking) {
+              window.speechSynthesis.cancel();
+              playFallbackAudio(cleanText);
+            }
+          }, 650);
+          return;
+        } catch (e) {
+          playFallbackAudio(cleanText);
+          return;
+        }
+      }
+
+      // Direct MP3 audio playback for Zalo In-App Browser or devices without native TTS
+      playFallbackAudio(cleanText);
+    }
+
+    // Smart Vietnamese Phonetic Transliterator
     function transliterateToVietnamese(word) {
       const clean = word.toLowerCase().replace(/[^a-z']/g, '');
       if (!clean) return word;
       if (MINI_DICT[clean]) return MINI_DICT[clean].tip;
 
-      // Also check DATA items for single words
       const foundData = DATA.find(d => d.en.toLowerCase() === clean);
       if (foundData) {
         const m = foundData.tip.match(/"([^"]+)"/);
         if (m) return m[1];
       }
 
-      // Rule-based phonetic conversion to Vietnamese syllables so beginners can read ANY word
       let w = clean;
-      // Silent letters & common endings
       w = w.replace(/^kn/, 'n')
            .replace(/^wr/, 'r')
            .replace(/^wh/, 'qu')
@@ -535,7 +617,6 @@
            .replace(/er$/, 'ờ')
            .replace(/or$/, 'ờ');
 
-      // Consonant clusters & digraphs
       w = w.replace(/ph/g, 'ph')
            .replace(/sh/g, 'sh')
            .replace(/ch/g, 'ch')
@@ -548,7 +629,6 @@
            .replace(/ge/g, 'je')
            .replace(/gi/g, 'ji');
 
-      // Vowel combinations
       w = w.replace(/oo/g, 'u')
            .replace(/ee/g, 'i')
            .replace(/ea/g, 'i')
@@ -562,7 +642,6 @@
            .replace(/oi/g, 'oi')
            .replace(/oy/g, 'oi');
 
-      // Single vowels & silent trailing 'e'
       if (w.length > 3 && w.endsWith('e') && !w.endsWith('le')) {
         w = w.slice(0, -1);
       }
@@ -595,13 +674,7 @@
       else if (clean.includes('th')) note = 'đặt lưỡi giữa răng âm "th"';
       else if (clean.includes('sh')) note = 'cong môi âm "sh"';
 
-      return {
-        tok,
-        tip: phonetic,
-        note,
-        ipa: '',
-        vi: ''
-      };
+      return { tok, tip: phonetic, note, ipa: '', vi: '' };
     }
 
     async function analyzeCustomText() {
@@ -619,7 +692,6 @@
 
       viEl.textContent = 'Đang dịch nghĩa...';
 
-      // Word breakdown & clear beginner-friendly Vietnamese phonetic guide
       const tokens = raw.split(/\s+/);
       const analyzed = tokens.map(tok => getWordAnalysis(tok));
 
@@ -647,7 +719,6 @@
         `;
       }).join('');
 
-      // Translate via Google public endpoint with graceful fallback
       try {
         const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(raw)}`;
         const res = await fetch(url);
@@ -713,9 +784,15 @@
     }
 
     function startSpeechPractice(targetText, onResultCallback, btnEl) {
+      if (isInAppBrowser) {
+        showToast('⚠️ Trình duyệt trong Zalo khóa Micro. Hãy bấm dấu <strong>⋮</strong> góc trên phải &rarr; <strong>Mở bằng Chrome / Safari</strong> để dùng tính năng Luyện nói.');
+        toggleMicModal(true);
+        return;
+      }
+
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        showToast('⚠️ Trình duyệt này chưa hỗ trợ nhận diện giọng nói. Vui lòng dùng Google Chrome hoặc Microsoft Edge.');
+        showToast('⚠️ Trình duyệt này chưa hỗ trợ nhận diện giọng nói. Vui lòng mở bằng Google Chrome hoặc Safari.');
         toggleMicModal(true);
         return;
       }
@@ -824,6 +901,11 @@
     async function requestMicPermission() {
       const statusText = document.getElementById('mic-perm-text');
       const dot = document.getElementById('mic-status-dot');
+      if (isInAppBrowser) {
+        statusText.textContent = 'Đang mở trong Zalo (Zalo chặn Micro). Hãy mở bằng Chrome/Safari theo hướng dẫn bên dưới.';
+        statusText.className = 'text-rose-600 font-bold';
+        return;
+      }
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         stream.getTracks().forEach(t => t.stop());
@@ -929,7 +1011,6 @@
           }
         }
 
-        // Split sentences for paragraph practice
         let sentenceBtns = '';
         if (isParagraph) {
           const sentences = item.en.match(/[^.!?]+[.!?]+/g) || [item.en];
