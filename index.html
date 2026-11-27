@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sổ Tay Phát Âm & Giao Tiếp Tiếng Anh Môn Toán THCS (Lớp 6 - 9)</title>
+  <title>Sổ Tay Tiếng Anh Toán THCS (Khối 6 – 9) | Chuẩn Tài Liệu Bộ GD&ĐT 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #f1f5f9; color: #1e293b; }
     .ipa-font { font-family: 'JetBrains Mono', monospace; }
     .card-hover { transition: all 0.2s ease; }
     .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
@@ -24,27 +24,27 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Zalo In-App Browser Banner (Auto-shown when opened inside Zalo/Facebook) -->
-  <div id="inapp-banner" class="hidden bg-amber-500 text-slate-950 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-md">
+  <!-- Zalo In-App Browser Banner -->
+  <div id="inapp-banner" class="hidden bg-amber-400 text-slate-950 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-md">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="text-base">⚠️</span>
-        <span>Bạn đang mở link trong <strong>Zalo</strong>: Đã bật chế độ <strong>Nghe phát âm dự phòng</strong>. Để dùng được cả <strong>Micro Luyện Nói</strong>, hãy bấm dấu <strong>⋮</strong> (hoặc <strong>⋯</strong>) ở góc trên phải &rarr; chọn <strong>Mở bằng trình duyệt (Chrome / Safari)</strong>.</span>
+        <span>Bạn đang mở link trong <strong>Zalo</strong>: Đã bật chế độ <strong>Nghe phát âm tự động</strong>. Để dùng được cả <strong>Micro Luyện Nói</strong>, hãy bấm dấu <strong>⋮</strong> ở góc trên phải &rarr; chọn <strong>Mở bằng trình duyệt (Chrome / Safari)</strong>.</span>
       </div>
-      <button onclick="openExternalBrowser()" class="px-3 py-1 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition shrink-0">
+      <button onclick="toggleMicModal(true)" class="px-3 py-1 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition shrink-0">
         Hướng dẫn mở Chrome/Safari
       </button>
     </div>
   </div>
 
   <!-- Header -->
-  <header class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white shadow-lg sticky top-0 z-30">
+  <header class="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white shadow-lg sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-xl">📐</div>
+        <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-xl">📘</div>
         <div>
-          <h1 class="text-base sm:text-lg font-bold tracking-tight">Sổ Tay Phát Âm & Giao Tiếp Tiếng Anh Môn Toán THCS</h1>
-          <p class="text-xs text-blue-200">Lớp 6 – 9 • Chuẩn CLIL (Kế hoạch 444/KH-SGDĐT) • Hỗ trợ cả Zalo, Chrome & Safari</p>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">Sổ Tay Từ Vựng & Mẫu Câu Toán THCS (Lớp 6 – 9)</h1>
+          <p class="text-xs text-blue-200">Biên soạn theo Tài liệu hướng dẫn của Bộ GD&ĐT (2026) • Key Vocabulary & Useful Mathematical Expressions</p>
         </div>
       </div>
 
@@ -71,19 +71,19 @@
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full space-y-6">
+  <main class="max-w-7xl mx-auto px-4 py-5 flex-1 w-full space-y-5">
 
     <!-- Smart Custom Translator & Pronunciation Analyzer -->
     <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
         <h2 class="text-sm sm:text-base font-bold text-slate-800 flex items-center gap-2">
-          <span class="text-blue-600">✨</span> Luyện đọc & Phân tích câu bất kỳ trong giáo án
+          <span class="text-blue-600">✨</span> Luyện đọc & Phân tích từ/câu bất kỳ trong giáo án
         </h2>
-        <span class="text-xs text-slate-500">Gõ hoặc dán từ/câu tiếng Anh bất kỳ để dịch nghĩa, xem mẹo đọc tiếng Việt & chấm điểm nói</span>
+        <span class="text-xs text-slate-500">Gõ hoặc dán từ/câu tiếng Anh để dịch nghĩa, xem mẹo đọc bồi tiếng Việt & chấm điểm nói</span>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-2.5">
-        <input id="custom-input" type="text" placeholder="Ví dụ: Hello, hoặc In a right-angled triangle, the square of the hypotenuse equals..."
+        <input id="custom-input" type="text" placeholder="Ví dụ: Is 3 an element of A? hoặc Rationalise the denominator..."
           class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           onkeydown="if(event.key==='Enter') analyzeCustomText()" />
         <div class="flex flex-wrap gap-2">
@@ -119,29 +119,55 @@
       </div>
     </section>
 
-    <!-- Stats & Filter Bar -->
-    <section class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-      <div class="flex flex-wrap items-center gap-2 text-xs">
-        <span class="font-bold text-slate-700 mr-1">Tiến độ luyện nói:</span>
-        <button onclick="setScoreFilter('all')" id="filter-all" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-white font-semibold">Tất cả (<span id="count-all">0</span>)</button>
-        <button onclick="setScoreFilter('excellent')" id="filter-excellent" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">🌟 Tuyệt vời (<span id="count-excellent">0</span>)</button>
-        <button onclick="setScoreFilter('pass')" id="filter-pass" class="px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 font-semibold">✅ Đạt (<span id="count-pass">0</span>)</button>
-        <button onclick="setScoreFilter('fail')" id="filter-fail" class="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 font-semibold">🔄 Chưa đạt (<span id="count-fail">0</span>)</button>
-        <button onclick="setScoreFilter('starred')" id="filter-starred" class="px-2.5 py-1.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 font-semibold">⭐ Đã lưu (<span id="count-starred">0</span>)</button>
+    <!-- Grade Selector & Topic Selector -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <!-- Grade Tabs -->
+        <div class="flex flex-wrap items-center gap-2" id="grade-tabs">
+          <button onclick="selectGrade('all')" id="grade-all" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 text-white shadow-sm transition">📚 Tất cả các khối (6–9)</button>
+          <button onclick="selectGrade(6)" id="grade-6" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">📗 Khối 6 (Grade 6)</button>
+          <button onclick="selectGrade(7)" id="grade-7" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">📙 Khối 7 (Grade 7)</button>
+          <button onclick="selectGrade(8)" id="grade-8" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">📕 Khối 8 (Grade 8)</button>
+          <button onclick="selectGrade(9)" id="grade-9" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">📓 Khối 9 (Grade 9)</button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative min-w-[260px]">
+          <input id="search-input" oninput="renderContent()" type="text" placeholder="Tìm từ vựng, câu hỏi, mẹo đọc, nghĩa Việt..."
+            class="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="absolute left-3 top-2.5 text-slate-400 text-sm">🔎</span>
+        </div>
       </div>
 
-      <div class="relative min-w-[260px]">
-        <input id="search-input" oninput="renderCards()" type="text" placeholder="Tìm thuật ngữ, mẹo đọc, nghĩa Việt..."
-          class="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <span class="absolute left-3 top-2.5 text-slate-400 text-sm">🔎</span>
+      <!-- Lesson Filter Dropdown & Progress Stats -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-3 border-t border-slate-100">
+        <div class="flex flex-wrap items-center gap-2 flex-1">
+          <label for="lesson-select" class="text-xs font-bold text-slate-700 whitespace-nowrap">Chủ đề / Bài học:</label>
+          <select id="lesson-select" onchange="renderContent()" class="flex-1 max-w-xl px-3 py-1.5 rounded-xl border border-slate-300 text-xs sm:text-sm bg-slate-50 font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </select>
+        </div>
+
+        <!-- Practice Score Filter Pills -->
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button onclick="setScoreFilter('all')" id="filter-all" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-white font-semibold">Tất cả (<span id="count-all">0</span>)</button>
+          <button onclick="setScoreFilter('excellent')" id="filter-excellent" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">🌟 Tuyệt vời (<span id="count-excellent">0</span>)</button>
+          <button onclick="setScoreFilter('pass')" id="filter-pass" class="px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 font-semibold">✅ Đạt (<span id="count-pass">0</span>)</button>
+          <button onclick="setScoreFilter('fail')" id="filter-fail" class="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 font-semibold">🔄 Chưa đạt (<span id="count-fail">0</span>)</button>
+          <button onclick="setScoreFilter('starred')" id="filter-starred" class="px-2.5 py-1.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 font-semibold">⭐ Đã lưu (<span id="count-starred">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Mode Switcher: Both / Key Vocabulary / Useful Mathematical Expressions -->
+      <div class="flex flex-wrap items-center gap-2 pt-2">
+        <span class="text-xs font-semibold text-slate-500">Hiển thị:</span>
+        <button onclick="setSectionMode('both')" id="mode-both" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-600 text-white transition">📑 Cả 2 mục (Từ vựng & Mẫu câu)</button>
+        <button onclick="setSectionMode('vocab')" id="mode-vocab" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">🔤 Chỉ mục 1: Key Vocabulary</button>
+        <button onclick="setSectionMode('expr')" id="mode-expr" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">💬 Chỉ mục 2: Useful Mathematical Expressions</button>
       </div>
     </section>
 
-    <!-- Category Tabs -->
-    <nav class="flex gap-2 overflow-x-auto pb-1 no-scrollbar" id="category-tabs"></nav>
-
-    <!-- Cards Grid -->
-    <section id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></section>
+    <!-- Main Content Container (Grouped by Lesson with 2 clear sections: 1. Key Vocabulary & 2. Useful Mathematical Expressions) -->
+    <div id="lessons-container" class="space-y-8"></div>
 
   </main>
 
@@ -180,299 +206,86 @@
   <div id="toast" class="hidden fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl text-xs sm:text-sm z-50 max-w-sm"></div>
 
   <script>
-    const CATEGORIES = [
-      { id: 'all', name: '📚 Tất cả' },
-      { id: 'symbols', name: '➕ Phép tính & Ký hiệu' },
-      { id: 'algebra', name: '🔢 Số học & Đại số (6-9)' },
-      { id: 'geometry', name: '📐 Hình học & Đo lường' },
-      { id: 'trig_stat', name: '📊 Lượng giác & Thống kê' },
-      { id: 'questions', name: '❓ Câu hỏi tương tác lớp' },
-      { id: 'commands', name: '🗣️ Điều hành & Khen ngợi' },
-      { id: 'paragraphs', name: '📖 Đoạn văn giảng bài mẫu' }
-    ];
+    const CURRICULUM = [{"grade": 6, "chapter": "Chapter 1: Set of Natural Numbers", "lesson": "Lesson 1. Sets (Tập hợp)", "vocab": [{"en": "set", "ipa": "/set/", "tip": "sét", "vi": "tập hợp", "ex": "Let A be the set of natural numbers less than 10."}, {"en": "element", "ipa": "/ˈel.ɪ.mənt/", "tip": "É-li-mầnt (nhấn âm 1)", "vi": "phần tử", "ex": "The number 10 is an element of set D."}, {"en": "cardinality", "ipa": "/ˌkɑː.dɪˈnæl.ə.ti/", "tip": "ca-đi-NÁ-lơ-ti (nhấn âm 3)", "vi": "số phần tử của tập hợp", "ex": "The cardinality of set A is 5."}, {"en": "belong to", "ipa": "/bɪˈlɒŋ tuː/", "tip": "bi-LONG tu (nhấn âm 2)", "vi": "thuộc (∈)", "ex": "The number 3 belongs to the set of odd numbers."}, {"en": "not belong to", "ipa": "/nɒt bɪˈlɒŋ tuː/", "tip": "nót bi-LONG tu", "vi": "không thuộc (∉)", "ex": "The number 6 does not belong to the set of odd numbers."}, {"en": "empty set", "ipa": "/ˈemp.ti set/", "tip": "ÉM-ti sét (nhấn âm 1)", "vi": "tập hợp rỗng (∅)", "ex": "The empty set has no elements."}], "expressions": [{"en": "Is 3 an element of A?", "tip": "Iz th-ri ần É-li-mầnt ợv ây?", "vi": "Số 3 có phải là một phần tử của tập hợp A không?"}, {"en": "Does 5 belong to B?", "tip": "Đơz phai-v bi-LONG tu bi?", "vi": "Số 5 có thuộc tập hợp B không?"}, {"en": "Can you list all the elements of this set?", "tip": "Ken iu lít-s o đi É-li-mầnt-s ợv đít-s sét?", "vi": "Em có thể liệt kê tất cả các phần tử của tập hợp này không?"}, {"en": "The set of natural numbers is denoted by N.", "tip": "Đờ sét ợv NÁT-chơ-rồl NĂM-bờ-z iz đi-NÂU-tịt bai en.", "vi": "Tập hợp các số tự nhiên được kí hiệu là N."}, {"en": "We can describe a set by a characteristic property.", "tip": "Wi ken địt-S-CRAIB ơ sét bai ơ ka-rắc-tơ-RÍT-tịk PRO-pơ-ti.", "vi": "Chúng ta có thể mô tả tập hợp bằng tính chất đặc trưng."}]}, {"grade": 6, "chapter": "Chapter 1: Set of Natural Numbers", "lesson": "Lesson 2–5. Natural Numbers & Operations (Số tự nhiên & Các phép tính)", "vocab": [{"en": "natural number", "ipa": "/ˈnætʃ.ər.əl ˈnʌm.bər/", "tip": "NÁT-chơ-rồl NĂM-bờ", "vi": "số tự nhiên", "ex": "50 245 is a natural number."}, {"en": "digit", "ipa": "/ˈdɪdʒ.ɪt/", "tip": "ĐI-jịt (nhấn âm 1)", "vi": "chữ số", "ex": "235 is a three-digit number."}, {"en": "place value", "ipa": "/pleɪs ˈvæl.juː/", "tip": "p-lây-s VA-liu", "vi": "giá trị của chữ số", "ex": "In 12 840, the place value of 8 is 800."}, {"en": "predecessor / successor", "ipa": "/ˈpriː.dɪ.ses.ər/ - /səkˈses.ər/", "tip": "PRI-đi-xe-sờ / sậc-XÉ-sờ", "vi": "số liền trước / số liền sau", "ex": "8 is the predecessor of 9; 9 is the successor of 8."}, {"en": "addend / sum", "ipa": "/ˈæd.end/ - /sʌm/", "tip": "A-đen-đ / săm", "vi": "số hạng / tổng", "ex": "The sum of 28 and 34 is 62."}, {"en": "minuend / subtrahend / difference", "ipa": "/ˈmɪn.ju.end/ - /ˈdɪf.ər.əns/", "tip": "MI-niu-en-đ / ĐÍF-phơ-rần-s", "vi": "số bị trừ / số trừ / hiệu", "ex": "The difference between 15 and 7 is 8."}, {"en": "quotient / remainder", "ipa": "/ˈkwəʊ.ʃənt/ - /rɪˈmeɪn.dər/", "tip": "QUÂU-shầnt / ri-MÊN-đờ", "vi": "thương / số dư", "ex": "In 215 ÷ 18 = 11 remainder 17, 17 is the remainder."}], "expressions": [{"en": "Which number comes before or after a?", "tip": "Quít-ch NĂM-bờ căm-z bi-PHO o ÁP-tờ ây?", "vi": "Số nào đứng trước hoặc đứng sau số a?"}, {"en": "Arrange the numbers in ascending order.", "tip": "Ơ-RÂY-j đờ NĂM-bờ-z in ơ-XEN-đing O-đờ.", "vi": "Sắp xếp các số theo thứ tự tăng dần."}, {"en": "What operation should we use? Why?", "tip": "Quót o-pơ-RÂY-shần shút wi iu-z? Quai?", "vi": "Chúng ta nên sử dụng phép tính nào? Tại sao?"}, {"en": "Can you find a more efficient way to calculate it?", "tip": "Ken iu phai-đ ơ mo i-PHI-shầnt quây tu KEO-kiu-lây-t ít?", "vi": "Em có thể tìm cách tính hợp lí (nhanh) hơn không?"}, {"en": "Find the quotient and remainder.", "tip": "Phai-đ đờ QUÂU-shầnt en ri-MÊN-đờ.", "vi": "Hãy tìm thương và số dư."}]}, {"grade": 6, "chapter": "Chapter 1 & 2: Powers & Divisibility", "lesson": "Lesson 6–12. Powers, Prime Numbers, GCF & LCM (Lũy thừa, Số nguyên tố, ƯCLN & BCNN)", "vocab": [{"en": "power / base / exponent", "ipa": "/ˈpaʊ.ər/, /beɪs/, /ɪkˈspəʊ.nənt/", "tip": "PAO-ờ / bây-s / ik-S-PÂU-nầnt", "vi": "lũy thừa / cơ số / số mũ", "ex": "In 3⁵, 3 is the base and 5 is the exponent."}, {"en": "order of operations", "ipa": "/ˈɔː.dər əv ˌɒp.ərˈeɪ.ʃənz/", "tip": "O-đờ ợv o-pơ-RÂY-shần-z", "vi": "thứ tự thực hiện các phép tính", "ex": "Use the order of operations to evaluate the expression."}, {"en": "divisible by", "ipa": "/dɪˈvɪz.ə.bəl baɪ/", "tip": "đi-VI-zơ-bồl bai (nhấn âm 2)", "vi": "chia hết cho (⋮)", "ex": "24 is divisible by 6."}, {"en": "prime number / composite number", "ipa": "/praɪm/ - /ˈkɒm.pə.zɪt/", "tip": "p-RAIM NĂM-bờ / KOM-pơ-zịt NĂM-bờ", "vi": "số nguyên tố / hợp số", "ex": "17 is a prime number; 12 is a composite number."}, {"en": "prime factorisation", "ipa": "/praɪm ˌfæk.tər.aɪˈzeɪ.ʃən/", "tip": "p-RAIM phắc-tơ-rai-ZÂY-shần", "vi": "phân tích ra thừa số nguyên tố", "ex": "The prime factorisation of 24 is 2³ · 3."}, {"en": "greatest common factor (GCF)", "ipa": "/ˈɡreɪ.tɪst ˈkɒm.ən ˈfæk.tər/", "tip": "GRÂY-tịt-s KOM-mần PHẮC-tờ", "vi": "ước chung lớn nhất (ƯCLN)", "ex": "The GCF of 12 and 18 is 6."}, {"en": "least common multiple (LCM)", "ipa": "/liːst ˈkɒm.ən ˈmʌl.tɪ.pəl/", "tip": "lít-s KOM-mần MÂN-ti-pồl", "vi": "bội chung nhỏ nhất (BCNN)", "ex": "The LCM of 6 and 8 is 24."}], "expressions": [{"en": "What is the base? What is the exponent?", "tip": "Quót iz đờ bây-s? Quót iz đi ik-S-PÂU-nầnt?", "vi": "Cơ số là gì? Số mũ là gì?"}, {"en": "Which operation should we perform first? Why?", "tip": "Quít-ch o-pơ-RÂY-shần shút wi pờ-PHO-m phớt-s? Quai?", "vi": "Chúng ta nên thực hiện phép tính nào trước? Tại sao?"}, {"en": "Is 24 divisible by 6? Explain your answer.", "tip": "Iz tuen-ti pho đi-VI-zơ-bồl bai xíc-s? Ik-S-P-LÊN io AN-sờ.", "vi": "24 có chia hết cho 6 không? Giải thích câu trả lời của em."}, {"en": "Is 29 prime or composite?", "tip": "Iz tuen-ti nai-n p-RAIM o KOM-pơ-zịt?", "vi": "29 là số nguyên tố hay hợp số?"}, {"en": "What is the greatest common factor of 12 and 18?", "tip": "Quót iz đờ GRÂY-tịt-s KOM-mần PHẮC-tờ ợv tuen-v en ây-tin?", "vi": "Ước chung lớn nhất của 12 và 18 là bao nhiêu?"}]}, {"grade": 6, "chapter": "Chapter 3, 6 & 7: Integers, Fractions & Decimals", "lesson": "Lesson 13–31. Integers, Fractions, Decimals & Percentages (Số nguyên, Phân số & Số thập phân)", "vocab": [{"en": "positive / negative integer", "ipa": "/ˈpɒz.ə.tɪv/ - /ˈneɡ.ə.tɪv ˈɪn.tɪ.dʒər/", "tip": "PO-zơ-tịv / NÉ-gơ-tịv IN-ti-jờ", "vi": "số nguyên dương / số nguyên âm", "ex": "12 is a positive integer; -7 is a negative integer."}, {"en": "opposite number", "ipa": "/ˈɒp.ə.zɪt ˈnʌm.bər/", "tip": "O-pơ-zịt NĂM-bờ (nhấn âm 1)", "vi": "số đối", "ex": "The opposite number of -6 is 6."}, {"en": "remove brackets", "ipa": "/rɪˈmuːv ˈbræk.ɪts/", "tip": "ri-MUV BRÁ-kịt-s", "vi": "bỏ dấu ngoặc", "ex": "We remove the brackets to simplify the expression."}, {"en": "numerator / denominator", "ipa": "/ˈnjuː.mə.reɪ.tər/ - /dɪˈnɒm.ɪ.neɪ.tər/", "tip": "NIU-mơ-rây-tờ / đi-NOM-i-nây-tờ", "vi": "tử số / mẫu số", "ex": "In 3/4, 3 is the numerator and 4 is the denominator."}, {"en": "equivalent fractions / simplest form", "ipa": "/ɪˈkwɪv.əl.ənt/ - /ˈsɪm.plɪst fɔːm/", "tip": "i-QUI-vơ-lầnt PHRẮC-shần-z / XIM-p-lịt-s pho-m", "vi": "phân số bằng nhau / dạng tối giản", "ex": "The simplest form of 2/4 is 1/2."}, {"en": "mixed number", "ipa": "/mɪkst ˈnʌm.bər/", "tip": "míc-s-t NĂM-bờ", "vi": "hỗn số", "ex": "1 2/3 is a mixed number."}, {"en": "reciprocal", "ipa": "/rɪˈsɪp.rə.kəl/", "tip": "ri-XÍP-rơ-cồl (nhấn âm 2)", "vi": "số nghịch đảo", "ex": "The reciprocal of 3/5 is 5/3."}, {"en": "decimal / percentage", "ipa": "/ˈdes.ɪ.məl/ - /pəˈsen.tɪdʒ/", "tip": "ĐÉ-xi-mồl / pờ-SEN-tịt-j", "vi": "số thập phân / tỉ số phần trăm", "ex": "25% is equal to 0.25."}], "expressions": [{"en": "What is the opposite number of -6?", "tip": "Quót iz đi O-pơ-zịt NĂM-bờ ợv NÉ-gơ-tịv xíc-s?", "vi": "Số đối của -6 là số nào?"}, {"en": "What happens to the signs when we remove the brackets?", "tip": "Quót HÁ-pần-z tu đờ sai-n-z quen wi ri-MUV đờ BRÁ-kịt-s?", "vi": "Dấu của các số hạng thay đổi thế nào khi ta bỏ dấu ngoặc?"}, {"en": "Are these two fractions equivalent?", "tip": "A đi-z tu PHRẮC-shần-z i-QUI-vơ-lầnt?", "vi": "Hai phân số này có bằng nhau không?"}, {"en": "Write each fraction in its simplest form.", "tip": "Rai-t ít-ch PHRẮC-shần in ít-s XIM-p-lịt-s pho-m.", "vi": "Hãy viết mỗi phân số dưới dạng tối giản."}, {"en": "How do you find 15% of an amount?", "tip": "Hao đu iu phai-đ phíp-tin pờ-SEN-t ợv ần ơ-MAO-t?", "vi": "Em tìm 15% của một số lượng bằng cách nào?"}]}, {"grade": 6, "chapter": "Chapter 4, 5, 8 & 9: Geometry, Symmetry & Data", "lesson": "Lesson 18–43. Plane Shapes, Symmetry, Angles & Probability (Hình phẳng, Đối xứng, Góc & Xác suất)", "vocab": [{"en": "equilateral triangle / regular hexagon", "ipa": "/ˌiː.kwɪˈlæt.ər.əl/ - /ˈrek.jə.lər ˈhek.sə.ɡən/", "tip": "i-qui-LÁ-tơ-rồl TRAI-ăng-gồl / RÉG-kiu-lờ HÉC-xơ-gần", "vi": "tam giác đều / hình lục giác đều", "ex": "A regular hexagon has six equal sides."}, {"en": "rhombus / parallelogram / trapezoid", "ipa": "/ˈrɒm.bəs/, /ˌpær.əˈlel.ə.ɡræm/, /ˈtræp.ɪ.zɔɪd/", "tip": "ROM-bợt-s / pa-rơ-LE-lơ-gram / TRÁ-pi-zoi-đ", "vi": "hình thoi / hình bình hành / hình thang", "ex": "The opposite sides of a parallelogram are parallel."}, {"en": "line of symmetry / centre of symmetry", "ipa": "/laɪn əv ˈsɪm.ə.tri/ - /ˈsen.tər/", "tip": "lai-n ợv XI-mơ-tri / XEN-tờ ợv XI-mơ-tri", "vi": "trục đối xứng / tâm đối xứng", "ex": "A square has 4 lines of symmetry."}, {"en": "collinear / intersect / midpoint", "ipa": "/kəˈlɪn.i.ər/, /ˌɪn.təˈsekt/, /ˈmɪd.pɔɪnt/", "tip": "cơ-LI-ni-ờ / in-tơ-XÉCT / MÍD-poi-t", "vi": "thẳng hàng / cắt nhau / trung điểm", "ex": "M is the midpoint of line segment AB."}, {"en": "acute / right / obtuse / straight angle", "ipa": "/əˈkjuːt/, /raɪt/, /əbˈtjuːs/, /streɪt ˈæŋ.ɡəl/", "tip": "ơ-KIUT / rai-t / ợp-TIUT-s / s-TRÂY-t ĂNG-gồl", "vi": "góc nhọn / góc vuông / góc tù / góc bẹt", "ex": "A right angle measures 90 degrees."}, {"en": "bar chart / experimental probability", "ipa": "/bɑː tʃɑːt/ - /ɪkˌsper.ɪˈmen.təl ˌprɒb.əˈbɪl.ə.ti/", "tip": "ba chát / ik-s-pe-ri-MEN-tồl pro-bơ-BI-lơ-ti", "vi": "biểu đồ cột / xác suất thực nghiệm", "ex": "Experimental probability is based on observed results."}], "expressions": [{"en": "Does this shape have a line of symmetry?", "tip": "Đơz đít-s shây-p háp ơ lai-n ợv XI-mơ-tri?", "vi": "Hình này có trục đối xứng không?"}, {"en": "How many lines of symmetry does the shape have?", "tip": "Hao ME-ni lai-n-z ợv XI-mơ-tri đơz đờ shây-p háp?", "vi": "Hình này có bao nhiêu trục đối xứng?"}, {"en": "Which point lies between the other two points?", "tip": "Quít-ch poi-t lai-z bi-TUIN đi Ơ-đờ tu poi-t-s?", "vi": "Điểm nào nằm giữa hai điểm còn lại?"}, {"en": "What is the vertex and what are the sides of angle xOy?", "tip": "Quót iz đờ VƠ-téc-s en quót a đờ sai-đ-z ợv ĂNG-gồl ít-s âu quai?", "vi": "Đỉnh và các cạnh của góc xOy là gì?"}, {"en": "List all possible outcomes of the experiment.", "tip": "Lít-s o PO-xơ-bồl AO-căm-z ợv đi ik-S-PE-ri-mầnt.", "vi": "Hãy liệt kê tất cả các kết quả có thể của phép thử."}]}, {"grade": 7, "chapter": "Chapter 1 & 2: Rational & Real Numbers", "lesson": "Lesson 1–7. Rational Numbers, Square Roots & Real Numbers (Số hữu tỉ, Căn bậc hai & Số thực)", "vocab": [{"en": "rational number", "ipa": "/ˈræʃ.ən.əl ˈnʌm.bər/", "tip": "RÁ-shần-nồl NĂM-bờ (nhấn âm 1)", "vi": "số hữu tỉ (Q)", "ex": "The decimal 3.5 can be written as a fraction 7/2."}, {"en": "terminating / repeating decimal", "ipa": "/ˈtɜː.mɪ.neɪ.tɪŋ/ - /rɪˈpiː.tɪŋ ˈdes.ɪ.məl/", "tip": "TƠ-mi-nây-ting / ri-PI-ting ĐÉ-xi-mồl", "vi": "số thập phân hữu hạn / vô hạn tuần hoàn", "ex": "0.333... is a repeating decimal."}, {"en": "irrational number", "ipa": "/ɪˈræʃ.ən.əl ˈnʌm.bər/", "tip": "i-RÁ-shần-nồl NĂM-bờ (nhấn âm 2)", "vi": "số vô tỉ (I)", "ex": "The number Pi (π) is an irrational number."}, {"en": "principal square root", "ipa": "/ˈprɪn.sə.pəl skweər ruːt/", "tip": "PRIN-xơ-pồl s-QUE rút", "vi": "căn bậc hai số học", "ex": "The principal square root of 25 is 5."}, {"en": "real number / absolute value", "ipa": "/rɪəl ˈnʌm.bər/ - /ˈæb.sə.luːt ˈvæl.juː/", "tip": "ri-ồl NĂM-bờ / ÁB-sơ-lut VA-liu", "vi": "số thực (R) / giá trị tuyệt đối", "ex": "The absolute value of -3 is 3."}, {"en": "scientific notation", "ipa": "/ˌsaɪənˈtɪf.ɪk nəʊˈteɪ.ʃən/", "tip": "sai-ần-TI-phịk nâu-TÂY-shần", "vi": "kí hiệu khoa học", "ex": "Write 347 000 000 000 in scientific notation."}], "expressions": [{"en": "Can you write this decimal as a fraction?", "tip": "Ken iu rai-t đít-s ĐÉ-xi-mồl áz ơ PHRẮC-shần?", "vi": "Em có thể viết số thập phân này dưới dạng phân số không?"}, {"en": "Does the decimal terminate or does it repeat?", "tip": "Đơz đờ ĐÉ-xi-mồl TƠ-mi-nây-t o đơz ít ri-PIT?", "vi": "Số thập phân này là hữu hạn hay vô hạn tuần hoàn?"}, {"en": "Is this number a rational number or an irrational number?", "tip": "Iz đít-s NĂM-bờ ơ RÁ-shần-nồl NĂM-bờ o ần i-RÁ-shần-nồl NĂM-bờ?", "vi": "Số này là số hữu tỉ hay số vô tỉ?"}, {"en": "Find the absolute value of the given number.", "tip": "Phai-đ đi ÁB-sơ-lut VA-liu ợv đờ GI-vần NĂM-bờ.", "vi": "Hãy tìm giá trị tuyệt đối của số đã cho."}, {"en": "Move the number to the other side and change its sign.", "tip": "Muv đờ NĂM-bờ tu đi Ơ-đờ sai-đ en chây-j ít-s sai-n.", "vi": "Chuyển vế số hạng sang vế bên kia và đổi dấu của nó."}]}, {"grade": 7, "chapter": "Chapter 3 & 4: Parallel Lines & Congruent Triangles", "lesson": "Lesson 8–16. Parallel Lines, Congruent Triangles & Isosceles Triangles (Đường thẳng song song & Tam giác bằng nhau)", "vocab": [{"en": "linear pair / vertical angles", "ipa": "/ˈlɪn.i.ər peər/ - /ˈvɜː.tɪ.kəl ˈæŋ.ɡəlz/", "tip": "LI-ni-ờ pe / VƠ-ti-cồl ĂNG-gồl-z", "vi": "hai góc kề bù / hai góc đối đỉnh", "ex": "Vertical angles are congruent."}, {"en": "transversal", "ipa": "/trænzˈvɜː.səl/", "tip": "tran-z-VƠ-sồl (nhấn âm 2)", "vi": "đường thẳng cắt hai đường thẳng (cát tuyến)", "ex": "Two parallel lines are cut by a transversal."}, {"en": "corresponding angles", "ipa": "/ˌkɒr.ɪˈspɒn.dɪŋ ˈæŋ.ɡəlz/", "tip": "ko-ri-S-PON-ding ĂNG-gồl-z", "vi": "hai góc đồng vị", "ex": "Angles A1 and B1 are corresponding angles."}, {"en": "alternate interior angles", "ipa": "/ɔːlˈtɜː.nət ɪnˈtɪə.ri.ər ˈæŋ.ɡəlz/", "tip": "o-TƠ-nợt in-TIƠ-ri-ờ ĂNG-gồl-z", "vi": "hai góc so le trong", "ex": "Since the alternate interior angles are congruent, the lines are parallel."}, {"en": "congruent triangles", "ipa": "/ˈkɒŋ.ɡru.ənt ˈtraɪ.æŋ.ɡəlz/", "tip": "KONG-gru-ầnt TRAI-ăng-gồl-z", "vi": "hai tam giác bằng nhau", "ex": "Triangles ABC and DEF are congruent triangles."}, {"en": "included angle / included side", "ipa": "/ɪnˈkluː.dɪd ˈæŋ.ɡəl/ - /saɪd/", "tip": "in-C-LU-địt ĂNG-gồl / sai-đ", "vi": "góc xen giữa / cạnh xen giữa", "ex": "Angle BAC is the included angle between AB and AC."}, {"en": "isosceles triangle / perpendicular bisector", "ipa": "/aɪˈsɒs.əl.iːz/ - /ˌpɜː.pənˈdɪk.jə.lər baɪˈsek.tər/", "tip": "ai-SO-sơ-li-z / pơ-pần-ĐÍK-kiu-lờ bai-SÉC-tờ", "vi": "tam giác cân / đường trung trực", "ex": "Line d is the perpendicular bisector of segment MN."}], "expressions": [{"en": "Name a pair of vertical angles and alternate interior angles.", "tip": "Nêm ơ pe ợv VƠ-ti-cồl ĂNG-gồl-z en o-TƠ-nợt in-TIƠ-ri-ờ ĂNG-gồl-z.", "vi": "Hãy nêu tên một cặp góc đối đỉnh và một cặp góc so le trong."}, {"en": "Explain why the two lines are parallel.", "tip": "Ik-S-P-LÊN quai đờ tu lai-n-z a PA-rơ-leo.", "vi": "Hãy giải thích tại sao hai đường thẳng này song song với nhau."}, {"en": "State the hypothesis and the conclusion of the theorem.", "tip": "S-tây-t đờ hai-PO-thơ-xịt-s en đờ cồn-C-LU-zhần ợv đờ THIƠ-rầm.", "vi": "Hãy nêu giả thiết và kết luận của định lí."}, {"en": "Determine whether SAS or ASA can be used to prove the triangles congruent.", "tip": "Đi-TƠ-min QUE-đờ ét-ây-ét o ây-ét-ây ken bi iu-z-đ tu pru-v đờ TRAI-ăng-gồl-z KONG-gru-ầnt.", "vi": "Xác định xem có thể dùng trường hợp c.g.c hay g.c.g để chứng minh hai tam giác bằng nhau."}, {"en": "Identify the hypotenuse and the two legs of right triangle ABC.", "tip": "Ai-ĐEN-ti-phai đờ hai-PO-tơ-niu-z en đờ tu lég-z ợv rai-t TRAI-ăng-gồl ây-bi-xi.", "vi": "Hãy xác định cạnh huyền và hai cạnh góc vuông của tam giác vuông ABC."}]}, {"grade": 7, "chapter": "Chapter 5, 6 & 7: Data, Proportions & One-Variable Polynomials", "lesson": "Lesson 17–28. Pie Charts, Proportions & Polynomials in One Variable (Biểu đồ, Tỉ lệ thức & Đa thức một biến)", "vocab": [{"en": "pie chart / line graph", "ipa": "/paɪ tʃɑːt/ - /laɪn ɡrɑːf/", "tip": "pai chát / lai-n gráp-f", "vi": "biểu đồ hình quạt tròn / biểu đồ đoạn thẳng", "ex": "The sum of all percentages in a pie chart must equal 100%."}, {"en": "proportion / cross product", "ipa": "/prəˈpɔː.ʃən/ - /krɒs ˈprɒd.ʌkt/", "tip": "prờ-PO-shần / c-rót-s PROB-đắc-t", "vi": "tỉ lệ thức / tích chéo", "ex": "In a proportion, the cross products are always equal."}, {"en": "direct / inverse proportion", "ipa": "/daɪˈrekt/ - /ˌɪn.vɜːs prəˈpɔː.ʃən/", "tip": "đai-RÉCT / in-VỚT-s prờ-PO-shần", "vi": "tỉ lệ thuận / tỉ lệ nghịch", "ex": "If x and y are directly proportional, y = kx."}, {"en": "constant of proportionality", "ipa": "/ˈkɒn.stənt əv prəˌpɔː.ʃəˈnæl.ə.ti/", "tip": "KON-s-tầnt ợv prờ-po-shần-NÁ-lơ-ti", "vi": "hệ số tỉ lệ", "ex": "If y = 5x, the constant of proportionality is k = 5."}, {"en": "polynomial in one variable", "ipa": "/ˌpɒl.iˈnəʊ.mi.əl ɪn wʌn ˈveə.ri.ə.bəl/", "tip": "po-li-NÂU-mi-ồl in quăn VE-ri-ơ-bồl", "vi": "đa thức một biến", "ex": "2x³ - 5x² + 7 is a polynomial in one variable."}, {"en": "leading coefficient / constant term", "ipa": "/ˈliː.dɪŋ ˌkəʊ.ɪˈfɪʃ.ənt/ - /ˈkɒn.stənt tɜːm/", "tip": "LI-đing câu-i-PHI-shầnt / KON-s-tầnt tơm", "vi": "hệ số cao nhất / hệ số tự do", "ex": "The leading coefficient of -2x² + 4x + 5 is -2."}, {"en": "root of a polynomial", "ipa": "/ruːt əv ə ˌpɒl.iˈnəʊ.mi.əl/", "tip": "rút ợv ơ po-li-NÂU-mi-ồl", "vi": "nghiệm của đa thức", "ex": "Since F(a) = 0, the number a is a root of F(x)."}], "expressions": [{"en": "Is this data numerical or non-numerical?", "tip": "Iz đít-s ĐÂY-tơ niu-ME-ri-cồl o non-niu-ME-ri-cồl?", "vi": "Dữ liệu này là số liệu hay dữ liệu không phải là số?"}, {"en": "Do these two ratios form a proportion?", "tip": "Đu đi-z tu RÂY-shi-âu-z pho-m ơ prờ-PO-shần?", "vi": "Hai tỉ số này có lập thành một tỉ lệ thức không?"}, {"en": "What is the degree, leading coefficient, and constant term?", "tip": "Quót iz đờ đi-GRI, LI-đing câu-i-PHI-shầnt en KON-s-tầnt tơm?", "vi": "Bậc, hệ số cao nhất và hệ số tự do của đa thức là gì?"}, {"en": "Arrange the terms in descending powers of x.", "tip": "Ơ-RÂY-j đờ tơm-z in đi-XEN-đing PAO-ờ-z ợv ít-s.", "vi": "Hãy sắp xếp các hạng tử theo lũy thừa giảm dần của biến x."}, {"en": "Is x = 2 a root of P(x)?", "tip": "Iz ít-s I-quồl-z tu ơ rút ợv pi ợv ít-s?", "vi": "x = 2 có phải là nghiệm của đa thức P(x) không?"}]}, {"grade": 7, "chapter": "Chapter 8, 9 & 10: Events, Triangle Concurrency & 3D Prisms", "lesson": "Lesson 29–37. Events, Triangle Inequality, Centroid, Orthocentre & Prisms (Biến cố, Bất đẳng thức tam giác & Lăng trụ đứng)", "vocab": [{"en": "certain / impossible / random event", "ipa": "/ˈsɜː.tən/, /ɪmˈpɒs.ə.bəl/, /ˈræn.dəm ɪˈvent/", "tip": "SƠ-tần / im-PO-xơ-bồl / RAN-đầm i-VENT", "vi": "biến cố chắc chắn / không thể / ngẫu nhiên", "ex": "A certain event has probability 1."}, {"en": "oblique segment / triangle inequality", "ipa": "/əˈbliːk ˈseɡ.mənt/ - /ˈtraɪ.æŋ.ɡəl ˌɪn.ɪˈkwɒl.ə.ti/", "tip": "ơ-B-LÍK SÉG-mầnt / TRAI-ăng-gồl in-i-QUO-lơ-ti", "vi": "đường xiên / bất đẳng thức tam giác", "ex": "The perpendicular segment is shorter than any oblique segment."}, {"en": "median / centroid", "ipa": "/ˈmiː.di.ən/ - /ˈsen.trɔɪd/", "tip": "MI-đi-ần / XEN-troi-đ", "vi": "đường trung tuyến / trọng tâm", "ex": "The three medians of a triangle meet at the centroid G."}, {"en": "incentre / circumcentre / orthocentre", "ipa": "/ˈɪn.sen.tər/, /ˈsɜː.kəm.sen.tər/, /ˈɔː.θəʊ.sen.tər/", "tip": "IN-xen-tờ / SƠ-cầm-xen-tờ / O-thâu-xen-tờ", "vi": "tâm nội tiếp / tâm ngoại tiếp / trực tâm", "ex": "The three altitudes meet at the orthocentre H."}, {"en": "cuboid / cube / right triangular prism", "ipa": "/ˈkjuː.bɔɪd/, /kjuːb/, /raɪt traɪˈæŋ.ɡjə.lər ˈprɪz.əm/", "tip": "KIU-boi-đ / kiu-b / rai-t trai-ĂNG-giu-lờ PRI-zầm", "vi": "hình hộp chữ nhật / hình lập phương / hình lăng trụ đứng tam giác", "ex": "A cuboid has 6 faces, 8 vertices, and 12 edges."}, {"en": "lateral surface area / net", "ipa": "/ˈlæt.ər.əl ˈsɜː.fɪs ˈeə.ri.ə/ - /net/", "tip": "LÁ-tơ-rồl SƠ-phịt-s E-ri-ơ / nét", "vi": "diện tích xung quanh / hình khai triển", "ex": "This is a net of a cuboid."}], "expressions": [{"en": "Classify the event as certain, impossible, or random.", "tip": "C-LÁ-xi-phai đi i-VENT áz SƠ-tần, im-PO-xơ-bồl o RAN-đầm.", "vi": "Hãy phân loại biến cố sau là chắc chắn, không thể hay ngẫu nhiên."}, {"en": "Can these three lengths form a triangle? Give a reason.", "tip": "Ken đi-z th-ri leng-th-s pho-m ơ TRAI-ăng-gồl? Gip ơ RI-zần.", "vi": "Ba độ dài này có thể tạo thành một tam giác không? Nêu lí do."}, {"en": "Name the vertices, edges, faces, and diagonals of the cuboid.", "tip": "Nêm đờ VƠ-ti-xi-z, ÉD-ji-z, PHÂY-xi-z en đai-A-gơ-nồl-z ợv đờ KIU-boi-đ.", "vi": "Hãy nêu tên các đỉnh, cạnh, mặt và đường chéo của hình hộp chữ nhật."}, {"en": "Find the lateral surface area and volume of the prism.", "tip": "Phai-đ đờ LÁ-tơ-rồl SƠ-phịt-s E-ri-ơ en VO-lium ợv đờ PRI-zầm.", "vi": "Hãy tính diện tích xung quanh và thể tích của hình lăng trụ."}]}, {"grade": 8, "chapter": "Chapter 1 & 2: Polynomials & Algebraic Identities", "lesson": "Lesson 1–9. Monomials, Polynomials, 7 Identities & Factoring (Đơn thức, Đa thức, 7 Hằng đẳng thức & Phân tích nhân tử)", "vocab": [{"en": "monomial / literal part / degree", "ipa": "/məˈnəʊ.mi.əl/ - /ˈlɪt.ər.əl pɑːt/ - /dɪˈɡriː/", "tip": "mơ-NÂU-mi-ồl / LI-tơ-rồl pát / đi-GRI", "vi": "đơn thức / phần biến / bậc", "ex": "The literal part of 5x²y³ is x²y³ and its degree is 5."}, {"en": "like terms", "ipa": "/laɪk tɜːmz/", "tip": "lai-k tơm-z", "vi": "các hạng tử đồng dạng", "ex": "4x² and -7x² are like terms as they have the same literal part."}, {"en": "difference of two squares", "ipa": "/ˈdɪf.ər.əns əv tuː skweəz/", "tip": "ĐÍF-phơ-rần-s ợv tu s-QUE-z", "vi": "hiệu hai bình phương (A² - B²)", "ex": "The difference of two squares equals (A - B)(A + B)."}, {"en": "square of a sum / square of a difference", "ipa": "/skweər əv ə sʌm/ - /ˈdɪf.ər.əns/", "tip": "s-QUE ợv ơ săm / s-QUE ợv ơ ĐÍF-phơ-rần-s", "vi": "bình phương của một tổng / một hiệu", "ex": "Expand the square of a sum (3x + 2)²."}, {"en": "cube of a sum / sum of two cubes", "ipa": "/kjuːb əv ə sʌm/ - /sʌm əv tuː kjuːbz/", "tip": "kiu-b ợv ơ săm / săm ợv tu kiu-b-z", "vi": "lập phương của một tổng / tổng hai lập phương", "ex": "Factorise x³ + 216 using the sum of two cubes."}, {"en": "factoring polynomials / common factor", "ipa": "/ˈfæk.tər.ɪŋ/ - /ˈkɒm.ən ˈfæk.tər/", "tip": "PHẮC-tơ-ring / KOM-mần PHẮC-tờ", "vi": "phân tích đa thức thành nhân tử / nhân tử chung", "ex": "Factor out the common factor 5x."}], "expressions": [{"en": "Is this expression a monomial? Why or why not?", "tip": "Iz đít-s ik-S-PRE-shần ơ mơ-NÂU-mi-ồl? Quai o quai nót?", "vi": "Biểu thức này có phải là đơn thức không? Tại sao có hoặc tại sao không?"}, {"en": "Find the coefficient, literal part, and degree of the monomial.", "tip": "Phai-đ đờ câu-i-PHI-shầnt, LI-tơ-rồl pát en đi-GRI ợv đờ mơ-NÂU-mi-ồl.", "vi": "Tìm hệ số, phần biến và bậc của đơn thức."}, {"en": "Can these terms be combined?", "tip": "Ken đi-z tơm-z bi cồm-BAI-đ?", "vi": "Các hạng tử này có thể thu gọn (cộng/trừ) với nhau được không?"}, {"en": "Expand the expressions using algebraic identities.", "tip": "Ik-S-PAN-đ đi ik-S-PRE-shần-z IU-zing eo-jơ-BRÂY-ik ai-ĐEN-tơ-ti-z.", "vi": "Hãy khai triển các biểu thức bằng cách sử dụng hằng đẳng thức."}, {"en": "Which method do we use to factor the polynomial?", "tip": "Quít-ch MÉ-thợt-đ đu wi iu-z tu PHẮC-tờ đờ po-li-NÂU-mi-ồl?", "vi": "Chúng ta dùng phương pháp nào để phân tích đa thức thành nhân tử?"}]}, {"grade": 8, "chapter": "Chapter 3 & 4: Quadrilaterals & Thales' Theorem", "lesson": "Lesson 10–17. Quadrilaterals, Thales' Theorem, Midsegments & Angle Bisector (Tứ giác, Định lí Thalès & Đường trung bình)", "vocab": [{"en": "convex quadrilateral", "ipa": "/ˈkɒn.veks ˌkwɒd.rɪˈlæt.ər.əl/", "tip": "KON-véc-s quót-ri-LÁ-tơ-rồl", "vi": "tứ giác lồi", "ex": "The interior angles of a convex quadrilateral add to 360°."}, {"en": "isosceles trapezoid", "ipa": "/aɪˈsɒs.əl.iːz ˈtræp.ɪ.zɔɪd/", "tip": "ai-SO-sơ-li-z TRÁ-pi-zoi-đ", "vi": "hình thang cân", "ex": "The diagonals of an isosceles trapezoid have equal lengths."}, {"en": "Triangle Proportionality Theorem (Thales' Theorem)", "ipa": "/prəˌpɔː.ʃəˈnæl.ə.ti ˈθɪə.rəm/", "tip": "TRAI-ăng-gồl prờ-po-shần-NÁ-lơ-ti THIƠ-rầm (Định lí Ta-lét)", "vi": "Định lí Thalès trong tam giác", "ex": "Since DE ∥ BC, the Triangle Proportionality Theorem applies."}, {"en": "proportional segments", "ipa": "/prəˈpɔː.ʃən.əl ˈseɡ.mənts/", "tip": "prờ-PO-shần-nồl SÉG-mầnt-s", "vi": "các đoạn thẳng tỉ lệ", "ex": "The four lengths form proportional segments."}, {"en": "midsegment of a triangle", "ipa": "/ˈmɪd.seɡ.mənt əv ə ˈtraɪ.æŋ.ɡəl/", "tip": "MÍD-xég-mầnt ợv ơ TRAI-ăng-gồl", "vi": "đường trung bình của tam giác", "ex": "A triangle midsegment is parallel to the third side and half its length."}, {"en": "Triangle-Angle-Bisector Theorem", "ipa": "/ˈæŋ.ɡəl baɪˈsek.tər ˈθɪə.rəm/", "tip": "TRAI-ăng-gồl ĂNG-gồl bai-SÉC-tờ THIƠ-rầm", "vi": "Định lí đường phân giác của tam giác", "ex": "By the Triangle-Angle-Bisector Theorem, BD/DC = AB/AC."}], "expressions": [{"en": "Determine whether quadrilateral PQRS is a parallelogram / rectangle / rhombus.", "tip": "Đi-TƠ-min QUE-đờ quót-ri-LÁ-tơ-rồl pi-kiu-a-ét-s iz ơ pa-rơ-LE-lơ-gram.", "vi": "Xác định xem tứ giác PQRS có phải là hình bình hành / hình chữ nhật / hình thoi không."}, {"en": "Determine whether segments AB and CD are proportional to EF and GH.", "tip": "Đi-TƠ-min QUE-đờ SÉG-mầnt-s ây-bi en xi-đi a prờ-PO-shần-nồl tu i-ép en ji-ây-ch.", "vi": "Xác định xem hai đoạn thẳng AB và CD có tỉ lệ với EF và GH không."}, {"en": "Prove that MN is parallel to BC.", "tip": "Pru-v đát em-en iz PA-rơ-leo tu bi-xi.", "vi": "Chứng minh rằng MN song song với BC."}, {"en": "Identify the midsegment of triangle ABC and find its length.", "tip": "Ai-ĐEN-ti-phai đờ MÍD-xég-mầnt ợv TRAI-ăng-gồl ây-bi-xi en phai-đ ít-s leng-th.", "vi": "Xác định đường trung bình của tam giác ABC và tính độ dài của nó."}]}, {"grade": 8, "chapter": "Chapter 5, 6, 7 & 8: Data, Algebraic Fractions, Linear Functions & Probability", "lesson": "Lesson 18–32. Discrete/Continuous Data, Algebraic Fractions, Slope & Probability (Phân thức đại số, Hàm số bậc nhất & Hệ số góc)", "vocab": [{"en": "discrete data / continuous data", "ipa": "/dɪˈskriːt/ - /kənˈtɪn.ju.əs ˈdeɪ.tə/", "tip": "địt-S-CRÍT / cần-TI-niu-ợt-s ĐÂY-tơ", "vi": "số liệu rời rạc / số liệu liên tục", "ex": "Height is continuous data; number of students is discrete data."}, {"en": "algebraic fraction", "ipa": "/ˌæl.dʒəˈbreɪ.ɪk ˈfræk.ʃən/", "tip": "eo-jơ-BRÂY-ik PHRẮC-shần", "vi": "phân thức đại số", "ex": "(x + 2)/(x + 3) is an algebraic fraction."}, {"en": "defined / restriction / condition", "ipa": "/dɪˈfaɪnd/, /rɪˈstrɪk.ʃən/, /kənˈdɪʃ.ən/", "tip": "đi-PHAI-đ / ri-S-TRÍC-shần / cần-ĐI-shần", "vi": "xác định / điều kiện xác định", "ex": "The fraction is defined when its denominator is not zero."}, {"en": "linear equation in one variable", "ipa": "/ˈlɪn.i.ər ɪˈkweɪ.ʒən/", "tip": "LI-ni-ờ i-QUÂY-zhần in quăn VE-ri-ơ-bồl", "vi": "phương trình bậc nhất một ẩn (ax + b = 0)", "ex": "A linear equation in one variable has the form ax + b = 0 (a ≠ 0)."}, {"en": "coordinate plane / x-intercept / y-intercept", "ipa": "/kəʊˈɔː.dɪ.nət pleɪn/, /ˈɪn.tə.sept/", "tip": "câu-O-đi-nợt p-lên / ít-s IN-tơ-xép-t / quai IN-tơ-xép-t", "vi": "mặt phẳng tọa độ / hoành độ gốc / tung độ gốc", "ex": "The graph of a linear function is a straight line."}, {"en": "slope of a line", "ipa": "/sləʊp əv ə laɪn/", "tip": "s-LÂUP ợv ơ lai-n", "vi": "hệ số góc của đường thẳng (a)", "ex": "Two lines are parallel if they have the same slope."}, {"en": "favourable outcome", "ipa": "/ˈfeɪ.vər.ə.bəl ˈaʊt.kʌm/", "tip": "PHÂY-vơ-rơ-bồl AO-căm", "vi": "kết quả thuận lợi", "ex": "Count the number of favourable outcomes for event E."}], "expressions": [{"en": "Determine whether the quantitative data are discrete or continuous.", "tip": "Đi-TƠ-min QUE-đờ đờ QUON-ti-tơ-tịv ĐÂY-tơ a địt-S-CRÍT o cần-TI-niu-ợt-s.", "vi": "Xác định xem số liệu này là rời rạc hay liên tục."}, {"en": "What is the condition for the algebraic fraction to be defined?", "tip": "Quót iz đờ cần-ĐI-shần pho đi eo-jơ-BRÂY-ik PHRẮC-shần tu bi đi-PHAI-đ?", "vi": "Điều kiện để phân thức đại số xác định là gì?"}, {"en": "How can we simplify this algebraic fraction?", "tip": "Hao ken wi XIM-p-li-phai đít-s eo-jơ-BRÂY-ik PHRẮC-shần?", "vi": "Làm thế nào để rút gọn phân thức đại số này?"}, {"en": "Find the slope and y-intercept of the given linear function.", "tip": "Phai-đ đờ s-LÂUP en quai IN-tơ-xép-t ợv đờ GI-vần LI-ni-ờ PHĂNG-shần.", "vi": "Tìm hệ số góc và tung độ gốc của hàm số bậc nhất đã cho."}, {"en": "Find the value of m so that the two lines are parallel or intersect.", "tip": "Phai-đ đờ VA-liu ợv em sâu đát đờ tu lai-n-z a PA-rơ-leo o in-tơ-XÉCT.", "vi": "Tìm giá trị của m để hai đường thẳng song song hoặc cắt nhau."}]}, {"grade": 8, "chapter": "Chapter 9 & 10: Similar Triangles, Pythagoras & Regular Pyramids", "lesson": "Lesson 33–39. Similar Triangles, Pythagorean Theorem & Pyramids (Tam giác đồng dạng, Định lí Pythagore & Hình chóp đều)", "vocab": [{"en": "similar triangles / scale factor", "ipa": "/ˈsɪm.ɪ.lər/ - /skeɪl ˈfæk.tər/", "tip": "SI-mi-lờ TRAI-ăng-gồl-z / s-KÊU PHẮC-tờ", "vi": "hai tam giác đồng dạng / tỉ số đồng dạng", "ex": "The scale factor of triangle DEF to triangle ABC is 2/3."}, {"en": "AA / SAS / SSS Similarity", "ipa": "/ˌsɪm.ɪˈlær.ə.ti/", "tip": "ây-ây / ét-ây-ét / ét-ét-ét xi-mi-LA-rơ-ti", "vi": "đồng dạng góc-góc (g.g) / c.g.c / c.c.c", "ex": "Prove triangles similar by the Angle-Angle (AA) Similarity Postulate."}, {"en": "Pythagorean Theorem / Converse", "ipa": "/paɪˌθæɡ.əˈriː.ən ˈθɪə.rəm/ - /ˈkɒn.vɜːs/", "tip": "pai-tha-gơ-RI-ần THIƠ-rầm / KON-vớt-s", "vi": "Định lí Pythagore / Định lí Pythagore đảo", "ex": "For right triangle ABC, AB² + AC² = BC²."}, {"en": "regular triangular / quadrilateral pyramid", "ipa": "/ˈrek.jə.lər traɪˈæŋ.ɡjə.lər ˈpɪr.ə.mɪd/", "tip": "RÉG-kiu-lờ trai-ĂNG-giu-lờ / quót-ri-LÁ-tơ-rồl PI-rơ-mịt", "vi": "hình chóp tam giác đều / hình chóp tứ giác đều", "ex": "S.ABC is a regular triangular pyramid."}, {"en": "apex / slant height / semiperimeter", "ipa": "/ˈeɪ.peks/, /slɑːnt haɪt/, /ˌsem.i.pəˈrɪm.ɪ.tər/", "tip": "ÂY-péc-s / s-LAN-t hai-t / xe-mi-pờ-RI-mi-tờ", "vi": "đỉnh hình chóp / trung đoạn / nửa chu vi", "ex": "SH is a slant height of the regular pyramid."}], "expressions": [{"en": "Determine whether triangles ABC and DEF are similar. Explain.", "tip": "Đi-TƠ-min QUE-đờ TRAI-ăng-gồl-z ây-bi-xi en đi-i-ép a SI-mi-lờ. Ik-S-P-LÊN.", "vi": "Xác định xem hai tam giác ABC và DEF có đồng dạng không. Giải thích."}, {"en": "Find the scale factor of triangle DEF to triangle ABC.", "tip": "Phai-đ đờ s-KÊU PHẮC-tờ ợv TRAI-ăng-gồl đi-i-ép tu TRAI-ăng-gồl ây-bi-xi.", "vi": "Tìm tỉ số đồng dạng của tam giác DEF đối với tam giác ABC."}, {"en": "Use the Pythagorean Theorem to find the length of BC.", "tip": "Iu-z đờ pai-tha-gơ-RI-ần THIƠ-rầm tu phai-đ đờ leng-th ợv bi-xi.", "vi": "Sử dụng định lí Pythagore để tính độ dài cạnh BC."}, {"en": "Is a triangle with side lengths 8, 15, and 17 a right triangle?", "tip": "Iz ơ TRAI-ăng-gồl quít-th sai-đ leng-th-s ây-t, phíp-tin en xe-vần-tin ơ rai-t TRAI-ăng-gồl?", "vi": "Tam giác có độ dài ba cạnh 8, 15 và 17 có phải là tam giác vuông không?"}, {"en": "What is the difference between the vertical height and the slant height?", "tip": "Quót iz đờ ĐÍF-phơ-rần-s bi-TUIN đờ VƠ-ti-cồl hai-t en đờ s-LAN-t hai-t?", "vi": "Sự khác nhau giữa chiều cao và trung đoạn của hình chóp đều là gì?"}]}, {"grade": 9, "chapter": "Chapter 1 & 2: Systems of Equations & Linear Inequalities", "lesson": "Lesson 1–6. Systems of Linear Equations & Linear Inequalities (Hệ phương trình bậc nhất hai ẩn & Bất phương trình)", "vocab": [{"en": "linear equation in two variables", "ipa": "/ˈlɪn.i.ər ɪˈkweɪ.ʒən ɪn tuː ˈveə.ri.ə.bəlz/", "tip": "LI-ni-ờ i-QUÂY-zhần in tu VE-ri-ơ-bồl-z", "vi": "phương trình bậc nhất hai ẩn", "ex": "x + 3y = 2 is a linear equation in two variables."}, {"en": "ordered pair / general solution", "ipa": "/ˈɔː.dəd peər/ - /ˈdʒen.ər.əl səˈluː.ʃən/", "tip": "O-đờ-đ pe / JÉ-nơ-rồl sơ-LU-shần", "vi": "cặp số sắp thứ tự / nghiệm tổng quát", "ex": "The ordered pair (2, 0) is a solution of the equation."}, {"en": "substitution / elimination method", "ipa": "/ˌsʌb.stɪˈtjuː.ʃən/ - /iˌlɪm.ɪˈneɪ.ʃən ˈmeθ.əd/", "tip": "sắp-s-ti-TIU-shần / i-li-mi-NÂY-shần MÉ-thợt-đ", "vi": "phương pháp thế / phương pháp cộng đại số", "ex": "Solve the system by the substitution or elimination method."}, {"en": "unique solution / no solution / infinitely many", "ipa": "/juːˈniːk/ - /ˈɪn.fɪ.nət.li ˈmen.i/", "tip": "iu-NÍK sơ-LU-shần / nâu sơ-LU-shần / IN-phi-nợt-li ME-ni", "vi": "nghiệm duy nhất / vô nghiệm / vô số nghiệm", "ex": "If two lines intersect at one point, the system has a unique solution."}, {"en": "Zero-Product Property", "ipa": "/ˈzɪə.rəʊ ˈprɒd.ʌkt ˈprɒp.ə.ti/", "tip": "ZIƠ-râu PROB-đắc-t PRO-pơ-ti", "vi": "tính chất tích bằng 0", "ex": "By the Zero-Product Property, if A · B = 0 then A = 0 or B = 0."}, {"en": "linear inequality / inequality sign", "ipa": "/ˈlɪn.i.ər ˌɪn.ɪˈkwɒl.ə.ti/ - /saɪn/", "tip": "LI-ni-ờ in-i-QUO-lơ-ti / sai-n", "vi": "bất phương trình bậc nhất / dấu bất đẳng thức", "ex": "When multiplying by a negative number, reverse the inequality sign."}], "expressions": [{"en": "Check if the ordered pair is a solution of the system of equations.", "tip": "Chék íp đi O-đờ-đ pe iz ơ sơ-LU-shần ợv đờ XÍT-tầm ợv i-QUÂY-zhần-z.", "vi": "Kiểm tra xem cặp số đã cho có phải là nghiệm của hệ phương trình không."}, {"en": "Solve the system of equations by the substitution or elimination method.", "tip": "Sô-v đờ XÍT-tầm ợv i-QUÂY-zhần-z bai đờ sắp-s-ti-TIU-shần o i-li-mi-NÂY-shần MÉ-thợt-đ.", "vi": "Giải hệ phương trình bằng phương pháp thế hoặc phương pháp cộng đại số."}, {"en": "How many solutions does the system of equations have?", "tip": "Hao ME-ni sơ-LU-shần-z đơz đờ XÍT-tầm ợv i-QUÂY-zhần-z háp?", "vi": "Hệ phương trình này có bao nhiêu nghiệm?"}, {"en": "Find the restrictions of the equation before solving.", "tip": "Phai-đ đờ ri-S-TRÍC-shần-z ợv đi i-QUÂY-zhần bi-PHO SÔ-ving.", "vi": "Tìm điều kiện xác định của phương trình trước khi giải."}, {"en": "What happens to the inequality sign when dividing by a negative number?", "tip": "Quót HÁ-pần-z tu đi in-i-QUO-lơ-ti sai-n quen đi-VAI-đing bai ơ NÉ-gơ-tịv NĂM-bờ?", "vi": "Dấu bất đẳng thức thay đổi thế nào khi chia cả hai vế cho một số âm?"}]}, {"grade": 9, "chapter": "Chapter 3 & 4: Square/Cube Roots & Right Triangle Trigonometry", "lesson": "Lesson 7–12. Square Roots, Cube Roots & Trigonometric Ratios (Căn bậc hai, Căn bậc ba & Tỉ số lượng giác)", "vocab": [{"en": "radicand / square root expression", "ipa": "/ˈræd.ɪ.kænd/ - /skweər ruːt ɪkˈspreʃ.ən/", "tip": "RÁ-đi-ken-đ / s-QUE rút ik-S-PRE-shần", "vi": "biểu thức dưới dấu căn / căn thức bậc hai", "ex": "√A is defined only when the radicand A ≥ 0."}, {"en": "rationalise the denominator", "ipa": "/ˈræʃ.ən.əl.aɪz ðə dɪˈnɒm.ɪ.neɪ.tər/", "tip": "RÁ-shần-nồl-lai-z đờ đi-NOM-i-nây-tờ", "vi": "trục căn thức ở mẫu", "ex": "Rationalise the denominator by multiplying by the conjugate."}, {"en": "conjugate expression", "ipa": "/ˈkɒn.dʒʊ.ɡət ɪkˈspreʃ.ən/", "tip": "KON-ju-gợt ik-S-PRE-shần", "vi": "biểu thức liên hợp", "ex": "The conjugate expression of 3 - 2√2 is 3 + 2√2."}, {"en": "cube root", "ipa": "/kjuːb ruːt/", "tip": "kiu-b rút", "vi": "căn bậc ba (∛a)", "ex": "Every real number has exactly one cube root."}, {"en": "opposite side / adjacent side / hypotenuse", "ipa": "/ˈɒp.ə.zɪt/, /əˈdʒeɪ.sənt/, /haɪˈpɒt.ən.juːz/", "tip": "O-pơ-zịt / ơ-JÂY-sầnt / hai-PO-tơ-niu-z", "vi": "cạnh đối / cạnh kề / cạnh huyền", "ex": "AC is the side opposite angle B; AB is adjacent to angle B."}, {"en": "sine / cosine / tangent / cotangent", "ipa": "/saɪn/, /ˈkəʊ.saɪn/, /ˈtæn.dʒənt/, /ˌkəʊˈtæn.dʒənt/", "tip": "sai-n / CÂU-sai-n / TAN-jầnt / câu-TAN-jầnt", "vi": "sin / côsin / tang / côtang", "ex": "Sine equals opposite over hypotenuse."}, {"en": "angle of elevation / angle of depression", "ipa": "/ˈæŋ.ɡəl əv ˌel.ɪˈveɪ.ʃən/ - /dɪˈpreʃ.ən/", "tip": "ĂNG-gồl ợv e-li-VÂY-shần / đi-PRÉ-shần", "vi": "góc nâng / góc hạ", "ex": "The angle of elevation to the top of the tower is 34°."}], "expressions": [{"en": "For which values of x is the square root expression defined?", "tip": "Pho quít-ch VA-liu-z ợv ít-s iz đờ s-QUE rút ik-S-PRE-shần đi-PHAI-đ?", "vi": "Căn thức bậc hai xác định với những giá trị nào của x?"}, {"en": "Rationalise the denominator of the expression.", "tip": "RÁ-shần-nồl-lai-z đờ đi-NOM-i-nây-tờ ợv đi ik-S-PRE-shần.", "vi": "Hãy trục căn thức ở mẫu của biểu thức."}, {"en": "With respect to angle B, which side is opposite and which is adjacent?", "tip": "Quít-th ri-S-PÉCT tu ĂNG-gồl bi, quít-ch sai-đ iz O-pơ-zịt en quít-ch iz ơ-JÂY-sầnt?", "vi": "Đối với góc B, cạnh nào là cạnh đối và cạnh nào là cạnh kề?"}, {"en": "Which trigonometric ratio should we use here? Why?", "tip": "Quít-ch tri-gơ-nơ-MÉ-trịk RÂY-shi-âu shút wi iu-z hia? Quai?", "vi": "Chúng ta nên sử dụng tỉ số lượng giác nào ở đây? Tại sao?"}, {"en": "Solve the right triangle, rounding angles to the nearest degree.", "tip": "Sô-v đờ rai-t TRAI-ăng-gồl, RAO-đing ĂNG-gồl-z tu đờ NIA-rịt-s đi-GRI.", "vi": "Giải tam giác vuông, làm tròn số đo góc đến độ."}]}, {"grade": 9, "chapter": "Chapter 6: Quadratic Function & Quadratic Equation", "lesson": "Lesson 18–21. Parabola y = ax², Quadratic Equations & Vieta's Theorem (Đồ thị y = ax², Phương trình bậc hai & Định lí Viète)", "vocab": [{"en": "parabola / vertex / axis of symmetry", "ipa": "/pəˈræb.ə.lə/, /ˈvɜː.teks/, /ˈæk.sɪs əv ˈsɪm.ə.tri/", "tip": "pơ-RÁ-bơ-lơ / VƠ-téc-s / ÁC-xịt-s ợv XI-mơ-tri", "vi": "đường parabol / đỉnh / trục đối xứng", "ex": "The graph of y = ax² is a parabola with vertex at the origin."}, {"en": "quadratic equation in one unknown", "ipa": "/kwɒdˈræt.ɪk ɪˈkweɪ.ʒən/", "tip": "quót-RÁ-tịk i-QUÂY-zhần in quăn ân-NÂUN", "vi": "phương trình bậc hai một ẩn (ax² + bx + c = 0)", "ex": "State the coefficients a, b, and c of the quadratic equation."}, {"en": "discriminant (delta)", "ipa": "/dɪˈskrɪm.ɪ.nənt/ - /ˈdel.tə/", "tip": "địt-S-CRI-mi-nầnt / ĐEO-tơ", "vi": "biệt thức Δ (Δ = b² - 4ac)", "ex": "The discriminant is Δ = b² - 4ac."}, {"en": "two distinct roots / double root / no root", "ipa": "/dɪˈstɪŋkt ruːts/ - /ˈdʌb.əl ruːt/", "tip": "tu địt-S-TINCT rút-s / ĐẮB-bồl rút / nâu rút", "vi": "hai nghiệm phân biệt / nghiệm kép / vô nghiệm", "ex": "If Δ > 0, the equation has two distinct roots."}, {"en": "Viete's theorem", "ipa": "/viˈet.əz ˈθɪə.rəm/", "tip": "vi-ÉT-tơ-z THIƠ-rầm", "vi": "Định lí Viète (x₁ + x₂ = -b/a, x₁x₂ = c/a)", "ex": "By Viete's theorem, the sum of the roots is -b/a."}, {"en": "solve by inspection / rejected", "ipa": "/ɪnˈspek.ʃən/ - /rɪˈdʒek.tɪd/", "tip": "sô-v bai in-S-PÉC-shần / ri-JÉC-tịt", "vi": "tính nhẩm nghiệm / bị loại (nghiệm)", "ex": "The root x = -60 is rejected because width cannot be negative."}], "expressions": [{"en": "Does the parabola lie above or below the x-axis?", "tip": "Đơz đờ pơ-RÁ-bơ-lơ lai ơ-BĂV o bi-LÂU đi ít-s ÁC-xịt-s?", "vi": "Đồ thị parabol nằm phía trên hay phía dưới trục hoành?"}, {"en": "Calculate the discriminant and determine the number of roots.", "tip": "KEO-kiu-lây-t đờ địt-S-CRI-mi-nầnt en đi-TƠ-min đờ NĂM-bờ ợv rút-s.", "vi": "Tính biệt thức Δ và xác định số nghiệm của phương trình."}, {"en": "Without solving the equation, find the sum and product of its roots.", "tip": "Quít-th-AO SÔ-ving đi i-QUÂY-zhần, phai-đ đờ săm en PROB-đắc-t ợv ít-s rút-s.", "vi": "Không giải phương trình, hãy tìm tổng và tích các nghiệm của nó."}, {"en": "Can this quadratic equation be solved by inspection?", "tip": "Ken đít-s quót-RÁ-tịk i-QUÂY-zhần bi sô-v-đ bai in-S-PÉC-shần?", "vi": "Phương trình bậc hai này có thể tính nhẩm nghiệm được không?"}, {"en": "Which root satisfies the condition and which root is rejected?", "tip": "Quít-ch rút SÁ-tịt-s-phai-z đờ cần-ĐI-shần en quít-ch rút iz ri-JÉC-tịt?", "vi": "Nghiệm nào thỏa mãn điều kiện và nghiệm nào bị loại?"}]}, {"grade": 9, "chapter": "Chapter 5, 7, 8, 9 & 10: Circles, Statistics, Probability & Solids", "lesson": "Lesson 13–17 & 22–32. Circles, Cyclic Quadrilaterals, Relative Frequency & Cylinders/Cones/Spheres (Đường tròn, Tứ giác nội tiếp & Hình khối)", "vocab": [{"en": "chord / tangent / secant / point of tangency", "ipa": "/kɔːd/, /ˈtæn.dʒənt/, /ˈsiː.kənt/", "tip": "co-đ / TAN-jầnt / XI-cầnt / poi-t ợv TAN-jần-si", "vi": "dây cung / tiếp tuyến / cát tuyến / tiếp điểm", "ex": "A tangent touches a circle at the point of tangency."}, {"en": "central angle / inscribed angle / intercepted arc", "ipa": "/ˈsen.trəl/, /ɪnˈskraɪbd ˈæŋ.ɡəl/, /ˌɪn.təˈsep.tɪd ɑːk/", "tip": "XEN-trồl / in-S-CRAIB-đ ĂNG-gồl / in-tơ-XÉP-tịt a-k", "vi": "góc ở tâm / góc nội tiếp / cung bị chắn", "ex": "The measure of an inscribed angle is half its intercepted arc."}, {"en": "arc length / sector / annulus", "ipa": "/ɑːk leŋθ/, /ˈsek.tər/, /ˈæn.jə.ləs/", "tip": "a-k leng-th / XÉC-tờ / Á-niu-lợt-s", "vi": "độ dài cung tròn / hình quạt tròn / hình vành khuyên", "ex": "An annulus lies between two concentric circles."}, {"en": "cyclic quadrilateral", "ipa": "/ˈsaɪ.klɪk ˌkwɒd.rɪˈlæt.ər.əl/", "tip": "XAI-c-lịk quót-ri-LÁ-tơ-rồl", "vi": "tứ giác nội tiếp", "ex": "Opposite angles of a cyclic quadrilateral are supplementary."}, {"en": "relative frequency / grouped frequency table", "ipa": "/ˈrel.ə.tɪv ˈfriː.kwən.si/ - /ɡruːpt/", "tip": "RÉ-lơ-tịv PHRI-quần-si / grup-t PHRI-quần-si TÂY-bồl", "vi": "tần số tương đối / bảng tần số ghép nhóm", "ex": "Relative frequency equals frequency divided by sample size."}, {"en": "sample space / complement of an event", "ipa": "/ˈsɑːm.pəl speɪs/ - /ˈkɒm.plɪ.mənt/", "tip": "XAM-pồl s-pây-s / KOM-p-li-mầnt", "vi": "không gian mẫu (Ω) / biến cố đối", "ex": "The sample space Ω contains all possible outcomes."}, {"en": "cylinder / cone / sphere / slant height", "ipa": "/ˈsɪl.ɪn.dər/, /kəʊn/, /sfɪər/, /slɑːnt haɪt/", "tip": "XI-lin-đờ / câun / s-PHIA / s-LAN-t hai-t", "vi": "hình trụ / hình nón / hình cầu / đường sinh", "ex": "The lateral area of a cone is πRl, where l is the slant height."}], "expressions": [{"en": "Determine the relative position of the line and the circle.", "tip": "Đi-TƠ-min đờ RÉ-lơ-tịv pơ-ZI-shần ợv đờ lai-n en đờ SƠ-cồl.", "vi": "Xác định vị trí tương đối của đường thẳng và đường tròn."}, {"en": "Find the arc length and the area of the sector.", "tip": "Phai-đ đi a-k leng-th en đi E-ri-ơ ợv đờ XÉC-tờ.", "vi": "Tính độ dài cung tròn và diện tích hình quạt tròn."}, {"en": "Prove that quadrilateral ABCD is cyclic.", "tip": "Pru-v đát quót-ri-LÁ-tơ-rồl ây-bi-xi-đi iz XAI-c-lịk.", "vi": "Chứng minh rằng tứ giác ABCD nội tiếp đường tròn."}, {"en": "Why is relative frequency more useful when comparing samples of different sizes?", "tip": "Quai iz RÉ-lơ-tịv PHRI-quần-si mo IU-s-phồl quen cồm-PE-ring XAM-pồl-z?", "vi": "Tại sao tần số tương đối hữu ích hơn khi so sánh các mẫu có cỡ khác nhau?"}, {"en": "Calculate the surface area and volume of the cylinder / cone / sphere.", "tip": "KEO-kiu-lây-t đờ SƠ-phịt-s E-ri-ơ en VO-lium ợv đờ XI-lin-đờ / câun / s-PHIA.", "vi": "Tính diện tích bề mặt và thể tích của hình trụ / hình nón / hình cầu."}]}];
 
-    const DATA = [
-      // 1. Symbols & Operations
-      { id: 1, cat: 'symbols', en: 'Plus', ipa: '/plʌs/', tip: 'Đọc là: "plớt" (môi mím bật âm "p", kết thúc xì nhẹ âm "s").', vi: 'Cộng (+)', ex: 'Two plus three equals five (2 + 3 = 5).' },
-      { id: 2, cat: 'symbols', en: 'Minus', ipa: '/ˈmaɪ.nəs/', tip: 'Nhấn âm 1: "MAI-nợt-s" (chữ "MAI" đọc cao giọng, cuối xì nhẹ âm "s").', vi: 'Trừ (-)', ex: 'Ten minus four equals six (10 - 4 = 6).' },
-      { id: 3, cat: 'symbols', en: 'Multiplied by / Times', ipa: '/ˈmʌl.tɪ.plaɪd baɪ/', tip: 'Đọc là: "MÂN-ti-plai bai" hoặc đọc ngắn gọn là "tham-z" (luyến âm "z").', vi: 'Nhân với (×)', ex: 'Three times four equals twelve (3 × 4 = 12).' },
-      { id: 4, cat: 'symbols', en: 'Divided by', ipa: '/dɪˈvaɪ.dɪd baɪ/', tip: 'Nhấn âm 2: "đi-VAI-địt bai" (nhấn mạnh vào chữ "VAI").', vi: 'Chia cho (÷)', ex: 'Twenty divided by five equals four.' },
-      { id: 5, cat: 'symbols', en: 'Equals / Is equal to', ipa: '/ˈiː.kwəlz/', tip: 'Nhấn âm 1: "I-quồl-z" (kéo dài âm "I", cuối rung nhẹ âm "z").', vi: 'Bằng (=)', ex: 'x plus two equals seven.' },
-      { id: 6, cat: 'symbols', en: 'Is not equal to', ipa: '/ɪz nɒt ˈiː.kwəl tuː/', tip: 'Đọc liền mạch: "iz nót I-quồl tu" (nhấn vào chữ "nót" và "I").', vi: 'Khác (≠)', ex: 'a is not equal to zero (a ≠ 0).' },
-      { id: 7, cat: 'symbols', en: 'Greater than', ipa: '/ˈɡreɪ.tər ðæn/', tip: 'Nhấn âm 1: "GRÂY-tờ đen" (chữ "GRÂY" đọc rõ, chữ "đen" đặt đầu lưỡi chạm nhẹ răng cửa).', vi: 'Lớn hơn (>)', ex: 'Five is greater than three (5 > 3).' },
-      { id: 8, cat: 'symbols', en: 'Less than', ipa: '/les ðæn/', tip: 'Đọc là: "lét-s đen" (xì nhẹ âm "s" ở cuối chữ "lét").', vi: 'Nhỏ hơn (<)', ex: 'x is less than ten (x < 10).' },
-      { id: 9, cat: 'symbols', en: 'Greater than or equal to', ipa: '/ˈɡreɪ.tər ðæn ɔːr ˈiː.kwəl tuː/', tip: 'Đọc chia 2 cụm: "GRÂY-tờ đen" + "o I-quồl tu".', vi: 'Lớn hơn hoặc bằng (≥)', ex: 'x is greater than or equal to zero.' },
-      { id: 10, cat: 'symbols', en: 'Less than or equal to', ipa: '/les ðæn ɔːr ˈiː.kwəl tuː/', tip: 'Đọc chia 2 cụm: "lét-s đen" + "o I-quồl tu".', vi: 'Nhỏ hơn hoặc bằng (≤)', ex: 'y is less than or equal to five.' },
-      { id: 11, cat: 'symbols', en: 'Squared', ipa: '/skweəd/', tip: 'Đọc là: "s-QUE-đ" (xì nhẹ "s" đầu từ, đọc "que", bật nhẹ âm "đ" cuối).', vi: 'Bình phương (x²)', ex: 'a squared plus b squared equals c squared.' },
-      { id: 12, cat: 'symbols', en: 'Cubed', ipa: '/kjuːbd/', tip: 'Đọc là: "KIU-b-đ" (đọc như chữ "kiu", khép môi âm "b" rồi bật nhẹ "đ").', vi: 'Lập phương (x³)', ex: 'Two cubed equals eight (2³ = 8).' },
-      { id: 13, cat: 'symbols', en: 'Square root of', ipa: '/skweər ruːt əv/', tip: 'Đọc nối âm: "s-que rút-tợv" (nối chữ "t" của rút sang chữ "ợv").', vi: 'Căn bậc hai của (√)', ex: 'The square root of twenty-five is five.' },
-      { id: 14, cat: 'symbols', en: 'Fraction', ipa: '/ˈfræk.ʃən/', tip: 'Nhấn âm 1: "PHRẮC-shần" (âm "sh" cong môi nhẹ như chữ "s" nặng tiếng Việt).', vi: 'Phân số (a/b)', ex: 'One over two is a fraction.' },
-      { id: 15, cat: 'symbols', en: 'Numerator and Denominator', ipa: '/ˈnjuː.mə.reɪ.tər/ - /dɪˈnɒm.ɪ.neɪ.tər/', tip: 'Tử số: "NIU-mơ-rây-tờ" (nhấn âm 1) • Mẫu số: "đi-NOM-i-nây-tờ" (nhấn âm 2).', vi: 'Tử số và Mẫu số', ex: 'The denominator must be non-zero.' },
-      { id: 16, cat: 'symbols', en: 'Percentage', ipa: '/pəˈsen.tɪdʒ/', tip: 'Nhấn âm 2: "pờ-SEN-tịt-j" (nhấn mạnh vào "SEN").', vi: 'Tỉ số phần trăm (%)', ex: 'Fifty percent equals one half.' },
-
-      // 2. Numbers & Algebra
-      { id: 17, cat: 'algebra', en: 'Natural number', ipa: '/ˈnætʃ.ər.əl ˈnʌm.bər/', tip: 'Nhấn âm 1 mỗi từ: "NÁT-chơ-rồl NĂM-bờ".', vi: 'Số tự nhiên (N)', ex: 'Zero is a natural number.' },
-      { id: 18, cat: 'algebra', en: 'Integer', ipa: '/ˈɪn.tɪ.dʒər/', tip: 'Nhấn âm 1: "IN-ti-jờ" (lưu ý không đọc là "in-tơ-gơ").', vi: 'Số nguyên (Z)', ex: 'Negative three is an integer.' },
-      { id: 19, cat: 'algebra', en: 'Rational number', ipa: '/ˈræʃ.ən.əl ˈnʌm.bər/', tip: 'Nhấn âm 1: "RÁ-shần-nồl NĂM-bờ".', vi: 'Số hữu tỉ (Q)', ex: 'Every integer is a rational number.' },
-      { id: 20, cat: 'algebra', en: 'Prime number', ipa: '/praɪm ˈnʌm.bər/', tip: 'Đọc là: "p-RAIM NĂM-bờ" (bật nhẹ âm "p" rồi nối vào "raim").', vi: 'Số nguyên tố', ex: 'Two is the only even prime number.' },
-      { id: 21, cat: 'algebra', en: 'Composite number', ipa: '/ˈkɒm.pə.zɪt ˈnʌm.bər/', tip: 'Nhấn âm 1: "KOM-pơ-zịt NĂM-bờ".', vi: 'Hợp số', ex: 'Six is a composite number.' },
-      { id: 22, cat: 'algebra', en: 'Factor / Divisor', ipa: '/ˈfæk.tər/ - /dɪˈvaɪ.zər/', tip: 'Factor: "PHẮC-tờ" (nhấn âm 1) • Divisor: "đi-VAI-zờ" (nhấn âm 2).', vi: 'Ước số / Thừa số', ex: 'Three is a factor of twelve.' },
-      { id: 23, cat: 'algebra', en: 'Multiple', ipa: '/ˈmʌl.tɪ.pəl/', tip: 'Nhấn âm 1: "MÂN-ti-pồl" (uốn nhẹ đầu lưỡi lên vòm miệng ở cuối).', vi: 'Bội số', ex: 'Fifteen is a multiple of five.' },
-      { id: 24, cat: 'algebra', en: 'Greatest common divisor', ipa: '/ˈɡreɪ.tɪst ˈkɒm.ən dɪˈvaɪ.zər/', tip: 'Đọc từng cụm: "GRÂY-tịt-s KOM-mần đi-VAI-zờ".', vi: 'Ước chung lớn nhất (ƯCLN)', ex: 'Find the greatest common divisor of 12 and 18.' },
-      { id: 25, cat: 'algebra', en: 'Least common multiple', ipa: '/liːst ˈkɒm.ən ˈmʌl.tɪ.pəl/', tip: 'Đọc là: "lít-s KOM-mần MÂN-ti-pồl" (kéo dài chữ "lít").', vi: 'Bội chung nhỏ nhất (BCNN)', ex: 'The least common multiple of 4 and 6 is 12.' },
-      { id: 26, cat: 'algebra', en: 'Direct proportion', ipa: '/daɪˈrekt prəˈpɔː.ʃən/', tip: 'Nhấn âm 2 cả hai từ: "đai-RÉCT prờ-PO-shần".', vi: 'Đại lượng tỉ lệ thuận', ex: 'y is in direct proportion to x (y = kx).' },
-      { id: 27, cat: 'algebra', en: 'Inverse proportion', ipa: '/ˌɪn.vɜːs prəˈpɔː.ʃən/', tip: 'Đọc là: "in-VỚT-s prờ-PO-shần" (chữ "VỚT" kéo dài, xì nhẹ "s").', vi: 'Đại lượng tỉ lệ nghịch', ex: 'Speed and time are in inverse proportion.' },
-      { id: 28, cat: 'algebra', en: 'Algebraic expression', ipa: '/ˌæl.dʒəˈbreɪ.ɪk ɪkˈspreʃ.ən/', tip: 'Đọc là: "eo-jơ-BRÂY-ik ik-S-PRE-shần" (nhấn vào "BRÂY" và "PRE").', vi: 'Biểu thức đại số', ex: 'Simplify the algebraic expression.' },
-      { id: 29, cat: 'algebra', en: 'Polynomial', ipa: '/ˌpɒl.iˈnəʊ.mi.əl/', tip: 'Nhấn âm 3: "po-li-NÂU-mi-ồl" (nhấn mạnh vào chữ "NÂU").', vi: 'Đa thức', ex: 'Add and subtract two polynomials.' },
-      { id: 30, cat: 'algebra', en: 'Algebraic identity', ipa: '/ˌæl.dʒəˈbreɪ.ɪk aɪˈden.tə.ti/', tip: 'Đọc là: "eo-jơ-BRÂY-ik ai-ĐEN-tơ-ti" (nhấn vào "BRÂY" và "ĐEN").', vi: 'Hằng đẳng thức đáng nhớ', ex: 'Apply the square of a sum identity.' },
-      { id: 31, cat: 'algebra', en: 'Factorize / Factor', ipa: '/ˈfæk.tər.aɪz/', tip: 'Nhấn âm 1: "PHẮC-tơ-rai-z" (cuối rung nhẹ âm "z").', vi: 'Phân tích thành nhân tử', ex: 'Factorize x squared minus four.' },
-      { id: 32, cat: 'algebra', en: 'Linear equation', ipa: '/ˈlɪn.i.ər ɪˈkweɪ.ʒən/', tip: 'Đọc là: "LI-ni-ờ i-QUÂY-zhần" (nhấn vào "LI" và "QUÂY").', vi: 'Phương trình bậc nhất', ex: 'Solve the linear equation 2x + 4 = 0.' },
-      { id: 33, cat: 'algebra', en: 'Quadratic equation', ipa: '/kwɒdˈræt.ɪk ɪˈkweɪ.ʒən/', tip: 'Đọc là: "quót-RÁ-tịk i-QUÂY-zhần" (nhấn vào "RÁ" và "QUÂY").', vi: 'Phương trình bậc hai', ex: 'Identify the coefficients a, b, and c.' },
-      { id: 34, cat: 'algebra', en: 'Coefficient', ipa: '/ˌkəʊ.ɪˈfɪʃ.ənt/', tip: 'Nhấn âm 3: "câu-i-PHI-shầnt" (nhấn mạnh vào chữ "PHI").', vi: 'Hệ số', ex: 'The leading coefficient is non-zero.' },
-      { id: 35, cat: 'algebra', en: 'Unknown / Variable', ipa: '/ʌnˈnəʊn/ - /ˈveə.ri.ə.bəl/', tip: 'Unknown: "ân-NÂUN" (chữ "k" câm) • Variable: "VE-ri-ơ-bồl" (nhấn âm 1).', vi: 'Ẩn số / Biến số', ex: 'Let x be the unknown number.' },
-      { id: 36, cat: 'algebra', en: 'Solution / Root', ipa: '/səˈluː.ʃən/ - /ruːt/', tip: 'Solution: "sơ-LU-shần" (nhấn âm 2) • Root: "rút" (kéo dài âm u).', vi: 'Nghiệm của phương trình', ex: 'The equation has two distinct roots.' },
-      { id: 37, cat: 'algebra', en: 'Linear function', ipa: '/ˈlɪn.i.ər ˈfʌŋk.ʃən/', tip: 'Nhấn âm 1 mỗi từ: "LI-ni-ờ PHĂNG-shần".', vi: 'Hàm số bậc nhất (y = ax + b)', ex: 'Draw the graph of the linear function.' },
-      { id: 38, cat: 'algebra', en: 'Coordinate plane', ipa: '/kəʊˈɔː.dɪ.nət pleɪn/', tip: 'Đọc là: "câu-O-đi-nợt p-lên" (nhấn mạnh vào chữ "O").', vi: 'Mặt phẳng tọa độ (Oxy)', ex: 'Plot the point A(2, 3) on the coordinate plane.' },
-
-      // 3. Geometry & Measurement
-      { id: 39, cat: 'geometry', en: 'Point, Line, Ray, Segment', ipa: '/pɔɪnt/, /laɪn/, /reɪ/, /ˈseɡ.mənt/', tip: 'Point: "poi-t" • Line: "lai-n" • Ray: "rây" • Segment: "SÉG-mầnt".', vi: 'Điểm, Đường thẳng, Tia, Đoạn thẳng', ex: 'Line segment AB has a length of 5 cm.' },
-      { id: 40, cat: 'geometry', en: 'Parallel lines', ipa: '/ˈpær.ə.lel laɪnz/', tip: 'Nhấn âm 1: "PA-rơ-leo lai-n-z" (cuối chữ lines rung nhẹ "z").', vi: 'Hai đường thẳng song song', ex: 'Line a is parallel to line b.' },
-      { id: 41, cat: 'geometry', en: 'Perpendicular lines', ipa: '/ˌpɜː.pənˈdɪk.jə.lər laɪnz/', tip: 'Nhấn âm 3: "pơ-pần-ĐÍK-kiu-lờ lai-n-z" (nhấn mạnh vào "ĐÍK").', vi: 'Hai đường thẳng vuông góc', ex: 'AB is perpendicular to CD at point H.' },
-      { id: 42, cat: 'geometry', en: 'Acute angle', ipa: '/əˈkjuːt ˈæŋ.ɡəl/', tip: 'Đọc là: "ơ-KIUT ĂNG-gồl" (nhấn mạnh vào "KIUT" và "ĂNG").', vi: 'Góc nhọn (< 90°)', ex: 'An acute angle is less than 90 degrees.' },
-      { id: 43, cat: 'geometry', en: 'Right angle', ipa: '/raɪt ˈæŋ.ɡəl/', tip: 'Đọc là: "rai-t ĂNG-gồl" (âm "gh" trong right là âm câm, không đọc).', vi: 'Góc vuông (= 90°)', ex: 'A right angle measures exactly 90 degrees.' },
-      { id: 44, cat: 'geometry', en: 'Obtuse angle', ipa: '/əbˈtjuːs ˈæŋ.ɡəl/', tip: 'Đọc là: "ợp-TIUT-s ĂNG-gồl" (nhấn mạnh vào "TIUT").', vi: 'Góc tù (> 90°)', ex: 'An obtuse angle is greater than 90 degrees.' },
-      { id: 45, cat: 'geometry', en: 'Straight angle', ipa: '/streɪt ˈæŋ.ɡəl/', tip: 'Đọc là: "s-TRÂY-t ĂNG-gồl" (âm "gh" câm, đọc như chữ "s-trây-t").', vi: 'Góc bẹt (= 180°)', ex: 'A straight angle equals 180 degrees.' },
-      { id: 46, cat: 'geometry', en: 'Angle bisector', ipa: '/ˈæŋ.ɡəl baɪˈsek.tər/', tip: 'Đọc là: "ĂNG-gồl bai-SÉC-tờ" (nhấn vào "ĂNG" và "SÉC").', vi: 'Tia phân giác của góc', ex: 'Ray Oz is the bisector of angle xOy.' },
-      { id: 47, cat: 'geometry', en: 'Right-angled triangle', ipa: '/raɪt ˈæŋ.ɡəld ˈtraɪ.æŋ.ɡəl/', tip: 'Đọc chia 2 nhịp: "rai-t ĂNG-gồl-đ" + "TRAI-ăng-gồl".', vi: 'Tam giác vuông', ex: 'Triangle ABC is right-angled at A.' },
-      { id: 48, cat: 'geometry', en: 'Hypotenuse', ipa: '/haɪˈpɒt.ən.juːz/', tip: 'Nhấn âm 2: "hai-PO-tơ-niu-z" (nhấn mạnh chữ "PO", cuối rung nhẹ "z").', vi: 'Cạnh huyền (trong tam giác vuông)', ex: 'The hypotenuse is the longest side.' },
-      { id: 49, cat: 'geometry', en: 'Legs (of a right triangle)', ipa: '/leɡz/', tip: 'Đọc là: "lég-z" (đọc rõ chữ "lég" rồi rung nhẹ âm "z" ở cuối).', vi: 'Hai cạnh góc vuông', ex: 'The two legs are 3 cm and 4 cm.' },
-      { id: 50, cat: 'geometry', en: 'Isosceles triangle', ipa: '/aɪˈsɒs.əl.iːz ˈtraɪ.æŋ.ɡəl/', tip: 'Nhấn âm 2: "ai-SO-sơ-li-z TRAI-ăng-gồl" (chữ "c" sau "s" là âm câm).', vi: 'Tam giác cân', ex: 'An isosceles triangle has two equal sides.' },
-      { id: 51, cat: 'geometry', en: 'Equilateral triangle', ipa: '/ˌiː.kwɪˈlæt.ər.əl ˈtraɪ.æŋ.ɡəl/', tip: 'Nhấn âm 3: "i-qui-LÁ-tơ-rồl TRAI-ăng-gồl".', vi: 'Tam giác đều', ex: 'Each angle in an equilateral triangle is 60°.' },
-      { id: 52, cat: 'geometry', en: 'Congruent triangles', ipa: '/ˈkɒŋ.ɡru.ənt ˈtraɪ.æŋ.ɡəlz/', tip: 'Nhấn âm 1: "KONG-gru-ầnt TRAI-ăng-gồl-z".', vi: 'Hai tam giác bằng nhau', ex: 'Prove that triangle ABC is congruent to triangle DEF.' },
-      { id: 53, cat: 'geometry', en: 'Similar triangles', ipa: '/ˈsɪm.ɪ.lər ˈtraɪ.æŋ.ɡəlz/', tip: 'Nhấn âm 1: "SI-mi-lờ TRAI-ăng-gồl-z".', vi: 'Hai tam giác đồng dạng', ex: 'Corresponding angles of similar triangles are equal.' },
-      { id: 54, cat: 'geometry', en: 'Quadrilateral', ipa: '/ˌkwɒd.rɪˈlæt.ər.əl/', tip: 'Nhấn âm 3: "quót-ri-LÁ-tơ-rồl" (nhấn mạnh vào chữ "LÁ").', vi: 'Tứ giác', ex: 'The sum of angles in a quadrilateral is 360°.' },
-      { id: 55, cat: 'geometry', en: 'Trapezoid / Trapezium', ipa: '/ˈtræp.ɪ.zɔɪd/', tip: 'Nhấn âm 1: "TRÁ-pi-zoi-đ" (nhấn mạnh vào chữ "TRÁ").', vi: 'Hình thang', ex: 'An isosceles trapezoid has equal diagonals.' },
-      { id: 56, cat: 'geometry', en: 'Parallelogram', ipa: '/ˌpær.əˈlel.ə.ɡræm/', tip: 'Nhấn âm 3: "pa-rơ-LE-lơ-gram" (nhấn mạnh vào chữ "LE").', vi: 'Hình bình hành', ex: 'Opposite sides of a parallelogram are parallel.' },
-      { id: 57, cat: 'geometry', en: 'Rectangle and Square', ipa: '/ˈrek.tæŋ.ɡəl/ - /skweər/', tip: 'Rectangle: "RÉC-tăng-gồl" (nhấn âm 1) • Square: "s-QUE".', vi: 'Hình chữ nhật và Hình vuông', ex: 'Every square is a rectangle.' },
-      { id: 58, cat: 'geometry', en: 'Rhombus', ipa: '/ˈrɒm.bəs/', tip: 'Nhấn âm 1: "ROM-bợt-s" (chữ "h" là âm câm, đọc như chữ "rom").', vi: 'Hình thoi', ex: 'The diagonals of a rhombus are perpendicular.' },
-      { id: 59, cat: 'geometry', en: 'Perimeter and Area', ipa: '/pəˈrɪm.ɪ.tər/ - /ˈeə.ri.ə/', tip: 'Perimeter: "pờ-RI-mi-tờ" (nhấn âm 2) • Area: "E-ri-ơ" (nhấn âm 1).', vi: 'Chu vi và Diện tích', ex: 'Calculate the perimeter and area of the rectangle.' },
-      { id: 60, cat: 'geometry', en: 'Circle, Radius, Diameter', ipa: '/ˈsɜː.kəl/, /ˈreɪ.di.əs/, /daɪˈæm.ɪ.tər/', tip: 'Circle: "SƠ-cồl" • Radius: "RÂY-đi-ợt-s" • Diameter: "đai-A-mi-tờ".', vi: 'Đường tròn, Bán kính, Đường kính', ex: 'The diameter is twice the radius (d = 2R).' },
-      { id: 61, cat: 'geometry', en: 'Tangent to a circle', ipa: '/ˈtæn.dʒənt tuː ə ˈsɜː.kəl/', tip: 'Đọc là: "TAN-jầnt tu ơ SƠ-cồl" (nhấn vào "TAN" và "SƠ").', vi: 'Tiếp tuyến của đường tròn', ex: 'The tangent is perpendicular to the radius at the point of contact.' },
-      { id: 62, cat: 'geometry', en: 'Volume and Surface area', ipa: '/ˈvɒl.juːm/ - /ˈsɜː.fɪs ˈeə.ri.ə/', tip: 'Volume: "VO-lium" (nhấn âm 1) • Surface area: "SƠ-phịt-s E-ri-ơ".', vi: 'Thể tích và Diện tích xung quanh/bề mặt', ex: 'Find the volume of the cylinder.' },
-
-      // 4. Trigonometry & Statistics
-      { id: 63, cat: 'trig_stat', en: 'Opposite side', ipa: '/ˈɒp.ə.zɪt saɪd/', tip: 'Nhấn âm 1: "O-pơ-zịt sai-đ" (nhấn mạnh vào chữ "O").', vi: 'Cạnh đối (của góc nhọn)', ex: 'Identify the side opposite to angle B.' },
-      { id: 64, cat: 'trig_stat', en: 'Adjacent side', ipa: '/əˈdʒeɪ.sənt saɪd/', tip: 'Nhấn âm 2: "ơ-JÂY-sầnt sai-đ" (chữ "d" trước "j" câm, đọc là "JÂY").', vi: 'Cạnh kề (của góc nhọn)', ex: 'AB is the adjacent side to angle B.' },
-      { id: 65, cat: 'trig_stat', en: 'Sine, Cosine, Tangent, Cotangent', ipa: '/saɪn/, /ˈkəʊ.saɪn/, /ˈtæn.dʒənt/', tip: 'Sine: "sai-n" • Cosine: "CÂU-sai-n" • Tangent: "TAN-jầnt" • Cotangent: "câu-TAN-jầnt".', vi: 'Sin, Cos, Tan, Cot', ex: 'Sine equals opposite over hypotenuse.' },
-      { id: 66, cat: 'trig_stat', en: 'Trigonometric ratios', ipa: '/ˌtrɪɡ.ə.nəˈmet.rɪk ˈreɪ.ʃi.əʊz/', tip: 'Đọc chia 2 từ: "tri-gơ-nơ-MÉ-trịk" + "RÂY-shi-âu-z".', vi: 'Tỉ số lượng giác', ex: 'Calculate the trigonometric ratios of angle C.' },
-      { id: 67, cat: 'trig_stat', en: 'Data and Frequency', ipa: '/ˈdeɪ.tə/ - /ˈfriː.kwən.si/', tip: 'Data: "ĐÂY-tơ" (nhấn âm 1) • Frequency: "PHRI-quần-si" (nhấn âm 1).', vi: 'Dữ liệu và Tần số', ex: 'Collect data and make a frequency table.' },
-      { id: 68, cat: 'trig_stat', en: 'Bar chart and Pie chart', ipa: '/bɑː tʃɑːt/ - /paɪ tʃɑːt/', tip: 'Bar chart: "ba chát" • Pie chart: "pai chát".', vi: 'Biểu đồ cột và Biểu đồ hình quạt tròn', ex: 'Read information from the bar chart.' },
-      { id: 69, cat: 'trig_stat', en: 'Mean / Average', ipa: '/miːn/ - /ˈæv.ər.ɪdʒ/', tip: 'Mean: "min" (kéo dài âm i) • Average: "A-vơ-rịt-j" (nhấn âm 1).', vi: 'Số trung bình cộng', ex: 'Calculate the mean score of the class.' },
-      { id: 70, cat: 'trig_stat', en: 'Probability', ipa: '/ˌprɒb.əˈbɪl.ə.ti/', tip: 'Nhấn âm 3: "pro-bơ-BI-lơ-ti" (nhấn mạnh vào chữ "BI").', vi: 'Xác suất', ex: 'Find the probability of getting an even number.' },
-
-      // 5. Classroom Questions
-      { id: 71, cat: 'questions', en: 'What is given in the problem?', ipa: '/wɒt ɪz ˈɡɪv.ən ɪn ðə ˈprɒb.ləm/', tip: 'Đọc nối âm: "Quót-tiz GI-vần in đờ PROB-lầm?" (lên giọng nhẹ cuối câu).', vi: 'Đề bài đã cho biết những gì?', ex: 'Dùng khi hướng dẫn học sinh tóm tắt giả thiết.' },
-      { id: 72, cat: 'questions', en: 'What do we need to find or prove?', ipa: '/wɒt duː wiː niːd tuː faɪnd ɔː pruːv/', tip: 'Đọc là: "Quót đu wi nít tu phai-đ o pru-v?" (nhấn vào "nít", "phai-đ", "pru-v").', vi: 'Chúng ta cần tìm hoặc chứng minh điều gì?', ex: 'Dùng để xác định kết luận / yêu cầu bài toán.' },
-      { id: 73, cat: 'questions', en: 'Which formula should we apply here?', ipa: '/wɪtʃ ˈfɔː.mjə.lə ʃʊd wiː əˈplaɪ hɪər/', tip: 'Đọc là: "Quít-ch PHO-miơ-lơ shút wi ơ-PLAI hia?"', vi: 'Chúng ta nên áp dụng công thức nào ở đây?', ex: 'Gợi ý học sinh chọn định lí / công thức phù hợp.' },
-      { id: 74, cat: 'questions', en: 'Which side is the hypotenuse?', ipa: '/wɪtʃ saɪd ɪz ðə haɪˈpɒt.ən.juːz/', tip: 'Đọc nối âm: "Quít-ch sai-điz đờ hai-PO-tơ-niu-z?"', vi: 'Cạnh nào là cạnh huyền?', ex: 'Câu hỏi kiểm tra nhanh khi dạy định lí Pythagore.' },
-      { id: 75, cat: 'questions', en: 'How do you read this expression in English?', ipa: '/haʊ duː juː riːd ðɪs ɪkˈspreʃ.ən/', tip: 'Đọc là: "Hao đu iu rít đít-s ik-S-PRE-shần in IN-g-lịt-sh?"', vi: 'Em đọc biểu thức này bằng tiếng Anh như thế nào?', ex: 'Khuyến khích học sinh luyện nói thuật ngữ Toán.' },
-      { id: 76, cat: 'questions', en: 'Can anyone solve this problem on the board?', ipa: '/kæn ˈen.i.wʌn sɒlv ðɪs ˈprɒb.ləm/', tip: 'Đọc là: "Ken E-ni-quăn sô-v đít-s PROB-lầm on đờ bo-đ?"', vi: 'Có em nào lên bảng giải bài toán này được không?', ex: 'Mời học sinh xung phong lên bảng.' },
-      { id: 77, cat: 'questions', en: 'Do you agree with your friend’s answer?', ipa: '/duː juː əˈɡriː wɪð jɔː frendz ˈɑːn.sər/', tip: 'Đọc là: "Đu iu ơ-GRI quít-th io phren-z AN-sờ?"', vi: 'Các em có đồng ý với đáp án của bạn không?', ex: 'Dùng trong bước nhận xét, đánh giá chéo.' },
-      { id: 78, cat: 'questions', en: 'Why is this triangle right-angled?', ipa: '/waɪ ɪz ðɪs ˈtraɪ.æŋ.ɡəl raɪt ˈæŋ.ɡəld/', tip: 'Đọc là: "Quai iz đít-s TRAI-ăng-gồl rai-t ĂNG-gồl-đ?"', vi: 'Tại sao tam giác này lại là tam giác vuông?', ex: 'Hỏi giải thích lập luận hình học.' },
-      { id: 79, cat: 'questions', en: 'What is the next step?', ipa: '/wɒt ɪz ðə nekst step/', tip: 'Đọc nối âm: "Quót-tiz đờ néc-s-t s-tép?"', vi: 'Bước tiếp theo là gì?', ex: 'Dẫn dắt học sinh giải từng bước phương trình.' },
-      { id: 80, cat: 'questions', en: 'Do you have any questions about this lesson?', ipa: '/duː juː hæv ˈen.i ˈkwes.tʃənz/', tip: 'Đọc là: "Đu iu háp E-ni QUÉT-chần-z ơ-BAO đít-s LÉ-sần?"', vi: 'Các em có thắc mắc gì về bài học hôm nay không?', ex: 'Hỏi cuối tiết học để giải đáp.' },
-
-      // 6. Classroom Commands & Praise
-      { id: 81, cat: 'commands', en: 'Good morning, class! How are you today?', ipa: '/ɡʊd ˈmɔː.nɪŋ klɑːs/', tip: 'Đọc vui tươi: "Gút MO-ning c-lát-s! Hao a iu tơ-ĐÂY?"', vi: 'Chào buổi sáng cả lớp! Hôm nay các em khỏe không?', ex: 'Chào hỏi đầu giờ học.' },
-      { id: 82, cat: 'commands', en: 'Open your textbook to page twenty-five.', ipa: '/ˈəʊ.pən jɔː ˈtekst.bʊk tuː peɪdʒ/', tip: 'Đọc là: "ÂU-pần io TÉC-s-búc tu pây-j TUEN-ti phai-v."', vi: 'Các em mở sách giáo khoa trang 25.', ex: 'Hướng dẫn mở sách.' },
-      { id: 83, cat: 'commands', en: 'Look at the board and listen carefully.', ipa: '/lʊk æt ðə bɔːd ænd ˈlɪs.ən ˈkeə.fəl.i/', tip: 'Đọc nối âm: "Lúc-kát đờ bo-đ en LI-sần KE-phơ-li."', vi: 'Hãy nhìn lên bảng và lắng nghe cẩn thận.', ex: 'Thu hút sự chú ý khi giảng kiến thức mới.' },
-      { id: 84, cat: 'commands', en: 'Work in pairs for three minutes.', ipa: '/wɜːk ɪn peəz fɔː θriː ˈmɪn.ɪts/', tip: 'Đọc nối âm: "Quớk-kin pe-z pho th-ri MI-nịt-s."', vi: 'Các em hãy làm việc theo cặp trong 3 phút.', ex: 'Giao nhiệm vụ thảo luận cặp đôi.' },
-      { id: 85, cat: 'commands', en: 'Discuss in groups of four and write on your mini-board.', ipa: '/dɪˈskʌs ɪn ɡruːps əv fɔː/', tip: 'Đọc là: "Địt-S-CẮT-s in grup-s ợv pho en rai-t on io MI-ni bo-đ."', vi: 'Thảo luận theo nhóm 4 người và viết lên bảng phụ.', ex: 'Tổ chức hoạt động nhóm.' },
-      { id: 86, cat: 'commands', en: 'Raise your hand if you know the answer.', ipa: '/reɪz jɔː hænd/', tip: 'Đọc là: "Rây-z io hen-đ íp iu nâu đi AN-sờ."', vi: 'Hãy giơ tay nếu em biết câu trả lời.', ex: 'Điều hành phát biểu.' },
-      { id: 87, cat: 'commands', en: 'Time is up! Please put your pens down.', ipa: '/taɪm ɪz ʌp/', tip: 'Đọc nối âm: "Tham-miz ắp! P-li-z pút io pen-z đao."', vi: 'Hết giờ rồi! Mời các em đặt bút xuống.', ex: 'Kết thúc thời gian làm bài.' },
-      { id: 88, cat: 'commands', en: 'Let’s check the answers together.', ipa: '/lets tʃek ði ˈɑːn.səz təˈɡeð.ər/', tip: 'Đọc là: "Lét-s chék đi AN-sờ-z tơ-GHE-đờ."', vi: 'Chúng ta hãy cùng nhau kiểm tra đáp án nhé.', ex: 'Chuyển sang phần chữa bài.' },
-      { id: 89, cat: 'commands', en: 'Well done! That is completely correct.', ipa: '/wel dʌn/', tip: 'Đọc hào hứng: "Queo đăn! Đát-tiz cồm-P-LÍT-li cơ-RÉCT."', vi: 'Làm tốt lắm! Hoàn toàn chính xác.', ex: 'Khen ngợi học sinh trả lời đúng.' },
-      { id: 90, cat: 'commands', en: 'Good try! Let’s check the calculation again.', ipa: '/ɡʊd traɪ/', tip: 'Đọc khích lệ: "Gút trai! Lét-s chék đờ keo-kiu-LÂY-shần ơ-GHEN."', vi: 'Cố gắng tốt lắm! Hãy kiểm tra lại phép tính một chút nhé.', ex: 'Động viên khi học sinh tính nhầm nhẹ.' },
-
-      // 7. Full Teaching Paragraphs
-      {
-        id: 91, cat: 'paragraphs',
-        en: 'Good morning everyone. Today, we are going to learn a very famous theorem in geometry: The Pythagorean Theorem. Before we start, please look at the picture on the screen. What shape do the wall, the ground, and the ladder form?',
-        ipa: 'Đoạn văn 1: Mở đầu tiết học (Warm-up – Toán 8)',
-        tip: 'Ngắt nghỉ tại dấu phẩy và dấu chấm. Nhấn mạnh từ khóa: famous theorem (PHÂY-mợt-s THIƠ-rầm), geometry (ji-O-mơ-tri), Pythagorean Theorem (pai-tha-gơ-RI-ần THIƠ-rầm).',
-        vi: 'Chào buổi sáng cả lớp. Hôm nay, chúng ta sẽ học một định lí rất nổi tiếng trong hình học: Định lí Pythagore. Trước khi bắt đầu, mời các em nhìn vào bức tranh trên màn hình. Bức tường, mặt đất và chiếc thang tạo thành hình gì?'
-      },
-      {
-        id: 92, cat: 'paragraphs',
-        en: 'In any right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the two legs. Remember that the hypotenuse is always the longest side, and it is opposite to the right angle.',
-        ipa: 'Đoạn văn 2: Phát biểu Định lí Pythagore (Knowledge Formation)',
-        tip: 'Đọc chậm rãi ở cụm "square of the hypotenuse" (s-que ợv đờ hai-PO-tơ-niu-z) và "sum of the squares" (săm ợv đờ s-que-z).',
-        vi: 'Trong bất kỳ tam giác vuông nào, bình phương của cạnh huyền bằng tổng các bình phương của hai cạnh góc vuông. Hãy nhớ rằng cạnh huyền luôn là cạnh dài nhất và nằm đối diện với góc vuông.'
-      },
-      {
-        id: 93, cat: 'paragraphs',
-        en: 'Let’s look at Example 1. Triangle ABC is right-angled at A, with AB equals 6 centimeters and AC equals 8 centimeters. Applying the Pythagorean theorem, we have BC squared equals AB squared plus AC squared. Therefore, BC equals 10 centimeters.',
-        ipa: 'Đoạn văn 3: Hướng dẫn giải bài tập mẫu (Guided Practice)',
-        tip: 'Phát âm rõ các chữ cái tên đỉnh A (ây) - B (bi) - C (xi) và đơn vị centimeters (xen-ti-MI-tờ-z).',
-        vi: 'Chúng ta hãy xem Ví dụ 1. Tam giác ABC vuông tại A, với AB bằng 6 cm và AC bằng 8 cm. Áp dụng định lí Pythagore, ta có BC bình phương bằng AB bình phương cộng AC bình phương. Do đó, BC bằng 10 cm.'
-      },
-      {
-        id: 94, cat: 'paragraphs',
-        en: 'Now, work in pairs to complete Worksheet 2 in five minutes. You can use the mini-dictionary box at the top of the page if you need help with new words. After five minutes, I will invite two pairs to present their solutions on the board.',
-        ipa: 'Đoạn văn 4: Giao nhiệm vụ phiếu học tập song ngữ (Pair Work)',
-        tip: 'Nhấn mạnh thời gian "five minutes" (phai-v MI-nịt-s) và công cụ hỗ trợ "mini-dictionary box" (MI-ni ĐÍC-shần-nơ-ri bóc-s).',
-        vi: 'Bây giờ, các em hãy làm việc theo cặp để hoàn thành Phiếu học tập số 2 trong 5 phút. Các em có thể dùng hộp từ điển nhỏ ở đầu trang nếu cần hỗ trợ từ mới. Sau 5 phút, thầy/cô sẽ mời hai cặp lên bảng trình bày lời giải.'
-      },
-      {
-        id: 95, cat: 'paragraphs',
-        en: 'Thank you for your active participation today. Let’s review our key vocabulary one more time: right-angled triangle, hypotenuse, and legs. For homework, please finish exercises 1 and 2 in your textbook. Goodbye and see you next class!',
-        ipa: 'Đoạn văn 5: Tổng kết & Dặn dò cuối tiết (Wrap-up)',
-        tip: 'Giọng thân thiện, hào hứng. Đọc tách bạch 3 từ khóa ôn tập ở giữa đoạn.',
-        vi: 'Cảm ơn sự tham gia tích cực của các em hôm nay. Chúng ta hãy ôn lại các từ vựng chính một lần nữa: tam giác vuông, cạnh huyền và hai cạnh góc vuông. Về nhà, các em hãy hoàn thành bài tập 1 và 2 trong sách giáo khoa. Tạm biệt và hẹn gặp lại vào tiết học sau!'
-      }
-    ];
+    // Flatten all items with unique IDs for tracking scores & stars
+    let ALL_ITEMS = [];
+    let uidCounter = 1;
+    CURRICULUM.forEach((blk, bIdx) => {
+      blk.vocab.forEach(v => {
+        v.uid = 'v_' + (uidCounter++);
+        v.type = 'vocab';
+        v.grade = blk.grade;
+        v.chapter = blk.chapter;
+        v.lesson = blk.lesson;
+        ALL_ITEMS.push(v);
+      });
+      blk.expressions.forEach(e => {
+        e.uid = 'e_' + (uidCounter++);
+        e.type = 'expr';
+        e.grade = blk.grade;
+        e.chapter = blk.chapter;
+        e.lesson = blk.lesson;
+        ALL_ITEMS.push(e);
+      });
+    });
 
     const MINI_DICT = {
       'hello': { ipa: '/həˈləʊ/', tip: 'hơ-LÂU', note: 'nhấn âm 2: "LÂU"', vi: 'xin chào' },
-      'hi': { ipa: '/haɪ/', tip: 'hai', note: 'đọc gọn: "hai"', vi: 'chào' },
-      'good': { ipa: '/ɡʊd/', tip: 'gút', note: 'âm u ngắn: "gút"', vi: 'tốt / ngon' },
-      'morning': { ipa: '/ˈmɔː.nɪŋ/', tip: 'MO-ning', note: 'nhấn âm 1: "MO"', vi: 'buổi sáng' },
-      'afternoon': { ipa: '/ˌɑːf.təˈnuːn/', tip: 'áp-tơ-NUN', note: 'nhấn âm 3: "NUN"', vi: 'buổi chiều' },
-      'class': { ipa: '/klɑːs/', tip: 'c-lát-s', note: 'xì nhẹ "s" cuối', vi: 'lớp học' },
-      'everyone': { ipa: '/ˈev.ri.wʌn/', tip: 'ÉV-ri-quăn', note: 'nhấn âm 1: "ÉV"', vi: 'mọi người / cả lớp' },
-      'teacher': { ipa: '/ˈtiː.tʃər/', tip: 'TI-chờ', note: 'nhấn âm 1: "TI"', vi: 'giáo viên' },
-      'student': { ipa: '/ˈstjuː.dənt/', tip: 's-TIU-đầnt', note: 'nhấn âm 1: "TIU"', vi: 'học sinh' },
-      'students': { ipa: '/ˈstjuː.dənts/', tip: 's-TIU-đầnt-s', note: 'xì nhẹ "s" cuối', vi: 'các học sinh' },
-      'today': { ipa: '/təˈdeɪ/', tip: 'tơ-ĐÂY', note: 'nhấn âm 2: "ĐÂY"', vi: 'hôm nay' },
-      'please': { ipa: '/pliːz/', tip: 'p-li-z', note: 'kéo dài âm i, rung nhẹ "z"', vi: 'làm ơn / mời' },
-      'thank': { ipa: '/θæŋk/', tip: 'thăng-k', note: 'đặt lưỡi giữa hai răng', vi: 'cảm ơn' },
-      'thanks': { ipa: '/θæŋks/', tip: 'thăng-k-s', note: 'xì nhẹ "s" cuối', vi: 'cảm ơn' },
-      'you': { ipa: '/juː/', tip: 'iu', note: 'đọc là "iu"', vi: 'bạn / các em' },
-      'we': { ipa: '/wiː/', tip: 'wi', note: 'đọc là "wi"', vi: 'chúng ta' },
-      'are': { ipa: '/ɑːr/', tip: 'a', note: 'uốn nhẹ lưỡi cuối', vi: 'là / thì' },
-      'is': { ipa: '/ɪz/', tip: 'iz', note: 'rung nhẹ âm "z"', vi: 'là / thì' },
-      'the': { ipa: '/ðə/', tip: 'đờ', note: 'đọc nhẹ: "đờ"', vi: '' },
-      'a': { ipa: '/ə/', tip: 'ơ', note: 'đọc lướt nhẹ: "ơ"', vi: 'một' },
-      'an': { ipa: '/æn/', tip: 'ần', note: 'đọc lướt nhẹ: "ần"', vi: 'một' },
-      'in': { ipa: '/ɪn/', tip: 'in', note: 'đọc là "in"', vi: 'trong' },
-      'on': { ipa: '/ɒn/', tip: 'on', note: 'đọc là "on"', vi: 'trên' },
-      'at': { ipa: '/æt/', tip: 'át', note: 'đọc là "át"', vi: 'tại' },
-      'to': { ipa: '/tuː/', tip: 'tu', note: 'đọc là "tu"', vi: 'tới / để' },
-      'of': { ipa: '/əv/', tip: 'ợv', note: 'đọc nhẹ: "ợv"', vi: 'của' },
-      'and': { ipa: '/ænd/', tip: 'en', note: 'đọc lướt: "en"', vi: 'và' },
-      'or': { ipa: '/ɔːr/', tip: 'o', note: 'đọc là "o"', vi: 'hoặc' },
-      'with': { ipa: '/wɪð/', tip: 'quít-th', note: 'đọc là "quít-th"', vi: 'với' },
-      'for': { ipa: '/fɔːr/', tip: 'pho', note: 'đọc là "pho"', vi: 'cho / trong' },
-      'from': { ipa: '/frɒm/', tip: 'ph-rom', note: 'đọc là "ph-rom"', vi: 'từ' },
-      'this': { ipa: '/ðɪs/', tip: 'đít-s', note: 'xì nhẹ "s" cuối', vi: 'này' },
-      'that': { ipa: '/ðæt/', tip: 'đát', note: 'đọc là "đát"', vi: 'đó / rằng' },
-      'what': { ipa: '/wɒt/', tip: 'quót', note: 'âm h câm, đọc "quót"', vi: 'cái gì' },
-      'which': { ipa: '/wɪtʃ/', tip: 'quít-ch', note: 'âm h câm, đọc "quít-ch"', vi: 'nào' },
-      'how': { ipa: '/haʊ/', tip: 'hao', note: 'đọc là "hao"', vi: 'như thế nào' },
-      'why': { ipa: '/waɪ/', tip: 'quai', note: 'âm h câm, đọc "quai"', vi: 'tại sao' },
-      'can': { ipa: '/kæn/', tip: 'ken', note: 'đọc là "ken"', vi: 'có thể' },
-      'let': { ipa: '/let/', tip: 'lét', note: 'đọc là "lét"', vi: 'hãy để' },
-      'lets': { ipa: '/lets/', tip: 'lét-s', note: 'xì nhẹ "s" cuối', vi: 'chúng ta hãy' },
-      "let's": { ipa: '/lets/', tip: 'lét-s', note: 'xì nhẹ "s" cuối', vi: 'chúng ta hãy' },
-      'look': { ipa: '/lʊk/', tip: 'lúc', note: 'đọc là "lúc"', vi: 'nhìn' },
-      'listen': { ipa: '/ˈlɪs.ən/', tip: 'LI-sần', note: 'âm "t" câm, nhấn âm 1', vi: 'lắng nghe' },
-      'read': { ipa: '/riːd/', tip: 'rít', note: 'kéo dài âm i: "rít"', vi: 'đọc' },
-      'write': { ipa: '/raɪt/', tip: 'rai-t', note: 'âm "w" câm, đọc "rai-t"', vi: 'viết' },
-      'open': { ipa: '/ˈəʊ.pən/', tip: 'ÂU-pần', note: 'nhấn âm 1: "ÂU"', vi: 'mở' },
-      'work': { ipa: '/wɜːk/', tip: 'quớk', note: 'uốn nhẹ lưỡi: "quớk"', vi: 'làm việc' },
-      'pairs': { ipa: '/peəz/', tip: 'pe-z', note: 'rung nhẹ "z" cuối', vi: 'cặp đôi' },
-      'groups': { ipa: '/ɡruːps/', tip: 'grup-s', note: 'xì nhẹ "s" cuối', vi: 'nhóm' },
-      'board': { ipa: '/bɔːd/', tip: 'bo-đ', note: 'bật nhẹ "đ" cuối', vi: 'bảng' },
-      'textbook': { ipa: '/ˈtekst.bʊk/', tip: 'TÉC-s-búc', note: 'nhấn âm 1: "TÉC"', vi: 'sách giáo khoa' },
-      'page': { ipa: '/peɪdʒ/', tip: 'pây-j', note: 'đọc là "pây-j"', vi: 'trang' },
-      'homework': { ipa: '/ˈhəʊm.wɜːk/', tip: 'HÂUM-quớk', note: 'nhấn âm 1: "HÂUM"', vi: 'bài tập về nhà' },
-      'question': { ipa: '/ˈkwes.tʃən/', tip: 'QUÉT-chần', note: 'nhấn âm 1: "QUÉT"', vi: 'câu hỏi' },
-      'questions': { ipa: '/ˈkwes.tʃənz/', tip: 'QUÉT-chần-z', note: 'rung nhẹ "z" cuối', vi: 'các câu hỏi' },
-      'answer': { ipa: '/ˈɑːn.sər/', tip: 'AN-sờ', note: 'âm "w" câm, nhấn âm 1', vi: 'câu trả lời / đáp án' },
-      'correct': { ipa: '/kəˈrekt/', tip: 'cơ-RÉCT', note: 'nhấn âm 2: "RÉCT"', vi: 'chính xác' },
-      'mathematics': { ipa: '/ˌmæθ.əˈmæt.ɪks/', tip: 'ma-thơ-MÁ-tịk-s', note: 'nhấn âm 3: "MÁ"', vi: 'môn Toán' },
-      'math': { ipa: '/mæθ/', tip: 'mát-th', note: 'đặt lưỡi giữa hai răng cuối từ', vi: 'Toán' },
-      'geometry': { ipa: '/dʒiˈɒm.ə.tri/', tip: 'ji-O-mơ-tri', note: 'nhấn âm 2: "O"', vi: 'hình học' },
-      'algebra': { ipa: '/ˈæl.dʒə.brə/', tip: 'EO-jơ-brơ', note: 'nhấn âm 1: "EO"', vi: 'đại số' },
-      'triangle': { ipa: '/ˈtraɪ.æŋ.ɡəl/', tip: 'TRAI-ăng-gồl', note: 'nhấn âm 1: "TRAI"', vi: 'tam giác' },
-      'triangles': { ipa: '/ˈtraɪ.æŋ.ɡəlz/', tip: 'TRAI-ăng-gồl-z', note: 'rung nhẹ "z" cuối', vi: 'các tam giác' },
-      'right-angled': { ipa: '/raɪt ˈæŋ.ɡəld/', tip: 'rai-t ĂNG-gồl-đ', note: 'âm "gh" câm', vi: 'vuông (góc)' },
-      'right': { ipa: '/raɪt/', tip: 'rai-t', note: 'âm "gh" câm', vi: 'vuông / đúng' },
-      'hypotenuse': { ipa: '/haɪˈpɒt.ən.juːz/', tip: 'hai-PO-tơ-niu-z', note: 'nhấn âm 2: "PO"', vi: 'cạnh huyền' },
-      'legs': { ipa: '/leɡz/', tip: 'lég-z', note: 'rung nhẹ "z" cuối', vi: 'hai cạnh góc vuông' },
-      'leg': { ipa: '/leɡ/', tip: 'lég', note: 'đọc là "lég"', vi: 'cạnh góc vuông' },
-      'side': { ipa: '/saɪd/', tip: 'sai-đ', note: 'bật nhẹ "đ" cuối', vi: 'cạnh' },
-      'sides': { ipa: '/saɪdz/', tip: 'sai-đ-z', note: 'đọc là "sai-đ-z"', vi: 'các cạnh' },
-      'square': { ipa: '/skweər/', tip: 's-QUE', note: 'xì nhẹ "s" đầu từ', vi: 'bình phương / hình vuông' },
-      'squares': { ipa: '/skweəz/', tip: 's-QUE-z', note: 'rung nhẹ "z" cuối', vi: 'các bình phương' },
-      'squared': { ipa: '/skweəd/', tip: 's-QUE-đ', note: 'bật nhẹ "đ" cuối', vi: 'bình phương' },
-      'sum': { ipa: '/sʌm/', tip: 'săm', note: 'đọc gọn: "săm"', vi: 'tổng' },
-      'equal': { ipa: '/ˈiː.kwəl/', tip: 'I-quồl', note: 'nhấn âm 1: "I"', vi: 'bằng' },
-      'equals': { ipa: '/ˈiː.kwəlz/', tip: 'I-quồl-z', note: 'nhấn âm 1: "I"', vi: 'bằng' },
-      'theorem': { ipa: '/ˈθɪə.rəm/', tip: 'THIƠ-rầm', note: 'nhấn âm 1: "THIƠ"', vi: 'định lí' },
-      'pythagorean': { ipa: '/paɪˌθæɡ.əˈriː.ən/', tip: 'pai-tha-gơ-RI-ần', note: 'nhấn âm 4: "RI"', vi: 'Pythagore' },
-      'equation': { ipa: '/ɪˈkweɪ.ʒən/', tip: 'i-QUÂY-zhần', note: 'nhấn âm 2: "QUÂY"', vi: 'phương trình' },
-      'linear': { ipa: '/ˈlɪn.i.ər/', tip: 'LI-ni-ờ', note: 'nhấn âm 1: "LI"', vi: 'bậc nhất' },
-      'quadratic': { ipa: '/kwɒdˈræt.ɪk/', tip: 'quót-RÁ-tịk', note: 'nhấn âm 2: "RÁ"', vi: 'bậc hai' },
-      'solve': { ipa: '/sɒlv/', tip: 'sô-v', note: 'đọc là "sô-v"', vi: 'giải' },
-      'calculate': { ipa: '/ˈkæl.kjə.leɪt/', tip: 'KEO-kiu-lây-t', note: 'nhấn âm 1: "KEO"', vi: 'tính toán' },
-      'find': { ipa: '/faɪnd/', tip: 'phai-đ', note: 'bật nhẹ "đ" cuối', vi: 'tìm' },
-      'prove': { ipa: '/pruːv/', tip: 'pru-v', note: 'đọc là "pru-v"', vi: 'chứng minh' },
-      'angle': { ipa: '/ˈæŋ.ɡəl/', tip: 'ĂNG-gồl', note: 'nhấn âm 1: "ĂNG"', vi: 'góc' },
-      'angles': { ipa: '/ˈæŋ.ɡəlz/', tip: 'ĂNG-gồl-z', note: 'nhấn âm 1: "ĂNG"', vi: 'các góc' },
-      'parallel': { ipa: '/ˈpær.ə.lel/', tip: 'PA-rơ-leo', note: 'nhấn âm 1: "PA"', vi: 'song song' },
-      'perpendicular': { ipa: '/ˌpɜː.pənˈdɪk.jə.lər/', tip: 'pơ-pần-ĐÍK-kiu-lờ', note: 'nhấn âm 3: "ĐÍK"', vi: 'vuông góc' },
-      'area': { ipa: '/ˈeə.ri.ə/', tip: 'E-ri-ơ', note: 'nhấn âm 1: "E"', vi: 'diện tích' },
-      'perimeter': { ipa: '/pəˈrɪm.ɪ.tər/', tip: 'pờ-RI-mi-tờ', note: 'nhấn âm 2: "RI"', vi: 'chu vi' },
-      'volume': { ipa: '/ˈvɒl.juːm/', tip: 'VO-lium', note: 'nhấn âm 1: "VO"', vi: 'thể tích' },
-      'circle': { ipa: '/ˈsɜː.kəl/', tip: 'SƠ-cồl', note: 'nhấn âm 1: "SƠ"', vi: 'đường tròn' },
-      'radius': { ipa: '/ˈreɪ.di.əs/', tip: 'RÂY-đi-ợt-s', note: 'nhấn âm 1: "RÂY"', vi: 'bán kính' },
-      'diameter': { ipa: '/daɪˈæm.ɪ.tər/', tip: 'đai-A-mi-tờ', note: 'nhấn âm 2: "A"', vi: 'đường kính' },
-      'fraction': { ipa: '/ˈfræk.ʃən/', tip: 'PHRẮC-shần', note: 'nhấn âm 1: "PHRẮC"', vi: 'phân số' },
+      'set': { ipa: '/set/', tip: 'sét', note: 'đọc gọn: "sét"', vi: 'tập hợp' },
+      'element': { ipa: '/ˈel.ɪ.mənt/', tip: 'É-li-mầnt', note: 'nhấn âm 1: "É"', vi: 'phần tử' },
+      'belong': { ipa: '/bɪˈlɒŋ/', tip: 'bi-LONG', note: 'nhấn âm 2: "LONG"', vi: 'thuộc về' },
+      'natural': { ipa: '/ˈnætʃ.ər.əl/', tip: 'NÁT-chơ-rồl', note: 'nhấn âm 1: "NÁT"', vi: 'tự nhiên' },
       'number': { ipa: '/ˈnʌm.bər/', tip: 'NĂM-bờ', note: 'nhấn âm 1: "NĂM"', vi: 'số' },
-      'prime': { ipa: '/praɪm/', tip: 'p-RAIM', note: 'bật nhẹ "p" đầu từ', vi: 'nguyên tố' },
+      'numbers': { ipa: '/ˈnʌm.bəz/', tip: 'NĂM-bờ-z', note: 'rung nhẹ "z" cuối', vi: 'các số' },
       'integer': { ipa: '/ˈɪn.tɪ.dʒər/', tip: 'IN-ti-jờ', note: 'nhấn âm 1: "IN"', vi: 'số nguyên' },
+      'rational': { ipa: '/ˈræʃ.ən.əl/', tip: 'RÁ-shần-nồl', note: 'nhấn âm 1: "RÁ"', vi: 'hữu tỉ' },
+      'irrational': { ipa: '/ɪˈræʃ.ən.əl/', tip: 'i-RÁ-shần-nồl', note: 'nhấn âm 2: "RÁ"', vi: 'vô tỉ' },
+      'fraction': { ipa: '/ˈfræk.ʃən/', tip: 'PHRẮC-shần', note: 'nhấn âm 1: "PHRẮC"', vi: 'phân số' },
+      'numerator': { ipa: '/ˈnjuː.mə.reɪ.tər/', tip: 'NIU-mơ-rây-tờ', note: 'nhấn âm 1: "NIU"', vi: 'tử số' },
+      'denominator': { ipa: '/dɪˈnɒm.ɪ.neɪ.tər/', tip: 'đi-NOM-i-nây-tờ', note: 'nhấn âm 2: "NOM"', vi: 'mẫu số' },
+      'decimal': { ipa: '/ˈdes.ɪ.məl/', tip: 'ĐÉ-xi-mồl', note: 'nhấn âm 1: "ĐÉ"', vi: 'số thập phân' },
+      'percentage': { ipa: '/pəˈsen.tɪdʒ/', tip: 'pờ-SEN-tịt-j', note: 'nhấn âm 2: "SEN"', vi: 'phần trăm' },
+      'equation': { ipa: '/ɪˈkweɪ.ʒən/', tip: 'i-QUÂY-zhần', note: 'nhấn âm 2: "QUÂY"', vi: 'phương trình' },
+      'inequality': { ipa: '/ˌɪn.ɪˈkwɒl.ə.ti/', tip: 'in-i-QUO-lơ-ti', note: 'nhấn âm 3: "QUO"', vi: 'bất phương trình / bất đẳng thức' },
+      'polynomial': { ipa: '/ˌpɒl.iˈnəʊ.mi.əl/', tip: 'po-li-NÂU-mi-ồl', note: 'nhấn âm 3: "NÂU"', vi: 'đa thức' },
+      'monomial': { ipa: '/məˈnəʊ.mi.əl/', tip: 'mơ-NÂU-mi-ồl', note: 'nhấn âm 2: "NÂU"', vi: 'đơn thức' },
       'coefficient': { ipa: '/ˌkəʊ.ɪˈfɪʃ.ənt/', tip: 'câu-i-PHI-shầnt', note: 'nhấn âm 3: "PHI"', vi: 'hệ số' },
       'variable': { ipa: '/ˈveə.ri.ə.bəl/', tip: 'VE-ri-ơ-bồl', note: 'nhấn âm 1: "VE"', vi: 'biến số' },
-      'solution': { ipa: '/səˈluː.ʃən/', tip: 'sơ-LU-shần', note: 'nhấn âm 2: "LU"', vi: 'nghiệm / lời giải' },
-      'worksheet': { ipa: '/ˈwɜːk.ʃiːt/', tip: 'QUỚC-shít', note: 'nhấn âm 1: "QUỚC"', vi: 'phiếu học tập' },
-      'example': { ipa: '/ɪɡˈzɑːm.pəl/', tip: 'ig-ZAM-pồl', note: 'nhấn âm 2: "ZAM"', vi: 'ví dụ' },
-      'problem': { ipa: '/ˈprɒb.ləm/', tip: 'PROB-lầm', note: 'nhấn âm 1: "PROB"', vi: 'bài toán / vấn đề' },
-      'formula': { ipa: '/ˈfɔː.mjə.lə/', tip: 'PHO-miơ-lơ', note: 'nhấn âm 1: "PHO"', vi: 'công thức' },
-      'plus': { ipa: '/plʌs/', tip: 'plớt', note: 'xì nhẹ "s" cuối', vi: 'cộng' },
-      'minus': { ipa: '/ˈmaɪ.nəs/', tip: 'MAI-nợt-s', note: 'nhấn âm 1: "MAI"', vi: 'trừ' },
-      'times': { ipa: '/taɪmz/', tip: 'tham-z', note: 'rung nhẹ "z" cuối', vi: 'nhân' },
-      'zero': { ipa: '/ˈzɪə.rəʊ/', tip: 'ZIƠ-râu', note: 'nhấn âm 1: "ZIƠ"', vi: 'số không' },
-      'one': { ipa: '/wʌn/', tip: 'quăn', note: 'đọc là "quăn"', vi: 'một' },
-      'two': { ipa: '/tuː/', tip: 'tu', note: 'âm "w" câm, đọc "tu"', vi: 'hai' },
-      'three': { ipa: '/θriː/', tip: 'th-ri', note: 'đặt lưỡi giữa răng âm "th"', vi: 'ba' },
-      'four': { ipa: '/fɔːr/', tip: 'pho', note: 'đọc là "pho"', vi: 'bốn' },
-      'five': { ipa: '/faɪv/', tip: 'phai-v', note: 'răng trên chạm môi dưới âm "v"', vi: 'năm' },
-      'six': { ipa: '/sɪks/', tip: 'síc-s', note: 'bật âm "k" rồi xì "s"', vi: 'sáu' },
-      'seven': { ipa: '/ˈsev.ən/', tip: 'SÉ-vần', note: 'nhấn âm 1: "SÉ"', vi: 'bảy' },
-      'eight': { ipa: '/eɪt/', tip: 'ây-t', note: 'âm "gh" câm, đọc "ây-t"', vi: 'tám' },
-      'nine': { ipa: '/naɪn/', tip: 'nai-n', note: 'đọc là "nai-n"', vi: 'chín' },
-      'ten': { ipa: '/ten/', tip: 'ten', note: 'đọc là "ten"', vi: 'mười' }
+      'triangle': { ipa: '/ˈtraɪ.æŋ.ɡəl/', tip: 'TRAI-ăng-gồl', note: 'nhấn âm 1: "TRAI"', vi: 'tam giác' },
+      'right-angled': { ipa: '/raɪt ˈæŋ.ɡəld/', tip: 'rai-t ĂNG-gồl-đ', note: 'âm "gh" câm', vi: 'vuông (góc)' },
+      'hypotenuse': { ipa: '/haɪˈpɒt.ən.juːz/', tip: 'hai-PO-tơ-niu-z', note: 'nhấn âm 2: "PO"', vi: 'cạnh huyền' },
+      'similar': { ipa: '/ˈsɪm.ɪ.lər/', tip: 'SI-mi-lờ', note: 'nhấn âm 1: "SI"', vi: 'đồng dạng' },
+      'congruent': { ipa: '/ˈkɒŋ.ɡru.ənt/', tip: 'KONG-gru-ầnt', note: 'nhấn âm 1: "KONG"', vi: 'bằng nhau (hình học)' },
+      'parallel': { ipa: '/ˈpær.ə.lel/', tip: 'PA-rơ-leo', note: 'nhấn âm 1: "PA"', vi: 'song song' },
+      'perpendicular': { ipa: '/ˌpɜː.pənˈdɪk.jə.lər/', tip: 'pơ-pần-ĐÍK-kiu-lờ', note: 'nhấn âm 3: "ĐÍK"', vi: 'vuông góc' },
+      'circle': { ipa: '/ˈsɜː.kəl/', tip: 'SƠ-cồl', note: 'nhấn âm 1: "SƠ"', vi: 'đường tròn' },
+      'tangent': { ipa: '/ˈtæn.dʒənt/', tip: 'TAN-jầnt', note: 'nhấn âm 1: "TAN"', vi: 'tiếp tuyến / tang' },
+      'quadratic': { ipa: '/kwɒdˈræt.ɪk/', tip: 'quót-RÁ-tịk', note: 'nhấn âm 2: "RÁ"', vi: 'bậc hai' },
+      'discriminant': { ipa: '/dɪˈskrɪm.ɪ.nənt/', tip: 'địt-S-CRI-mi-nầnt', note: 'nhấn âm 2: "CRI"', vi: 'biệt thức' },
+      'probability': { ipa: '/ˌprɒb.əˈbɪl.ə.ti/', tip: 'pro-bơ-BI-lơ-ti', note: 'nhấn âm 3: "BI"', vi: 'xác suất' },
+      'rationalise': { ipa: '/ˈræʃ.ən.əl.aɪz/', tip: 'RÁ-shần-nồl-lai-z', note: 'nhấn âm 1: "RÁ"', vi: 'trục căn thức' },
+      'simplify': { ipa: '/ˈsɪm.plɪ.faɪ/', tip: 'XIM-p-li-phai', note: 'nhấn âm 1: "XIM"', vi: 'rút gọn / thu gọn' },
+      'solve': { ipa: '/sɒlv/', tip: 'sô-v', note: 'đọc là "sô-v"', vi: 'giải' },
+      'find': { ipa: '/faɪnd/', tip: 'phai-đ', note: 'bật nhẹ "đ" cuối', vi: 'tìm' },
+      'prove': { ipa: '/pruːv/', tip: 'pru-v', note: 'đọc là "pru-v"', vi: 'chứng minh' },
+      'calculate': { ipa: '/ˈkæl.kjə.leɪt/', tip: 'KEO-kiu-lây-t', note: 'nhấn âm 1: "KEO"', vi: 'tính toán' }
     };
 
-    let currentCat = 'all';
+    let currentGrade = 'all';
     let currentFilter = 'all';
+    let sectionMode = 'both';
     let currentAccent = 'en-US';
     let currentRate = 1.0;
-    let starredIds = JSON.parse(localStorage.getItem('math_eng_starred') || '[]');
-    let scores = JSON.parse(localStorage.getItem('math_eng_scores') || '{}');
+    let starredIds = JSON.parse(localStorage.getItem('moet_math_starred') || '[]');
+    let scores = JSON.parse(localStorage.getItem('moet_math_scores') || '{}');
     let activeRecognition = null;
 
     // Detect Zalo / Facebook / Messenger In-App WebView
     const ua = navigator.userAgent || '';
     const isInAppBrowser = /Zalo|FBAN|FBAV|Messenger|Instagram|Line/i.test(ua);
-
     if (isInAppBrowser) {
       document.getElementById('inapp-banner').classList.remove('hidden');
-    }
-
-    function openExternalBrowser() {
-      toggleMicModal(true);
     }
 
     function showToast(msg) {
@@ -507,12 +320,11 @@
       });
     }
 
-    // Play online MP3 TTS fallback (works inside Zalo WebView where speechSynthesis is disabled/broken)
+    // Play online MP3 TTS fallback (works inside Zalo WebView)
     function playFallbackAudio(cleanText) {
       const audio = document.getElementById('fallback-audio');
       audio.pause();
       const tl = currentAccent === 'en-GB' ? 'en-GB' : 'en-US';
-      // Split into chunks <= 180 chars if paragraph is long
       const chunks = cleanText.match(/.{1,180}(\s|$)/g) || [cleanText];
       let idx = 0;
 
@@ -532,22 +344,18 @@
           showToast('🔊 Vui lòng chạm lại vào nút <strong>Nghe mẫu</strong> để phát âm thanh.');
         });
       }
-
       playNextChunk();
     }
 
-    // Universal Speak Function: Native SpeechSynthesis + Automatic Fallback for Zalo/WebView
     function speakText(text) {
       const cleanText = text.replace(/\//g, ' or ').trim();
       if (!cleanText) return;
 
-      // Stop any running audio
       const audio = document.getElementById('fallback-audio');
       if (audio) audio.pause();
 
       const hasNativeTTS = ('speechSynthesis' in window) && typeof SpeechSynthesisUtterance !== 'undefined';
 
-      // Inside Zalo/In-App browsers, speechSynthesis often exists as a stub that never fires 'onstart'
       if (hasNativeTTS && !isInAppBrowser) {
         try {
           window.speechSynthesis.cancel();
@@ -566,7 +374,6 @@
 
           window.speechSynthesis.speak(utter);
 
-          // Watchdog: if native TTS hangs after 650ms, seamlessly switch to MP3 fallback
           setTimeout(() => {
             if (!started && !window.speechSynthesis.speaking) {
               window.speechSynthesis.cancel();
@@ -579,101 +386,46 @@
           return;
         }
       }
-
-      // Direct MP3 audio playback for Zalo In-App Browser or devices without native TTS
       playFallbackAudio(cleanText);
     }
 
-    // Smart Vietnamese Phonetic Transliterator
     function transliterateToVietnamese(word) {
       const clean = word.toLowerCase().replace(/[^a-z']/g, '');
       if (!clean) return word;
       if (MINI_DICT[clean]) return MINI_DICT[clean].tip;
 
-      const foundData = DATA.find(d => d.en.toLowerCase() === clean);
-      if (foundData) {
-        const m = foundData.tip.match(/"([^"]+)"/);
-        if (m) return m[1];
-      }
-
       let w = clean;
-      w = w.replace(/^kn/, 'n')
-           .replace(/^wr/, 'r')
-           .replace(/^wh/, 'qu')
-           .replace(/ght$/, 't')
-           .replace(/tion$/, 'shần')
-           .replace(/sion$/, 'zhần')
-           .replace(/ture$/, 'chờ')
-           .replace(/ous$/, 'ợt-s')
-           .replace(/able$/, 'ơ-bồl')
-           .replace(/ible$/, 'ơ-bồl')
-           .replace(/ment$/, 'mầnt')
-           .replace(/ness$/, 'nịt-s')
-           .replace(/less$/, 'lịt-s')
-           .replace(/ful$/, 'phồl')
-           .replace(/ing$/, 'ing')
-           .replace(/ed$/, 'đ')
-           .replace(/ly$/, 'li')
-           .replace(/er$/, 'ờ')
-           .replace(/or$/, 'ờ');
-
-      w = w.replace(/ph/g, 'ph')
-           .replace(/sh/g, 'sh')
-           .replace(/ch/g, 'ch')
-           .replace(/th/g, 'th')
-           .replace(/qu/g, 'qu')
-           .replace(/ck/g, 'k')
-           .replace(/ce/g, 'xe')
-           .replace(/ci/g, 'xi')
-           .replace(/cy/g, 'xi')
-           .replace(/ge/g, 'je')
-           .replace(/gi/g, 'ji');
-
-      w = w.replace(/oo/g, 'u')
-           .replace(/ee/g, 'i')
-           .replace(/ea/g, 'i')
-           .replace(/ai/g, 'ây')
-           .replace(/ay/g, 'ây')
-           .replace(/oa/g, 'âu')
-           .replace(/ow/g, 'ao')
-           .replace(/ou/g, 'ao')
-           .replace(/au/g, 'o')
-           .replace(/aw/g, 'o')
-           .replace(/oi/g, 'oi')
-           .replace(/oy/g, 'oi');
-
-      if (w.length > 3 && w.endsWith('e') && !w.endsWith('le')) {
-        w = w.slice(0, -1);
-      }
-      w = w.replace(/w/g, 'qu')
-           .replace(/y$/g, 'i')
-           .replace(/j/g, 'j')
-           .replace(/z/g, 'z');
-
+      w = w.replace(/^kn/, 'n').replace(/^wr/, 'r').replace(/^wh/, 'qu')
+           .replace(/ght$/, 't').replace(/tion$/, 'shần').replace(/sion$/, 'zhần')
+           .replace(/ture$/, 'chờ').replace(/ous$/, 'ợt-s').replace(/able$/, 'ơ-bồl')
+           .replace(/ible$/, 'ơ-bồl').replace(/ment$/, 'mầnt').replace(/ness$/, 'nịt-s')
+           .replace(/less$/, 'lịt-s').replace(/ful$/, 'phồl').replace(/ing$/, 'ing')
+           .replace(/ed$/, 'đ').replace(/ly$/, 'li').replace(/er$/, 'ờ').replace(/or$/, 'ờ');
+      w = w.replace(/ph/g, 'ph').replace(/sh/g, 'sh').replace(/ch/g, 'ch')
+           .replace(/th/g, 'th').replace(/qu/g, 'qu').replace(/ck/g, 'k')
+           .replace(/ce/g, 'xe').replace(/ci/g, 'xi').replace(/cy/g, 'xi')
+           .replace(/ge/g, 'je').replace(/gi/g, 'ji');
+      w = w.replace(/oo/g, 'u').replace(/ee/g, 'i').replace(/ea/g, 'i')
+           .replace(/ai/g, 'ây').replace(/ay/g, 'ây').replace(/oa/g, 'âu')
+           .replace(/ow/g, 'ao').replace(/ou/g, 'ao').replace(/au/g, 'o')
+           .replace(/aw/g, 'o').replace(/oi/g, 'oi').replace(/oy/g, 'oi');
+      if (w.length > 3 && w.endsWith('e') && !w.endsWith('le')) w = w.slice(0, -1);
+      w = w.replace(/w/g, 'qu').replace(/y$/g, 'i');
       return w;
     }
 
     function getWordAnalysis(tok) {
       const clean = tok.toLowerCase().replace(/[^a-z0-9'-]/g, '');
       if (!clean) return { tok, tip: '', note: '', ipa: '', vi: '' };
-
       if (MINI_DICT[clean]) {
-        return {
-          tok,
-          tip: MINI_DICT[clean].tip,
-          note: MINI_DICT[clean].note,
-          ipa: MINI_DICT[clean].ipa,
-          vi: MINI_DICT[clean].vi
-        };
+        return { tok, ...MINI_DICT[clean] };
       }
-
       const phonetic = transliterateToVietnamese(clean);
       let note = '';
       if (clean.endsWith('s') && clean.length > 2) note = 'xì nhẹ âm "s" cuối';
       else if (clean.endsWith('ed')) note = 'bật nhẹ âm "đ" cuối';
       else if (clean.includes('th')) note = 'đặt lưỡi giữa răng âm "th"';
       else if (clean.includes('sh')) note = 'cong môi âm "sh"';
-
       return { tok, tip: phonetic, note, ipa: '', vi: '' };
     }
 
@@ -691,7 +443,6 @@
       const wordsEl = document.getElementById('custom-word-breakdown');
 
       viEl.textContent = 'Đang dịch nghĩa...';
-
       const tokens = raw.split(/\s+/);
       const analyzed = tokens.map(tok => getWordAnalysis(tok));
 
@@ -707,24 +458,21 @@
         `;
       }
 
-      wordsEl.innerHTML = analyzed.map(a => {
-        return `
-          <button onclick="speakText('${a.tok.replace(/'/g, "\'")}')" class="text-left px-3 py-2 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 transition">
-            <div class="font-bold text-xs text-slate-900">${a.tok} 🔊</div>
-            ${a.ipa ? `<div class="text-[11px] ipa-font text-blue-600">${a.ipa}</div>` : ''}
-            ${a.tip ? `<div class="text-xs text-amber-800 font-semibold mt-0.5">Đọc: "${a.tip}"</div>` : ''}
-            ${a.note ? `<div class="text-[10px] text-slate-500">(${a.note})</div>` : ''}
-            ${a.vi ? `<div class="text-[11px] text-emerald-700 font-medium mt-0.5">${a.vi}</div>` : ''}
-          </button>
-        `;
-      }).join('');
+      wordsEl.innerHTML = analyzed.map(a => `
+        <button onclick="speakText('${a.tok.replace(/'/g, "\\'")}')" class="text-left px-3 py-2 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 transition">
+          <div class="font-bold text-xs text-slate-900">${a.tok} 🔊</div>
+          ${a.ipa ? `<div class="text-[11px] ipa-font text-blue-600">${a.ipa}</div>` : ''}
+          ${a.tip ? `<div class="text-xs text-amber-800 font-semibold mt-0.5">Đọc: "${a.tip}"</div>` : ''}
+          ${a.note ? `<div class="text-[10px] text-slate-500">(${a.note})</div>` : ''}
+          ${a.vi ? `<div class="text-[11px] text-emerald-700 font-medium mt-0.5">${a.vi}</div>` : ''}
+        </button>
+      `).join('');
 
       try {
         const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(raw)}`;
         const res = await fetch(url);
         const data = await res.json();
-        const translated = data[0].map(item => item[0]).join('');
-        viEl.textContent = translated;
+        viEl.textContent = data[0].map(item => item[0]).join('');
       } catch (e) {
         const fallbackWords = tokens.map(t => {
           const c = t.toLowerCase().replace(/[^a-z-]/g, '');
@@ -743,7 +491,6 @@
       speakText(raw);
     }
 
-    // Speech Recognition & Scoring
     function computeSimilarity(target, spoken) {
       const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().split(/\s+/).filter(Boolean);
       const tWords = norm(target);
@@ -868,28 +615,28 @@
       }, btn);
     }
 
-    function practiceCard(id) {
-      const item = DATA.find(d => d.id === id);
+    function practiceItem(uid) {
+      const item = ALL_ITEMS.find(d => d.uid === uid);
       if (!item) return;
-      const btn = document.getElementById('speak-btn-' + id);
+      const btn = document.getElementById('speak-btn-' + uid);
       const target = item.en.split('/')[0].trim();
       startSpeechPractice(target, (res) => {
-        scores[id] = res;
-        localStorage.setItem('math_eng_scores', JSON.stringify(scores));
+        scores[uid] = res;
+        localStorage.setItem('moet_math_scores', JSON.stringify(scores));
         updateStats();
-        renderCards();
+        renderContent();
       }, btn);
     }
 
-    function toggleStar(id) {
-      if (starredIds.includes(id)) {
-        starredIds = starredIds.filter(x => x !== id);
+    function toggleStar(uid) {
+      if (starredIds.includes(uid)) {
+        starredIds = starredIds.filter(x => x !== uid);
       } else {
-        starredIds.push(id);
+        starredIds.push(uid);
       }
-      localStorage.setItem('math_eng_starred', JSON.stringify(starredIds));
+      localStorage.setItem('moet_math_starred', JSON.stringify(starredIds));
       updateStats();
-      renderCards();
+      renderContent();
     }
 
     function toggleMicModal(show) {
@@ -921,10 +668,25 @@
       }
     }
 
-    function setCategory(catId) {
-      currentCat = catId;
-      renderTabs();
-      renderCards();
+    function selectGrade(g) {
+      currentGrade = g;
+      ['all', 6, 7, 8, 9].forEach(key => {
+        const el = document.getElementById('grade-' + key);
+        if (el) {
+          el.className = key === g
+            ? 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 text-white shadow-sm transition'
+            : 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+        }
+      });
+      populateLessonDropdown();
+      renderContent();
+    }
+
+    function populateLessonDropdown() {
+      const sel = document.getElementById('lesson-select');
+      const filteredLessons = CURRICULUM.filter(blk => currentGrade === 'all' || blk.grade === currentGrade);
+      sel.innerHTML = `<option value="all">-- Tất cả các bài học (${filteredLessons.length} chuyên đề) --</option>` +
+        filteredLessons.map((blk, idx) => `<option value="${blk.grade}_${idx}">[Khối ${blk.grade}] ${blk.lesson}</option>`).join('');
     }
 
     function setScoreFilter(f) {
@@ -937,11 +699,24 @@
           el.classList.toggle('ring-blue-500', key === f);
         }
       });
-      renderCards();
+      renderContent();
+    }
+
+    function setSectionMode(m) {
+      sectionMode = m;
+      ['both', 'vocab', 'expr'].forEach(key => {
+        const el = document.getElementById('mode-' + key);
+        if (el) {
+          el.className = key === m
+            ? 'px-3 py-1 rounded-full text-xs font-semibold bg-indigo-600 text-white transition'
+            : 'px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+        }
+      });
+      renderContent();
     }
 
     function updateStats() {
-      document.getElementById('count-all').textContent = DATA.length;
+      document.getElementById('count-all').textContent = ALL_ITEMS.length;
       let exc = 0, pass = 0, fail = 0;
       Object.values(scores).forEach(s => {
         if (s.level === 'excellent') exc++;
@@ -954,131 +729,178 @@
       document.getElementById('count-starred').textContent = starredIds.length;
     }
 
-    function renderTabs() {
-      const nav = document.getElementById('category-tabs');
-      nav.innerHTML = CATEGORIES.map(c => {
-        const active = c.id === currentCat;
-        return `
-          <button onclick="setCategory('${c.id}')" class="whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition ${
-            active
-              ? 'bg-blue-600 text-white shadow-sm'
-              : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-          }">${c.name}</button>
-        `;
-      }).join('');
+    function renderScoreBadge(uid) {
+      const sc = scores[uid];
+      if (!sc) return '';
+      if (sc.level === 'excellent') {
+        return `<div class="mt-2 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center justify-between"><span>🌟 <strong>Tuyệt vời (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
+      } else if (sc.level === 'pass') {
+        return `<div class="mt-2 px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 text-xs text-blue-800 flex items-center justify-between"><span>✅ <strong>Đạt (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
+      } else {
+        return `<div class="mt-2 px-2.5 py-1 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center justify-between"><span>🔄 <strong>Chưa đạt (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
+      }
     }
 
-    function renderCards() {
-      const q = document.getElementById('search-input').value.trim().toLowerCase();
-      const container = document.getElementById('cards-container');
-
-      const filtered = DATA.filter(item => {
-        if (currentCat !== 'all' && item.cat !== currentCat) return false;
-        if (currentFilter === 'starred' && !starredIds.includes(item.id)) return false;
-        if (['excellent', 'pass', 'fail'].includes(currentFilter)) {
-          const sc = scores[item.id];
-          if (!sc || sc.level !== currentFilter) return false;
-        }
-        if (q) {
-          const hay = `${item.en} ${item.ipa} ${item.tip} ${item.vi} ${item.ex}`.toLowerCase();
-          if (!hay.includes(q)) return false;
-        }
-        return true;
-      });
-
-      if (!filtered.length) {
-        container.innerHTML = `
-          <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-500 text-sm">
-            Không tìm thấy mục nào phù hợp với bộ lọc hiện tại.
-          </div>
-        `;
-        return;
+    function passesItemFilter(item, q) {
+      if (currentFilter === 'starred' && !starredIds.includes(item.uid)) return false;
+      if (['excellent', 'pass', 'fail'].includes(currentFilter)) {
+        const sc = scores[item.uid];
+        if (!sc || sc.level !== currentFilter) return false;
       }
+      if (q) {
+        const hay = `${item.en} ${item.ipa || ''} ${item.tip} ${item.vi} ${item.ex || ''}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    }
 
-      container.innerHTML = filtered.map(item => {
-        const isStar = starredIds.includes(item.id);
-        const sc = scores[item.id];
-        const isParagraph = item.cat === 'paragraphs';
+    function renderContent() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const lessonSel = document.getElementById('lesson-select').value;
+      const container = document.getElementById('lessons-container');
 
-        let scoreHtml = '';
-        if (sc) {
-          if (sc.level === 'excellent') {
-            scoreHtml = `<div class="mt-2 px-2.5 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center justify-between"><span>🌟 <strong>Tuyệt vời (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
-          } else if (sc.level === 'pass') {
-            scoreHtml = `<div class="mt-2 px-2.5 py-1.5 rounded-lg bg-blue-50 border border-blue-200 text-xs text-blue-800 flex items-center justify-between"><span>✅ <strong>Đạt (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
-          } else {
-            scoreHtml = `<div class="mt-2 px-2.5 py-1.5 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center justify-between"><span>🔄 <strong>Chưa đạt (${sc.pct}%)</strong></span><span class="italic truncate max-w-[140px]">"${sc.spoken}"</span></div>`;
-          }
-        }
+      const gradeBlocks = CURRICULUM.filter(blk => currentGrade === 'all' || blk.grade === currentGrade);
+      const selectedBlocks = lessonSel === 'all'
+        ? gradeBlocks
+        : gradeBlocks.filter((blk, idx) => `${blk.grade}_${idx}` === lessonSel);
 
-        let sentenceBtns = '';
-        if (isParagraph) {
-          const sentences = item.en.match(/[^.!?]+[.!?]+/g) || [item.en];
-          sentenceBtns = `
-            <div class="mt-2.5 pt-2 border-t border-slate-100 flex flex-wrap gap-1.5">
-              <span class="text-[11px] text-slate-400 self-center mr-1">Nghe từng câu:</span>
-              ${sentences.map((s, idx) => `
-                <button onclick="speakText('${s.trim().replace(/'/g, "\'")}')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 text-[11px] font-medium transition">
-                  Câu ${idx + 1} 🔊
-                </button>
-              `).join('')}
+      let htmlOut = '';
+
+      selectedBlocks.forEach(blk => {
+        const matchedVocab = (sectionMode === 'both' || sectionMode === 'vocab')
+          ? blk.vocab.filter(v => passesItemFilter(v, q))
+          : [];
+        const matchedExpr = (sectionMode === 'both' || sectionMode === 'expr')
+          ? blk.expressions.filter(e => passesItemFilter(e, q))
+          : [];
+
+        if (!matchedVocab.length && !matchedExpr.length) return;
+
+        const gradeBadgeColor = blk.grade === 6 ? 'bg-emerald-600' : blk.grade === 7 ? 'bg-amber-600' : blk.grade === 8 ? 'bg-blue-600' : 'bg-purple-600';
+
+        // Section 1: Key Vocabulary HTML
+        let vocabSectionHtml = '';
+        if (matchedVocab.length) {
+          vocabSectionHtml = `
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 border-b border-blue-100 pb-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800 text-xs font-bold">1. KEY VOCABULARY</span>
+                <span class="text-xs sm:text-sm font-bold text-slate-700">Từ vựng trọng tâm (${matchedVocab.length} thuật ngữ)</span>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                ${matchedVocab.map(v => {
+                  const isStar = starredIds.includes(v.uid);
+                  return `
+                    <article class="bg-slate-50/70 rounded-xl border border-slate-200 p-3.5 flex flex-col justify-between card-hover">
+                      <div>
+                        <div class="flex items-start justify-between gap-2">
+                          <h4 class="text-base font-bold text-slate-900">${v.en}</h4>
+                          <button onclick="toggleStar('${v.uid}')" title="Lưu từ khó" class="text-lg leading-none ${isStar ? 'text-amber-400' : 'text-slate-300 hover:text-amber-400'}">${isStar ? '★' : '☆'}</button>
+                        </div>
+                        <div class="mt-1">
+                          <span class="ipa-font text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">${v.ipa}</span>
+                        </div>
+                        <div class="mt-2 text-xs text-amber-950 bg-amber-50 border border-amber-200/80 px-2.5 py-1.5 rounded-lg leading-relaxed">
+                          <strong>🗣️ Mẹo đọc:</strong> ${v.tip}
+                        </div>
+                        <div class="mt-2 text-sm font-bold text-emerald-700">🇻🇳 ${v.vi}</div>
+                        <div class="mt-1.5 text-xs text-slate-600 italic bg-white p-2 rounded-lg border border-slate-100">
+                          <span class="font-semibold not-italic text-slate-500">Example:</span> "${v.ex}"
+                          <button onclick="speakText('${v.ex.replace(/'/g, "\\'")}')" class="ml-1 text-blue-600 hover:underline font-semibold not-italic">[🔊 Nghe câu VD]</button>
+                        </div>
+                      </div>
+                      <div class="mt-3 pt-2.5 border-t border-slate-200/70">
+                        <div class="flex items-center gap-2">
+                          <button onclick="speakText('${v.en.replace(/'/g, "\\'")}')" class="flex-1 py-1.5 px-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1">🔊 Nghe từ</button>
+                          <button id="speak-btn-${v.uid}" onclick="practiceItem('${v.uid}')" class="relative flex-1 py-1.5 px-2.5 rounded-lg bg-white hover:bg-rose-50 text-slate-800 hover:text-rose-700 border border-slate-300 hover:border-rose-300 text-xs font-semibold transition flex items-center justify-center gap-1">🎙️ Luyện nói</button>
+                        </div>
+                        ${renderScoreBadge(v.uid)}
+                      </div>
+                    </article>
+                  `;
+                }).join('')}
+              </div>
             </div>
           `;
         }
 
-        return `
-          <article class="bg-white rounded-2xl border border-slate-200 p-4 flex flex-col justify-between card-hover ${isParagraph ? 'md:col-span-2 lg:col-span-3' : ''}">
-            <div>
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="${isParagraph ? 'text-sm sm:text-base leading-relaxed' : 'text-base'} font-bold text-slate-900">
-                  ${item.en}
-                </h3>
-                <button onclick="toggleStar(${item.id})" title="Lưu từ khó" class="text-lg leading-none ${isStar ? 'text-amber-400' : 'text-slate-300 hover:text-amber-400'}">
-                  ${isStar ? '★' : '☆'}
-                </button>
+        // Section 2: Useful Mathematical Expressions HTML
+        let exprSectionHtml = '';
+        if (matchedExpr.length) {
+          exprSectionHtml = `
+            <div class="space-y-3 ${matchedVocab.length ? 'pt-4 border-t border-slate-200' : ''}">
+              <div class="flex items-center gap-2 border-b border-indigo-100 pb-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-800 text-xs font-bold">2. USEFUL MATHEMATICAL EXPRESSIONS</span>
+                <span class="text-xs sm:text-sm font-bold text-slate-700">Câu hỏi & Mẫu câu tương tác trên lớp (${matchedExpr.length} mẫu câu)</span>
               </div>
-
-              <div class="mt-1.5">
-                <span class="ipa-font text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">${item.ipa}</span>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                ${matchedExpr.map(e => {
+                  const isStar = starredIds.includes(e.uid);
+                  const isQuestion = e.en.trim().endsWith('?');
+                  return `
+                    <article class="bg-indigo-50/30 rounded-xl border border-indigo-100 p-3.5 flex flex-col justify-between card-hover">
+                      <div>
+                        <div class="flex items-start justify-between gap-2">
+                          <div class="flex items-start gap-2">
+                            <span class="mt-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${isQuestion ? 'bg-rose-100 text-rose-700' : 'bg-indigo-100 text-indigo-700'}">${isQuestion ? 'Câu hỏi' : 'Mẫu câu'}</span>
+                            <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">${e.en}</h4>
+                          </div>
+                          <button onclick="toggleStar('${e.uid}')" title="Lưu mẫu câu" class="text-lg leading-none ${isStar ? 'text-amber-400' : 'text-slate-300 hover:text-amber-400'}">${isStar ? '★' : '☆'}</button>
+                        </div>
+                        <div class="mt-2 text-xs text-amber-950 bg-amber-50/90 border border-amber-200/80 px-2.5 py-1.5 rounded-lg leading-relaxed">
+                          <strong>🗣️ Mẹo đọc:</strong> ${e.tip}
+                        </div>
+                        <div class="mt-2 text-xs sm:text-sm font-semibold text-emerald-700">🇻🇳 ${e.vi}</div>
+                      </div>
+                      <div class="mt-3 pt-2.5 border-t border-indigo-100/80">
+                        <div class="flex items-center gap-2">
+                          <button onclick="speakText('${e.en.replace(/'/g, "\\'")}')" class="flex-1 py-1.5 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">🔊 Nghe câu mẫu</button>
+                          <button id="speak-btn-${e.uid}" onclick="practiceItem('${e.uid}')" class="relative flex-1 py-1.5 px-3 rounded-lg bg-white hover:bg-rose-50 text-slate-800 hover:text-rose-700 border border-slate-300 hover:border-rose-300 text-xs font-semibold transition flex items-center justify-center gap-1.5">🎙️ Luyện nói câu</button>
+                        </div>
+                        ${renderScoreBadge(e.uid)}
+                      </div>
+                    </article>
+                  `;
+                }).join('')}
               </div>
-
-              <div class="mt-2 text-xs text-amber-900 bg-amber-50/90 border border-amber-200/80 px-2.5 py-2 rounded-xl leading-relaxed">
-                <strong>🗣️ Mẹo đọc:</strong> ${item.tip}
-              </div>
-
-              <div class="mt-2.5 text-sm font-semibold text-emerald-700">
-                🇻🇳 ${item.vi}
-              </div>
-
-              <div class="mt-1 text-xs text-slate-500 italic">
-                💡 VD: ${item.ex}
-              </div>
-              ${sentenceBtns}
             </div>
+          `;
+        }
 
-            <div class="mt-3.5 pt-3 border-t border-slate-100">
-              <div class="flex items-center gap-2">
-                <button onclick="speakText('${item.en.replace(/'/g, "\'")}')" class="flex-1 py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
-                  🔊 Nghe mẫu
-                </button>
-                <button id="speak-btn-${item.id}" onclick="practiceCard(${item.id})" class="relative flex-1 py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-800 hover:text-rose-700 border border-slate-200 hover:border-rose-200 text-xs font-semibold transition flex items-center justify-center gap-1.5">
-                  🎙️ Luyện nói
-                </button>
+        htmlOut += `
+          <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6 space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-2.5 py-0.5 rounded-md ${gradeBadgeColor} text-white text-xs font-bold">KHỐI ${blk.grade}</span>
+                  <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">${blk.chapter}</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900">${blk.lesson}</h3>
               </div>
-              ${scoreHtml}
             </div>
-          </article>
+            ${vocabSectionHtml}
+            ${exprSectionHtml}
+          </section>
         `;
-      }).join('');
+      });
+
+      if (!htmlOut) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center text-slate-500 text-sm">
+            Không tìm thấy từ vựng hoặc mẫu câu nào phù hợp với bộ lọc hiện tại.
+          </div>
+        `;
+      } else {
+        container.innerHTML = htmlOut;
+      }
     }
 
-    // Initialize
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
     }
+    populateLessonDropdown();
     updateStats();
-    renderTabs();
-    renderCards();
+    renderContent();
   </script>
 </body>
 </html>
